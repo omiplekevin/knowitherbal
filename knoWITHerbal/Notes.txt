@@ -1,0 +1,6 @@
+Algorithm
+change TabHost to Custom Buttons
+	Reason:
+		Gingerbread 2.3.6, savestate is null after put into background.
+		
+save instance in listview->details, to retain last listscroll offset
