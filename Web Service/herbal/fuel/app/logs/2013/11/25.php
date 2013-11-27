@@ -1,0 +1,57 @@
+<?php defined('COREPATH') or exit('No direct script access allowed'); ?>
+
+WARNING - 2013-11-25 05:39:28 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:39:28 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:39:29 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:39:33 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:39:35 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:39:45 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:40:17 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:40:22 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:40:27 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2013-11-25 05:40:27 --> Fatal Error - Class 'Cotroller_Rest' not found in C:\wamp\www\herbal\fuel\app\classes\controller\json.php on line 3
+WARNING - 2013-11-25 05:40:46 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2013-11-25 05:40:46 --> Fatal Error - Class 'Cotroller_Rest' not found in C:\wamp\www\herbal\fuel\app\classes\controller\json.php on line 3
+WARNING - 2013-11-25 05:41:17 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:41:20 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:42:02 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:42:27 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:42:29 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:42:31 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:42:46 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:42:58 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:43:05 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:43:22 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:43:35 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:45:07 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:45:14 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:45:32 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:49:32 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:49:37 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:49:43 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:49:51 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:50:29 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:50:32 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:50:39 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:51:27 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:51:28 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 05:51:28 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 06:21:48 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 06:21:49 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 06:22:08 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2013-11-25 06:22:09 --> Warning - strpos() expects parameter 1 to be string, array given in C:\wamp\www\herbal\public\index.php on line 78
+WARNING - 2013-11-25 06:22:22 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 06:34:45 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 07:03:10 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 07:16:37 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 07:17:05 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2013-11-25 07:17:06 --> Error - SQLSTATE[42S22]: Column not found: 1054 Unknown column 't0.scientific_name' in 'field list' with query: "SELECT `t0`.`id` AS `t0_c0`, `t0`.`name` AS `t0_c1`, `t0`.`scientific_name` AS `t0_c2`, `t0`.`common_names` AS `t0_c3`, `t0`.`vernacular_names` AS `t0_c4`, `t0`.`properties` AS `t0_c5`, `t0`.`usage` AS `t0_c6`, `t0`.`filename` AS `t0_c7`, `t0`.`created_at` AS `t0_c8`, `t0`.`updated_at` AS `t0_c9` FROM `plants` AS `t0`" in C:\wamp\www\herbal\fuel\core\classes\database\pdo\connection.php on line 237
+WARNING - 2013-11-25 07:20:17 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 07:21:20 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 07:21:46 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 07:45:59 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 07:46:14 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 07:50:00 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 08:31:11 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 09:15:33 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-25 09:15:33 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.

@@ -1,0 +1,59 @@
+<?php defined('COREPATH') or exit('No direct script access allowed'); ?>
+
+WARNING - 2013-11-06 08:52:04 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:00:37 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2013-11-06 09:00:37 --> Error - The requested view could not be found: upload/index in C:\wamp\www\upload\fuel\core\classes\view.php on line 388
+WARNING - 2013-11-06 09:00:48 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2013-11-06 09:00:48 --> Error - No uploaded files were found. Did you specify "enctype" in your &lt;form&gt; tag? in C:\wamp\www\upload\fuel\vendor\fuelphp\upload\src\Fuel\Upload\Upload.php on line 94
+WARNING - 2013-11-06 09:01:24 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2013-11-06 09:01:24 --> Error - No uploaded files were found. Did you specify "enctype" in your &lt;form&gt; tag? in C:\wamp\www\upload\fuel\vendor\fuelphp\upload\src\Fuel\Upload\Upload.php on line 94
+WARNING - 2013-11-06 09:01:27 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2013-11-06 09:01:27 --> Fatal Error - Class 'form' not found in C:\wamp\www\upload\fuel\app\views\upload.php on line 4
+WARNING - 2013-11-06 09:02:51 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:03:32 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:03:43 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:18:15 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:18:23 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:21:01 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:23:40 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:23:46 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:25:32 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:25:38 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:25:44 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:26:10 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:26:19 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:26:25 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:26:25 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:26:33 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:26:40 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:26:42 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:26:55 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:26:57 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:27:01 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:27:08 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:27:21 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:31:15 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:31:43 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:32:07 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:32:25 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:32:28 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:32:29 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:32:32 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:32:51 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:33:18 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:33:20 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:33:23 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:33:25 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:36:51 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2013-11-06 09:36:52 --> Parsing Error - syntax error, unexpected ';' in C:\wamp\www\herbal\fuel\app\views\admin\images\_form.php on line 1
+WARNING - 2013-11-06 09:37:36 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2013-11-06 09:37:37 --> Parsing Error - syntax error, unexpected ';' in C:\wamp\www\herbal\fuel\app\views\admin\images\_form.php on line 1
+WARNING - 2013-11-06 09:37:39 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+ERROR - 2013-11-06 09:37:40 --> Parsing Error - syntax error, unexpected ';' in C:\wamp\www\herbal\fuel\app\views\admin\images\_form.php on line 1
+WARNING - 2013-11-06 09:38:12 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:38:20 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:39:02 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:39:03 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:39:33 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:39:34 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.
+WARNING - 2013-11-06 09:39:34 --> Fuel\Core\Fuel::init - The configured locale en_US is not installed on your system.

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">knoWITHerbal</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <string-array name="navigationMenus">
+        <item>Camera</item>
+        <item>Plant List</item>
+        <item>About this app</item>
+        <item>Open Source Licenses</item>
+    </string-array>
+    
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="version"><i>version </i><b>1.7</b></string>
+    <string name="updateDetail">
+        Version includes:\n
+        DB, CRUD, Data Models\n
+        Image Reading\n
+        Basic UI, DB-to-ListView Integration\n
+        ListView Item Detailing\n
+        Asynchronous Image Download\n
+        List search function\n
+        Multithreading!!!!!\n
+        <b>Database dependency!</b>
+        </string>
+        
+    <string name="action_search">List Search</string>
+    <string name="subtitle">a herbal leaf identifier&#8230;</string>
+
+</resources>
