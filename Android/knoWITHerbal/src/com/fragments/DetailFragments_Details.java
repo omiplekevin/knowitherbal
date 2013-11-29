@@ -4,15 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import android.app.SearchManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 
 import com.LMO.capstone.R;
@@ -100,44 +96,74 @@ public class DetailFragments_Details extends SherlockFragment{
 		//Sci. Name
 		List<String> scientificNames = new ArrayList<String>();
 		String[] sci = item.getScientific().split("\\|\\|");
-		for(int i=0;i<sci.length;i++)
+		if(sci.length == 1 && sci[0].equals(""))
+			scientificNames.add("No entry/entries... :(");
+		else
 		{
-			scientificNames.add(sci[i]);
+			for(int i=0;i<sci.length;i++)
+			{
+				scientificNames.add(sci[i]);
+			}
 		}
 		
 		List<String> availability = new ArrayList<String>();
 		String[] avail = item.getAvailability().split("\\|\\|");
-		for(int i=0;i<avail.length;i++)
+		if(avail.length == 1 && avail[0].equals(""))
+			availability.add("No entry/entries... :(");
+		else
 		{
-			availability.add(avail[i]);
+			for(int i=0;i<avail.length;i++)
+			{
+				availability.add(avail[i]);
+			}
 		}
 		
 		List<String> commonName = new ArrayList<String>();
 		String[] common = item.getCommon().split("\\|\\|");
-		for(int i=0;i<common.length;i++)
+		if(common.length == 1 && common[0].equals(""))
+			commonName.add("No entry/entries... :(");
+		else
 		{
-			commonName.add(common[i]);
+			for(int i=0;i<common.length;i++)
+			{
+				commonName.add(common[i]);
+			}
 		}
 		
 		List<String> vernacular = new ArrayList<String>();
 		String[] ver = item.getVernacular().split("\\|\\|");
-		for(int i=0;i<ver.length;i++)
+		if(ver.length == 1 && ver[0].equals(""))
+			vernacular.add("No entry/entries... :(");
+		else
 		{
-			vernacular.add(ver[i]);
+			for(int i=0;i<ver.length;i++)
+			{
+				vernacular.add(ver[i]);
+			}
 		}
 		
 		List<String> properties = new ArrayList<String>();
 		String[] prop = item.getProperties().split("\\|\\|");
-		for(int i=0;i<prop.length;i++)
+		if(prop.length == 1 && prop[0].equals(""))
+			properties.add("No entry/entries... :(");
+		else
 		{
-			properties.add(prop[i]);
+			for(int i=0;i<prop.length;i++)
+			{
+				properties.add(prop[i]);
+			}
 		}
 		
 		List<String> usage = new ArrayList<String>();
 		String[] use = item.getUsage().split("\\|\\|");
-		for(int i=0;i<use.length;i++)
+		if(use.length == 1 && use[0].equals(""))
+			availability.add("No entry/entries... :(");
+		else
 		{
-			usage.add(use[i]);
+			for(int i=0;i<use.length;i++)
+			{
+				usage.add(use[i]);
+			}
 		}
 		
 		listItems.put(listHeader.get(0), name);

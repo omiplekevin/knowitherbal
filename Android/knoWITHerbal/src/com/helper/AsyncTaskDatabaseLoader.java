@@ -1,15 +1,8 @@
 package com.helper;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
-import org.apache.http.util.ByteArrayBuffer;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.annotation.TargetApi;
@@ -25,8 +18,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Environment;
-import android.os.StrictMode;
 import android.util.Log;
 
 import com.config.Config;
@@ -125,12 +116,12 @@ public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{
 		
 		XMLParser parser = new XMLParser(context);
 		
-		parser.grabXML(Config.hostURL + Config.plantXML);
-		//parser.grabXML(Config.hostURL + Config.imageXML);
+		parser.grabXML(Config.hostURL, Config.plantXML);
+		parser.grabXML(Config.hostURL, Config.imageXML);
 		
 		try {
 			parser.readXML(Config.plantXML);
-//			parser.readXML(Config.imageXML);
+			parser.readXML(Config.imageXML);
 		} catch (XmlPullParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -153,6 +144,7 @@ public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{
 			ArrayList<String> forDL = new ArrayList<String>();
 			for(int i=0;i<urls.size();i++)
 			{
+				Log.e("imageURL",urls.get(i));
 				forDL.add(Config.hostURL + urls.get(i));
 			}
 			AsyncTaskImageDownload imageDownload = new AsyncTaskImageDownload(context, forDL, Queries.getImageEntryCount(sqlite, dbHelper));

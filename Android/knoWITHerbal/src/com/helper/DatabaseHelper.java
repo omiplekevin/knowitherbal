@@ -25,13 +25,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 		
 		db.execSQL("CREATE TABLE IF NOT EXISTS " + plantTable + " ("
 	    		+ "pID INTEGER PRIMARY KEY AUTOINCREMENT, "
-	    		+ "name VARCHAR(255), "
-	    		+ "scientific_name VARCHAR(255), "
-	    		+ "common_names VARCHAR(255), "
-	    		+ "vernacular_names VARCHAR(255), "
-	    		+ "properties VARCHAR(255), "
-	    		+ "usage VARCHAR(255), "
-	    		+ "availability VARCHAR(255), "
+	    		+ "name VARCHAR(1000), "
+	    		+ "scientific_name VARCHAR(1000), "
+	    		+ "common_names VARCHAR(1000), "
+	    		+ "vernacular_names VARCHAR(1000), "
+	    		+ "properties VARCHAR(1000), "
+	    		+ "usage VARCHAR(1000), "
+	    		+ "availability VARCHAR(1000), "
 	    		+ "imgID INTEGER "
 	    		+ ");");
 		
@@ -40,7 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 		db.execSQL("CREATE TABLE IF NOT EXISTS " + imagesTable + " ("
 	    		+ "imgID INTEGER PRIMARY KEY AUTOINCREMENT, "
 	    		+ "pID INTEGER, "
-	    		+ "url VARCHAR(255) "
+	    		+ "url VARCHAR(1000) "
 	    		+ ");");
 		
 	}

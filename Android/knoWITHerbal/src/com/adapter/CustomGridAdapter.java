@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,6 +85,10 @@ public class CustomGridAdapter extends BaseAdapter{
 					// TODO Auto-generated method stub
 					view = params[0];
 					imgURLs = items.get(position).imgUrls;
+					for(String url : imgURLs)
+					{
+						Log.e("String", url);
+					}
 					return BitmapFactory.decodeFile(Config.externalDirectory + ".thumbnail/thumbnail_" + imgURLs.get(0));
 				}
 

@@ -1,12 +1,8 @@
 package com.LMO.capstone;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-
-import org.w3c.dom.Document;
-import org.xmlpull.v1.XmlPullParserException;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -62,7 +58,6 @@ import com.helper.AsyncTaskDatabaseLoader;
 import com.helper.AsyncTaskImageDownload;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
-import com.helper.XMLParser;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class KnoWITHerbalMain extends SherlockFragmentActivity{
@@ -162,7 +157,6 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-		loadXMLfromURL();
 	}
 	
 	//end of onCreate()
@@ -247,8 +241,8 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		/*DatabaseHelper dbHelper;
 		dbHelper = new DatabaseHelper(this);
 		SQLiteDatabase sqlite;
-		sqlite = dbHelper.getReadableDatabase();*/
-		
+		sqlite = dbHelper.getReadableDatabase();
+		*/
 		AsyncTaskDatabaseLoader dbLoader = new AsyncTaskDatabaseLoader(this);
 		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
 			dbLoader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -277,6 +271,7 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 			ArrayList<String> forDL = new ArrayList<String>();
 			for(int i=0;i<urls.size();i++)
 			{
+				Log.e("imageURL",urls.get(i));
 				forDL.add(Config.hostURL + urls.get(i));
 			}
 			AsyncTaskImageDownload imageDownload = new AsyncTaskImageDownload(this, forDL, Queries.getImageEntryCount(sqlite, dbHelper));
@@ -316,47 +311,6 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		Log.i("isNetworkAvailable", "Not Available!");
 		return false;
 	}
-	
-	
-	/****************************************************************
-	 * 
-	 * XML PARSER - TEMPORARY - BEGIN
-	 * 
-	 * ***************************************************************/
-
-			
-	public void loadXMLfromURL()
-	{
-		XMLParser parser = new XMLParser(getApplicationContext());
-		parser.grabXML(Config.hostURL + Config.plantXML);
-//		parser.grabXML(Config.hostURL + Config.imageXML);
-		try {
-			parser.readXML(Config.plantXML);
-//			parser.readXML(Config.imageXML);
-		} catch (XmlPullParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public void loadPlants(SQLiteDatabase sqliteDB, DatabaseHelper dbHelper, XMLParser parser, Document document)
-	{
-		
-	}
-	
-	public void loadImages(SQLiteDatabase sqliteDB, DatabaseHelper dbHelper, XMLParser parser, Document document)
-	{
-		
-	}
-	
-	/****************************************************************
-	 * 
-	 * XML PARSER - TEMPORARY - END
-	 * 
-	 * ***************************************************************/
 
 	@Override
 	protected void onDestroy() {

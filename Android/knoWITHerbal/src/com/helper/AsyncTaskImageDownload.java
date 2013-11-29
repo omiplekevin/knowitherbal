@@ -77,6 +77,7 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 			Log.i("URL", urls.get(i));
 			try {
 				URL url = new URL(urls.get(i));
+				Log.e("URL image", urls.get(i));
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.connect();

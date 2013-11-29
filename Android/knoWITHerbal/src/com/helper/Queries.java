@@ -165,6 +165,8 @@ public class Queries {
 		values.put("pID", images.getpID());
 		values.put("url", images.getUrl());
 		
+		Log.e("INSERTING",images.getUrl());
+		
 		sqliteDB.insert(DatabaseHelper.imagesTable, null, values);
 		sqliteDB.close();
 	}
