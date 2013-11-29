@@ -46,7 +46,6 @@ public class DetailFragments_Details extends SherlockFragment{
 				viewGroup.removeAllViews();
 			}
 		}
-		Log.i("DetailFragment", "DetailFragment destroy");
 	}
 
 	@Override
@@ -59,20 +58,6 @@ public class DetailFragments_Details extends SherlockFragment{
 		expandableListAdapter = new ExpandableListAdapter(getActivity(), listHeader, listItems);
 		expandableListView.setAdapter(expandableListAdapter);
 		expandableListView.setSelector(R.drawable.listitem_selector);
-		
-		/*findOutMore = (Button)view.findViewById(R.id.plantBtn);
-		findOutMore.append(" " + item.getName());
-		findOutMore.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent search = new Intent();
-				search.setAction(Intent.ACTION_WEB_SEARCH);
-				search.putExtra(SearchManager.QUERY, item.getName());
-				startActivity(search);
-			}
-		});*/
 		
 	}
 	
@@ -97,7 +82,7 @@ public class DetailFragments_Details extends SherlockFragment{
 		List<String> scientificNames = new ArrayList<String>();
 		String[] sci = item.getScientific().split("\\|\\|");
 		if(sci.length == 1 && sci[0].equals(""))
-			scientificNames.add("No entry/entries... :(");
+			scientificNames.add("No entry/entries... \u2639");
 		else
 		{
 			for(int i=0;i<sci.length;i++)
@@ -109,7 +94,7 @@ public class DetailFragments_Details extends SherlockFragment{
 		List<String> availability = new ArrayList<String>();
 		String[] avail = item.getAvailability().split("\\|\\|");
 		if(avail.length == 1 && avail[0].equals(""))
-			availability.add("No entry/entries... :(");
+			availability.add("No entry/entries... \u2639");
 		else
 		{
 			for(int i=0;i<avail.length;i++)
@@ -121,7 +106,7 @@ public class DetailFragments_Details extends SherlockFragment{
 		List<String> commonName = new ArrayList<String>();
 		String[] common = item.getCommon().split("\\|\\|");
 		if(common.length == 1 && common[0].equals(""))
-			commonName.add("No entry/entries... :(");
+			commonName.add("No entry/entries... \u2639");
 		else
 		{
 			for(int i=0;i<common.length;i++)
@@ -133,7 +118,7 @@ public class DetailFragments_Details extends SherlockFragment{
 		List<String> vernacular = new ArrayList<String>();
 		String[] ver = item.getVernacular().split("\\|\\|");
 		if(ver.length == 1 && ver[0].equals(""))
-			vernacular.add("No entry/entries... :(");
+			vernacular.add("No entry/entries... \u2639");
 		else
 		{
 			for(int i=0;i<ver.length;i++)
@@ -145,7 +130,7 @@ public class DetailFragments_Details extends SherlockFragment{
 		List<String> properties = new ArrayList<String>();
 		String[] prop = item.getProperties().split("\\|\\|");
 		if(prop.length == 1 && prop[0].equals(""))
-			properties.add("No entry/entries... :(");
+			properties.add("No entry/entries... \u2639");
 		else
 		{
 			for(int i=0;i<prop.length;i++)
@@ -157,7 +142,7 @@ public class DetailFragments_Details extends SherlockFragment{
 		List<String> usage = new ArrayList<String>();
 		String[] use = item.getUsage().split("\\|\\|");
 		if(use.length == 1 && use[0].equals(""))
-			availability.add("No entry/entries... :(");
+			availability.add("No entry/entries... \u2639");
 		else
 		{
 			for(int i=0;i<use.length;i++)

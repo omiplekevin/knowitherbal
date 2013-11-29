@@ -80,24 +80,14 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 		        AnimatorSet anim = new AnimatorSet();
 				anim.playTogether(
 						ObjectAnimator.ofFloat(v.imageView, "alpha", 0, 0.5f, 1),
-						ObjectAnimator.ofFloat(v.imageView, "translationY", 30, 0));
-				anim.setDuration(300);
+						ObjectAnimator.ofFloat(v.imageView, "translationY", -30, 0));
+				anim.setDuration(600);
 				anim.start();
 		    }
 		};
 		
 		loadDetail.execute(holder);
 		
-		/*holder.plantName.setText(plantList.get(position).getName());
-		String clean = plantList.get(position).getScientific().replace("||", ", ");
-		holder.plantPrimeDetail.setText(Html.fromHtml(clean));
-		holder.plantPrimeDetail.setSelected(true);
-		ArrayList<String> imgURLs = plantList.get(position).imgUrls;
-		Log.i("IMAGE", imgURLs.get(0));
-		Bitmap thumbnail = BitmapFactory.decodeFile(Config.externalDirectory + ".thumbnail/thumbnail_" + imgURLs.get(0));
-		holder.imageView.setImageBitmap(thumbnail);
-		*/
-//		Log.i("plantList", plantList.get(position).getName());
 		return convertView;
 	}
 	

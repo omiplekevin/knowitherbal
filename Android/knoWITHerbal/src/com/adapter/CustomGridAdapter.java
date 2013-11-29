@@ -57,11 +57,6 @@ public class CustomGridAdapter extends BaseAdapter{
 		Holder holder;
 		if(convertView == null)
 		{
-			/*LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			convertView = inflater.inflate(R.layout.plantlist_fragment_grid_item, null);
-			final ImageView imageView = (ImageView)convertView.findViewById(R.id.imageView1);
-			final TextView plantName = (TextView)convertView.findViewById(R.id.textView1);
-			plantName.setSelected(true);*/
 			LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			holder = new Holder();
 			convertView = inflater.inflate(R.layout.plantlist_fragment_grid_item, null);
@@ -85,10 +80,6 @@ public class CustomGridAdapter extends BaseAdapter{
 					// TODO Auto-generated method stub
 					view = params[0];
 					imgURLs = items.get(position).imgUrls;
-					for(String url : imgURLs)
-					{
-						Log.e("String", url);
-					}
 					return BitmapFactory.decodeFile(Config.externalDirectory + ".thumbnail/thumbnail_" + imgURLs.get(0));
 				}
 
@@ -100,8 +91,8 @@ public class CustomGridAdapter extends BaseAdapter{
 					AnimatorSet anim = new AnimatorSet();
 					anim.playTogether(
 							ObjectAnimator.ofFloat(view.imageView, "alpha", 0, 0.5f, 1),
-							ObjectAnimator.ofFloat(view.imageView, "translationY", 30, 0));
-					anim.setDuration(300);
+							ObjectAnimator.ofFloat(view.imageView, "translationY", -30, 0));
+					anim.setDuration(600);
 					anim.start();
 				}
 				

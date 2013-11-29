@@ -1,6 +1,7 @@
 package com.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ public class MenuListAdapter extends ArrayAdapter<String>{
 		convertView = inflater.inflate(R.layout.navigation_item, null);
 		ImageView imageView = (ImageView)convertView.findViewById(R.id.imageView1);
 		TextView label = (TextView)convertView.findViewById(R.id.text1);
+		Typeface fontface = Typeface.createFromAsset(context.getAssets(), "eras_medium.ttf");
+		label.setTypeface(fontface);
 		switch(position)
 		{
 		case 0:

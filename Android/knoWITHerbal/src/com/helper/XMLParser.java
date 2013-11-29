@@ -42,30 +42,24 @@ public class XMLParser {
 	{
 		try {
 			if(isNetworkAvailable()){
-//	            URL url = new URL("http://labs.philippineglobaloutsourcing.com/xmlrepo/restaurants/app_version.xml");
 				URL url = new URL(host+filename);
 	            HttpURLConnection c = (HttpURLConnection) url.openConnection();
 	            c.setRequestMethod("GET");
 	            c.setDoOutput(true);
 	            c.connect();
 	
-	            /*String PATH = Environment.getExternalStorageDirectory()
-	                    + "/PGOLabs/";*/
 	            String PATH = Config.externalDirectory;
 	            Log.e("LOG", "PATH: " + PATH);
 	            File file = new File(PATH);
 	            if(file.isDirectory())
 	            {
 	            	Log.e("Existing directory!", file.toString());
-	            	//Toast.makeText(context.getApplicationContext(), "Directory \""+PATH+"\" already exist!", Toast.LENGTH_LONG).show();
 	            }
 	            else
 	            {
-	            	//Toast.makeText(context.getApplicationContext(), "Directory \""+PATH+"\" created!  ", Toast.LENGTH_LONG).show();
 	            	file.mkdirs();
 	            }
 	            
-//	            Toast.makeText(context.getApplicationContext(), URLString, Toast.LENGTH_LONG).show();
 	            Log.e("URL", host+filename);
 	
 	            String fileName = filename;
@@ -79,17 +73,12 @@ public class XMLParser {
 	            int len1 = 0;
 	            while ((len1 = is.read(buffer)) != -1) {
 	
-	            	//Log.e("buffer", buffer.toString());
-	            	//Log.e("len1", ""+len1);
 	                fos.write(buffer, 0, len1);
 	
 	            }
-	            //Log.e("file size", ""+outputFile.getTotalSpace());
 	            fos.close();
 	            is.close();
 	            
-	
-	            // }
 			}
         }
 	    catch (IOException e) {
