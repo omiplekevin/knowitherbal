@@ -10,17 +10,16 @@
         android:layout_height="2dp"
         android:layout_gravity="bottom|center"
         android:scaleType="fitXY"
-        android:src="#007000" />
+        android:src="#000000" />
 
     <TextView
         android:id="@+id/stickheaderText"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginLeft="10dp"
         android:background="#000000"
-        android:paddingLeft="@dimen/margin_5dp"
-        android:paddingRight="@dimen/margin_20dp"
+        android:gravity="center|center"
         android:text="A"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#FFFFFF"

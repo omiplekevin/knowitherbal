@@ -80,7 +80,8 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 		        AnimatorSet anim = new AnimatorSet();
 				anim.playTogether(
 						ObjectAnimator.ofFloat(v.imageView, "alpha", 0, 0.5f, 1),
-						ObjectAnimator.ofFloat(v.imageView, "translationY", -30, 0));
+						ObjectAnimator.ofFloat(v.imageView, "translationY", -30, 0)
+						);
 				anim.setDuration(600);
 				anim.start();
 		    }

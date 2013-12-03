@@ -1,5 +1,7 @@
 package com.config;
 
+import java.util.ArrayList;
+
 import com.helper.DatabaseHelper;
 
 import android.content.Context;
@@ -17,6 +19,8 @@ public class Config {
 	
 	public static String viewsetting = "ViewSetting";
 	
+	
+	
 	public static String dbPath(Context context)
 	{
 		String path;
@@ -31,8 +35,8 @@ public class Config {
 	public static float viewPagerscaleFactor_large = 0.85f;
 	
 	/*************************************************************
-	 * XML TAGS
-	 * ************************************************************/
+	 * XML TAGS START
+	 * ***********************************************************/
 	//plants
 	public static String KEY_PLANTITEM = "plant"; 
 	
@@ -67,5 +71,9 @@ public class Config {
 	public static String KEY_CREATEDAT = "created_at";
 	
 	public static String KEY_UPDATEDAT = "updated_at";
+	
+	/*************************************************************
+	 * XML TAGS END
+	 * ***********************************************************/
 	
 }

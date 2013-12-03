@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="help_content1">
+    	<item>HELP 1</item>
+    	<item>HELP 1</item>
+    	<item>HELP 1</item>
+    	<item>HELP 1</item>
+    	<item>HELP 1</item>
+    </string-array>
+    
+    <string-array name="help_content2">
+    	<item>HELP 2</item>
+    	<item>HELP 2</item>
+    	<item>HELP 2</item>
+    	<item>HELP 2</item>
+    	<item>HELP 2</item>
+    </string-array>
+    
+    <string-array name="help_content3">
+    	<item>HELP 3</item>
+    	<item>HELP 3</item>
+    	<item>HELP 3</item>
+    	<item>HELP 3</item>
+    	<item>HELP 3</item>
+    </string-array>
+    
+    <string-array name="help_content4">
+    	<item>HELP 4</item>
+    	<item>HELP 4</item>
+    	<item>HELP 4</item>
+    	<item>HELP 4</item>
+    	<item>HELP 4</item>
+    </string-array>
+    
+    <string-array name="help_content5">
+    	<item>HELP 5</item>
+    	<item>HELP 5</item>
+    	<item>HELP 5</item>
+    	<item>HELP 5</item>
+    	<item>HELP 5</item>
+    </string-array>
+    
+    <string-array name="help_content6">
+    	<item>HELP 6</item>
+    	<item>HELP 6</item>
+    	<item>HELP 6</item>
+    	<item>HELP 6</item>
+    	<item>HELP 6</item>
+    </string-array>
+    
+    <string-array name="help_content7">
+    	<item>HELP 7</item>
+    	<item>HELP 7</item>
+    	<item>HELP 7</item>
+    	<item>HELP 7</item>
+    	<item>HELP 7</item>
+    </string-array>
+    
+    <string-array name="help_content8">
+    	<item>HELP 8</item>
+    	<item>HELP 8</item>
+    	<item>HELP 8</item>
+    	<item>HELP 8</item>
+    	<item>HELP 8</item>
+    </string-array>
+    
+    <string-array name="help_content9">
+    	<item>HELP 9</item>
+    	<item>HELP 9</item>
+    	<item>HELP 9</item>
+    	<item>HELP 9</item>
+    	<item>HELP 9</item>
+    </string-array>
+</resources>

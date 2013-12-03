@@ -27,27 +27,22 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.ActionProvider;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.LayoutInflater;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.adapter.MenuListAdapter;
-import com.adapter.WelcomeViewPagerAdapter;
 import com.config.Config;
 import com.fragments.AboutThisApplication;
 import com.fragments.Camera;
@@ -120,7 +115,9 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
             fTransac.replace(R.id.frame_content, new Welcome()).commit();
             
             if(!new File(Config.dbPath(getApplicationContext())).exists()){
-            	createWelcome(this);
+            	AboutThisApplication about = new AboutThisApplication();
+            	about.setContext(this);
+            	about.createWelcome();
             	PrepareFileForDatabase();//will run on thread
             }
             else
@@ -183,57 +180,6 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 			super.onBackPressed();
 		}
 		
-	}
-
-
-	public void createWelcome(Context context)
-	{
-		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		final AlertDialog dialog = builder.create();
-		
-		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.help, null);
-		
-		WelcomeViewPagerAdapter adapter = new WelcomeViewPagerAdapter(context);
-		ViewPager pager = (ViewPager)view.findViewById(R.id.helpPager);
-		final ProgressBar pb = (ProgressBar)view.findViewById(R.id.progressBar1);
-		pb.setMax(adapter.getCount());
-		pb.setProgress(pager.getCurrentItem()+1);
-		
-		pager.setAdapter(adapter);
-		pager.setOnPageChangeListener(new OnPageChangeListener() {
-			
-			@Override
-			public void onPageSelected(int arg0) {
-				// TODO Auto-generated method stub
-				pb.setProgress(arg0+1);
-			}
-			
-			@Override
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void onPageScrollStateChanged(int arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		dialog.setView(view);
-		dialog.setTitle("How to use the Application");
-		/*dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Close", new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub
-				dialog.dismiss();
-			}
-		});*/
-		dialog.setCanceledOnTouchOutside(true);
-		dialog.show();
-		Toast.makeText(context, "SWIPE TO VIEW MORE", Toast.LENGTH_LONG).show();
 	}
 	
 	public void PrepareFileForDatabase()

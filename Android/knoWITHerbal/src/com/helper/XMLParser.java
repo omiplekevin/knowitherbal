@@ -83,8 +83,7 @@ public class XMLParser {
         }
 	    catch (IOException e) {
             Log.e("LOG ERROR", "Error: " + e);
-            Toast.makeText(context.getApplicationContext(), "error " + e.toString(), Toast.LENGTH_LONG)
-                    .show();
+            Toast.makeText(context, "error " + e.toString(), Toast.LENGTH_LONG).show();
 
         }
 	}
