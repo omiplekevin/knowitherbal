@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -61,7 +61,9 @@ public class AboutThisApplication extends SherlockFragment{
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
 		
-		Button howToUse = (Button)view.findViewById(R.id.howto);
+		ImageButton update = (ImageButton)view.findViewById(R.id.update);
+		ImageButton howToUse = (ImageButton)view.findViewById(R.id.howto);
+		
 		howToUse.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -72,34 +74,22 @@ public class AboutThisApplication extends SherlockFragment{
 			}
 		});
 		
+		update.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getSherlockActivity(), "UPDATE MODULE", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
 		imageView = (ImageView)view.findViewById(R.id.imageView1);
 		apptitle = (TextView)view.findViewById(R.id.title);
 		subtitle = (TextView)view.findViewById(R.id.subtitle);
-		
-		AnimatorSet image = new AnimatorSet();
-		image.playTogether(
-				ObjectAnimator.ofFloat(imageView, "translationY", -30, 0),
-				ObjectAnimator.ofFloat(imageView, "alpha", 0,0.5f,1));
-		
-		AnimatorSet title = new AnimatorSet();
-		title.playTogether(
-				ObjectAnimator.ofFloat(apptitle, "translationY", -100, 0),
-				ObjectAnimator.ofFloat(apptitle, "alpha", 0, 0.5f, 1));
-		
-		AnimatorSet sub = new AnimatorSet();
-		sub.playTogether(
-				ObjectAnimator.ofFloat(subtitle, "translationY", 100, 0),
-				ObjectAnimator.ofFloat(subtitle, "alpha", 0, 0.6f, 1));
-		
-		AnimatorSet allAnim = new AnimatorSet();
-		allAnim.playTogether(image, title, sub);
-		allAnim.setDuration(2000);
-		allAnim.start();
 	}
 	
 	public void createWelcome()
 	{
-		Log.e("Context", context.toString());
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		final AlertDialog dialog = builder.create();
 		
@@ -112,9 +102,6 @@ public class AboutThisApplication extends SherlockFragment{
 		
 		final ListView listView = (ListView)view.findViewById(R.id.listView1);
 		content = context.getResources().getStringArray(R.array.help_content1);
-		
-		for(String item : content)
-				Log.e("content", item);
 		
 		listView.setAdapter(new HowToUseListViewAdapter(context, content));
 		
@@ -196,7 +183,6 @@ public class AboutThisApplication extends SherlockFragment{
 		});
 		
 		dialog.setView(view);
-		dialog.setTitle("How to use the Application");
 		/*dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Close", new DialogInterface.OnClickListener() {
 			
 			@Override

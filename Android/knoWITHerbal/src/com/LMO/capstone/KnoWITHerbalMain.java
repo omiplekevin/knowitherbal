@@ -293,26 +293,22 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		{
 			case 0:
 				this.title = "Camera";
-				Log.i("Camera","Camera");
-				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				ft.replace(R.id.frame_content, new Camera()).commit();
 				break;
 			case 1:
 				this.title = "Plant List";
-				Log.i("PlantList","PlantList");
-				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				ft.replace(R.id.frame_content, new PlantList()).commit();
 				break;
 			case 2:
-				this.title = "About";
-				Log.i("AboutThisApp","AboutThisApp");
-				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+				this.title = "About this App";
+				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				ft.replace(R.id.frame_content, new AboutThisApplication()).commit();
 				break;
 			case 3:
 				this.title = "Open Source Licenses";
-				Log.i("OSL","OSL");
-				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				ft.replace(R.id.frame_content, new OpenSourceLicense()).commit();
 				break;
 		}

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +72,7 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 		        super.onPostExecute(result);
 		        v.pb1.setVisibility(View.GONE);
 		        v.pb2.setVisibility(View.GONE);
+		        
 		        v.plantName.setText(plantList.get(pos).getName());
 		        String clean = plantList.get(pos).getScientific().replace("||", "\n");
 				v.plantPrimeDetail.setText(clean);
@@ -82,7 +84,7 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 						ObjectAnimator.ofFloat(v.imageView, "alpha", 0, 0.5f, 1),
 						ObjectAnimator.ofFloat(v.imageView, "translationY", -30, 0)
 						);
-				anim.setDuration(600);
+				anim.setDuration(500);
 				anim.start();
 		    }
 		};

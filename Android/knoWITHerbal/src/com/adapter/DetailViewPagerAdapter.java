@@ -56,29 +56,6 @@ public class DetailViewPagerAdapter extends PagerAdapter{
 			@Override
 			protected Bitmap doInBackground(Void... params) {
 				// TODO Auto-generated method stub
-				/*switch(position)
-				{
-				case 0:
-					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(0));
-				case 1:
-					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(1));
-				case 2:
-					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(2));
-				case 3:
-					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(3));
-				case 4:
-					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(4));
-				case 5:
-					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(5));
-				case 6:
-					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(6));
-				case 7:
-					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(7));
-				case 8:
-					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(8));
-				case 9:
-					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(9));
-				}*/
 				try
 				{
 					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(position));

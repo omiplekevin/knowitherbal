@@ -113,6 +113,7 @@ public class Camera extends SherlockFragment{
 			FragmentTransaction ft = getFragmentManager().beginTransaction();
 			ft.replace(R.id.frame_content, new Welcome());
 			ft.commitAllowingStateLoss();
+			this.getSherlockActivity().getSupportActionBar().setTitle("");
 		}
 	}
 	

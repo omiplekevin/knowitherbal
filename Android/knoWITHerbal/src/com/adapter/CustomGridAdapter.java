@@ -89,10 +89,18 @@ public class CustomGridAdapter extends BaseAdapter{
 					super.onPostExecute(result);
 					view.imageView.setImageBitmap(result);
 					AnimatorSet anim = new AnimatorSet();
-					anim.playTogether(
-							ObjectAnimator.ofFloat(view.imageView, "alpha", 0, 0.5f, 1),
-							ObjectAnimator.ofFloat(view.imageView, "translationY", -30, 0));
-					anim.setDuration(600);
+					if(position%2 == 0){
+						anim.playTogether(
+								ObjectAnimator.ofFloat(view.imageView, "alpha", 0, 0.5f, 1),
+								ObjectAnimator.ofFloat(view.imageView, "translationX", 50, 0));
+					}
+					else
+					{
+						anim.playTogether(
+								ObjectAnimator.ofFloat(view.imageView, "alpha", 0, 0.5f, 1),
+								ObjectAnimator.ofFloat(view.imageView, "translationX", -50, 0));
+					}
+					anim.setDuration(500);
 					anim.start();
 				}
 				

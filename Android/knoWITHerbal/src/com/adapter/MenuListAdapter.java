@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.LMO.capstone.R;
+import com.config.Config;
 
 public class MenuListAdapter extends ArrayAdapter<String>{
 
@@ -31,8 +32,9 @@ public class MenuListAdapter extends ArrayAdapter<String>{
 		convertView = inflater.inflate(R.layout.navigation_item, null);
 		ImageView imageView = (ImageView)convertView.findViewById(R.id.imageView1);
 		TextView label = (TextView)convertView.findViewById(R.id.text1);
-		Typeface fontface = Typeface.createFromAsset(context.getAssets(), "eras_medium.ttf");
-		label.setTypeface(fontface);
+		
+		label.setTypeface(Config.fontFace(context));
+		
 		switch(position)
 		{
 		case 0:

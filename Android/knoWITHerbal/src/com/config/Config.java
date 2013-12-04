@@ -1,11 +1,10 @@
 package com.config;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.os.Environment;
 
 import com.helper.DatabaseHelper;
-
-import android.content.Context;
-import android.os.Environment;
 
 public class Config {
 	
@@ -19,7 +18,11 @@ public class Config {
 	
 	public static String viewsetting = "ViewSetting";
 	
-	
+	public static Typeface fontFace(Context context)
+	{
+		Typeface font = Typeface.createFromAsset(context.getAssets(), "MicroFLF.ttf");
+		return font;
+	}
 	
 	public static String dbPath(Context context)
 	{
@@ -28,7 +31,7 @@ public class Config {
 		return path;
 	}
 	
-	public static float thumbnailscaleFactor = 0.70f;
+	public static float thumbnailscaleFactor = 0.5f;
 	
 	public static float viewPagerscaleFactor = 0.4f;
 	

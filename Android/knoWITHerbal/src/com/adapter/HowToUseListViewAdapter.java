@@ -1,8 +1,8 @@
 package com.adapter;
 
-import java.util.ArrayList;
-
 import android.content.Context;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +30,7 @@ public class HowToUseListViewAdapter extends ArrayAdapter<String>{
 		View view = inflater.inflate(R.layout.help_listitem, null);
 		
 		TextView content = (TextView)view.findViewById(R.id.textView2);
-		content.setText(items[position]);
+		content.setText(Html.fromHtml(items[position]));
 		
 		return view;
 	}
