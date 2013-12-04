@@ -27,7 +27,7 @@ public class HowToUseViewPagerAdapter extends PagerAdapter{
 	public Object instantiateItem(ViewGroup container,final int position) {
 		// TODO Auto-generated method stub
 		final ImageView helpView = new ImageView(context);
-		helpView.setScaleType(ScaleType.CENTER_CROP);
+		helpView.setScaleType(ScaleType.FIT_CENTER);
 		AsyncTask<Void, Void, Bitmap> loadHelp = new AsyncTask<Void, Void, Bitmap>()
 		{
 
