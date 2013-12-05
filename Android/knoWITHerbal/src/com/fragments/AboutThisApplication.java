@@ -63,7 +63,8 @@ public class AboutThisApplication extends SherlockFragment{
 		
 		ImageButton update = (ImageButton)view.findViewById(R.id.update);
 		ImageButton howToUse = (ImageButton)view.findViewById(R.id.howto);
-		ImageButton developers = (ImageButton)view.findViewById(R.id.developers);
+		ImageButton developers = (ImageButton)view.findViewById(R.id.developer);
+		ImageButton about = (ImageButton)view.findViewById(R.id.about);
 		
 		howToUse.setOnClickListener(new OnClickListener() {
 			
@@ -90,6 +91,15 @@ public class AboutThisApplication extends SherlockFragment{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Toast.makeText(getSherlockActivity(), "DEVELOPERS MODULE", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		about.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getSherlockActivity(), "ABOUT MODULE", Toast.LENGTH_SHORT).show();
 			}
 		});
 		

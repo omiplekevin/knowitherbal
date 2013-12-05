@@ -80,7 +80,7 @@ public class CustomGridAdapter extends BaseAdapter{
 					// TODO Auto-generated method stub
 					view = params[0];
 					imgURLs = items.get(position).imgUrls;
-					return BitmapFactory.decodeFile(Config.externalDirectory + ".thumbnail/thumbnail_" + imgURLs.get(0));
+					return BitmapFactory.decodeFile(Config.externalDirectory /*+ ".thumbnail/thumbnail_"*/ + imgURLs.get(0));
 				}
 
 				@Override
