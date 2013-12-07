@@ -10,7 +10,9 @@ public class Config {
 	
 	public static String externalDirectory = Environment.getExternalStorageDirectory() + "/.knoWITHerbal/";
 	
-	public static String hostURL = "http://192.168.180.1:9980/knowitherbal/";
+	public static String imagehostURL = "http://192.168.180.1:9980/herbal/public/herbals_photos/";
+	
+	public static String xmlhostURL = "http://192.168.180.1:9980/herbal/public/json/";
 	
 	public static String plantXML = "plants.xml";
 	

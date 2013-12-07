@@ -3,6 +3,7 @@ package com.LMO.capstone;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -54,6 +55,7 @@ import com.helper.AsyncTaskDatabaseLoader;
 import com.helper.AsyncTaskImageDownload;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
+import com.models.PlantModel;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class KnoWITHerbalMain extends SherlockFragmentActivity{
@@ -221,7 +223,7 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 			for(int i=0;i<urls.size();i++)
 			{
 				Log.e("imageURL",urls.get(i));
-				forDL.add(Config.hostURL + urls.get(i));
+				forDL.add(Config.imagehostURL + urls.get(i));
 			}
 			AsyncTaskImageDownload imageDownload = new AsyncTaskImageDownload(this, forDL, Queries.getImageEntryCount(sqlite, dbHelper));
 			

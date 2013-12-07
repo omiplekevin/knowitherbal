@@ -3,6 +3,7 @@ package com.fragments;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
@@ -11,7 +12,9 @@ import org.opencv.android.OpenCVLoader;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,16 +27,22 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.algorithm.ORB;
+import com.config.Config;
+import com.helper.DatabaseHelper;
+import com.helper.Queries;
+import com.models.PlantModel;
 
 public class Camera extends SherlockFragment{
 
 	View view;
 	Uri uri;
+	private List<PlantModel> plants;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -117,20 +126,32 @@ public class Camera extends SherlockFragment{
 	    Bitmap bitmap;
 	    /*try
 	    {*/
-	        try {
-				bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr, uri);
-//				imageView.setImageBitmap(bitmap);
+	        /*try {*/
+				//bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr, uri);
+	        	bitmap = Bitmap.createBitmap(BitmapFactory.decodeFile(uri.getPath()));
+	        	Bitmap resized = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth()/2, bitmap.getHeight()/2, false);
+				imageView.setImageBitmap(resized);
 		        Log.e("URI", uri.getPath());
 		        String path = uri.getPath();
 		        ORB orb = new ORB();
-		        orb.analyze(path, this.getSherlockActivity());
-			} catch (FileNotFoundException e) {
+		        orb.setContext(this.getSherlockActivity());
+		        int id = orb.analyze(path, this.getSherlockActivity());
+		        
+		        TextView name = (TextView)view.findViewById(R.id.textView1);
+		        
+		        SQLiteDatabase sqliteDB;
+				DatabaseHelper dbHelper = new DatabaseHelper(this.getSherlockActivity());
+				sqliteDB = dbHelper.getReadableDatabase();
+				
+				plants = Queries.getPlants(sqliteDB, dbHelper);
+		        name.setText(plants.get(id).getName());
+			/*} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 	    /*}*/
 	    /*catch (Exception e)
 	    {

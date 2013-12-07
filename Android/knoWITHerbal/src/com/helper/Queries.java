@@ -41,7 +41,7 @@ public class Queries {
 				pModel.properties = mCursor.getString(5);
 				pModel.usage = mCursor.getString(6);
 				pModel.availability = mCursor.getString(7);
-				pModel.imgUrls = getImageURLS(sqliteDB, dbHelper, pModel.pID);
+				pModel.imgUrls = getImageFilename(sqliteDB, dbHelper, pModel.pID);
 				
 				models.add(pModel);
 				
@@ -62,6 +62,35 @@ public class Queries {
 	}
 	
 	public static ArrayList<String> getImageURLS(SQLiteDatabase sqliteDB, DatabaseHelper dbHelper, int idReference)
+	{
+		ArrayList<String> urls = new ArrayList<String>();
+		Cursor mCursor = null;
+		
+		sqliteDB = dbHelper.getReadableDatabase();
+		if(idReference != -1){
+			mCursor = sqliteDB.rawQuery("SELECT * FROM "+DatabaseHelper.imagesTable.toString()+" WHERE pID = " + idReference, null);
+		}
+		else
+		{
+			mCursor = sqliteDB.rawQuery("SELECT * FROM "+DatabaseHelper.imagesTable.toString(), null);
+		}
+		
+		mCursor.moveToFirst();
+		if (!mCursor.isAfterLast()) 
+		{
+			do
+			{
+				urls.add(mCursor.getString(1) + "/" + mCursor.getString(2));//URL
+			} while (mCursor.moveToNext());
+		}
+			
+		mCursor.close();
+		dbHelper.close();
+		
+		return urls;
+	}
+	
+	public static ArrayList<String> getImageFilename(SQLiteDatabase sqliteDB, DatabaseHelper dbHelper, int idReference)
 	{
 		ArrayList<String> urls = new ArrayList<String>();
 		Cursor mCursor = null;

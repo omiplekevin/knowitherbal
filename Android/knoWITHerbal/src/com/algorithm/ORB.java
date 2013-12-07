@@ -27,7 +27,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
+import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.config.Config;
 import com.fragments.Camera;
@@ -38,37 +42,15 @@ import com.models.PlantModel;
 public class ORB extends SherlockFragment{
 	
 	String pathCaptured;
+	private int BEST = 999999;
+	private int plantID = 0;
+	private List<PlantModel> plants;
 	private Context context;
 	
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		
-		Log.i("TAG", "Trying to load OpenCV library");
-	    if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_2, getActivity(), mOpenCVCallBack))
-	    {
-	      Log.e("TAG", "Cannot connect to OpenCV Manager");
-	    }
-	    
+	public void setContext(Context context)
+	{
+		this.context = context;
 	}
-
-	private BaseLoaderCallback mOpenCVCallBack = new BaseLoaderCallback(getActivity()) {
-		
-		@Override
-		public void onManagerConnected(int status) {
-		   switch (status) {
-		       case LoaderCallbackInterface.SUCCESS:
-		       {
-		      Log.i("TAG", "OpenCV loaded successfully");
-		       } break;
-		       default:
-		       {
-		      super.onManagerConnected(status);
-		       } break;
-		   }
-		    }
-		};
 	
 	public int analyze(String imagePath, Context context)
 	{
@@ -107,9 +89,8 @@ public class ORB extends SherlockFragment{
 			DatabaseHelper dbHelper = new DatabaseHelper((Activity)context);
 			sqliteDB = dbHelper.getReadableDatabase();
 			
-			List<PlantModel> plants = Queries.getPlants(sqliteDB, dbHelper);
+			plants = Queries.getPlants(sqliteDB, dbHelper);
 			Bitmap bitmapCaptured = getBitmap(pathCaptured);
-			int BEST;
 			
 			for(int plant=0;plant<plants.size();plant++)
 			{
@@ -186,14 +167,18 @@ public class ORB extends SherlockFragment{
 						}
 						
 						matchFilterred.fromList(bestMatches);
-						Log.e("BEST MATCHES [", matchFilterred.size() + "] COLS: [" + matchFilterred.cols() + "] ROWS: [" + matchFilterred.rows() + "]");
+						Log.e("BEST MATCHES ", matchFilterred.size() + " COLS: [" + matchFilterred.cols() + "] ROWS: [" + matchFilterred.rows() + "]");
+						if(matchFilterred.rows() < BEST){
+							plantID = plant;
+							BEST = matchFilterred.rows();
+						}
 					}
 				}
 				
 			}
 		}
-		
-		return 0;
+//		displayBEST();
+		return plantID;
 	}
 	
 	/*private Bitmap convertToARGB8888(String path)
@@ -244,6 +229,13 @@ public class ORB extends SherlockFragment{
 		return img1;
 	}
 	
-	
+	private void displayBEST()
+	{
+		/*LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View view = inflater.inflate(R.layout.camera_fragment, null);
+		TextView plantName = (TextView)view.findViewById(R.id.textView1);
+		plantName.setText(plants.get(plantID).getName());
+		plantName.invalidate();*/
+	}
 
 }
