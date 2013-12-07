@@ -57,7 +57,8 @@ class Controller_Admin_Plants extends Controller_Admin{
 						$plant->filename = $value[0]['saved_as'];
 
 									//$parse = simplexml_load_file('http://herbal.dev/herbals/'.$plant->filename);
-									$parse = simplexml_load_file('http://localhost/herbal/public/herbals/'.$plant->filename);
+									//$parse = simplexml_load_file('http://localhost/herbal/public/herbals/'.$plant->filename);
+									$parse = simplexml_load_file('http://192.168.180.1:9980/herbal/public/herbals/'.$plant->filename);
 									foreach ($parse as $input){
 									$name = $input->name;
 									$sciname = $input->sci_name;
@@ -78,7 +79,7 @@ class Controller_Admin_Plants extends Controller_Admin{
 
 				if ($plant)
 				{
-					Session::set_flash('success', e('Added plant #'.$plant->id.'.'));
+					Session::set_flash('success', e('Added plant '.$name.'.'));
 				
 					Response::redirect('admin/plants');
 				}
