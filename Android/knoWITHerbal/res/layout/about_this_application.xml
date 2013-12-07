@@ -1,217 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/baseFrame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/about_this_app_title"
-        android:paddingBottom="@dimen/margin_30dp"
-        android:paddingTop="@dimen/margin_20dp" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|center"
-            android:orientation="vertical" >
+            android:background="@drawable/about_this_app_title"
+            android:paddingBottom="@dimen/margin_30dp"
+            android:paddingTop="@dimen/margin_20dp" >
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|center" >
+                android:layout_gravity="center|center"
+                android:orientation="vertical" >
 
-                <ImageView
-                    android:id="@+id/imageView1"
+                <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher" />
+                    android:layout_gravity="center|center" >
 
-            </FrameLayout>
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_launcher" />
+                </FrameLayout>
 
-            <FrameLayout
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|center"
+                            android:shadowColor="#000000"
+                            android:shadowDy="3"
+                            android:shadowRadius="2"
+                            android:text="@string/app_name"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:id="@+id/subtitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|center"
+                            android:text="@string/version"
+                            android:textColor="#CCCCCC" />
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|center" >
+                android:layout_gravity="center|center"
+                android:orientation="vertical" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical" >
+                    android:layout_height="match_parent" >
 
-                    <TextView
-                        android:id="@+id/title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|center"
-                        android:shadowColor="#000000"
-                        android:shadowDy="3"
-                        android:shadowRadius="2"
-                        android:text="@string/app_name"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#FFFFFF" />
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_10dp"
+                        android:layout_weight="1" >
 
-                    <TextView
-                        android:id="@+id/subtitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|center"
-                        android:text="@string/version"
-                        android:textColor="#CCCCCC" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" >
 
+                            <ImageButton
+                                android:id="@+id/howto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/help" />
+
+                            <TextView
+                                android:id="@+id/textView1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|center"
+                                android:text="Help" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_10dp"
+                        android:layout_weight="1" >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" >
+
+                            <ImageButton
+                                android:id="@+id/update"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/update" />
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|center"
+                                android:text="Update" />
+                        </LinearLayout>
+                    </FrameLayout>
                 </LinearLayout>
 
-            </FrameLayout>
-
-        </LinearLayout>
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" >
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|center"
-            android:orientation="vertical" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/margin_10dp"
-                    android:layout_weight="1" >
+                    android:layout_height="wrap_content" >
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <FrameLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="vertical" >
+                        android:layout_margin="@dimen/margin_10dp"
+                        android:layout_weight="1" >
 
-                        <ImageButton
-                            android:id="@+id/howto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@android:color/transparent"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/help" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/textView1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center|center"
-                            android:text="Help" />
+                            <ImageButton
+                                android:id="@+id/developer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/dev" />
 
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|center"
+                                android:text="Developers" />
+                        </LinearLayout>
+                    </FrameLayout>
 
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/margin_10dp"
-                    android:layout_weight="1" >
-
-                    <LinearLayout
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical" >
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_10dp"
+                        android:layout_weight="1" >
 
-                        <ImageButton
-                            android:id="@+id/update"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/update" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/textView2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center|center"
-                            android:text="Update" />
+                            <ImageButton
+                                android:id="@+id/about"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/about" />
 
-                    </LinearLayout>
-
-                </FrameLayout>
-
+                            <TextView
+                                android:id="@+id/textView4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center|center"
+                                android:text="About" />
+                        </LinearLayout>
+                    </FrameLayout>
+                </LinearLayout>
             </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/margin_10dp"
-                    android:layout_weight="1" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical" >
-
-                        <ImageButton
-                            android:id="@+id/developer"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:src="@drawable/dev" />
-
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center|center"
-                            android:text="Developers" />
-
-                    </LinearLayout>
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_10dp"
-                    android:layout_weight="1" >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical" >
-
-                        <ImageButton
-                            android:id="@+id/about"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@android:color/transparent"
-                            android:src="@drawable/about" />
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center|center"
-                            android:text="About" />
-
-                    </LinearLayout>
-
-                </FrameLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </FrameLayout>
-
-</LinearLayout>
+</FrameLayout>

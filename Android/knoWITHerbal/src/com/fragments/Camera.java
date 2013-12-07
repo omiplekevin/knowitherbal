@@ -1,6 +1,12 @@
 package com.fragments;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -22,6 +28,7 @@ import android.widget.Toast;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
+import com.algorithm.ORB;
 
 public class Camera extends SherlockFragment{
 
@@ -32,8 +39,31 @@ public class Camera extends SherlockFragment{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		callIntent();
+		 if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_7, this.getSherlockActivity(), mOpenCVCallBack))
+	        {
+	            Log.e("Load OpenCV", "Cannot connect to OpenCV Manager");
+	        }
+		 else
+		 {
+			 callIntent();
+		 }
 	}
+	
+	private BaseLoaderCallback  mOpenCVCallBack = new BaseLoaderCallback(this.getSherlockActivity()) {
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
+                case LoaderCallbackInterface.SUCCESS:
+                {
+                    Log.i("Load OpenCV", "OpenCV loaded successfully");
+                } break;
+                default:
+                {
+                    super.onManagerConnected(status);
+                } break;
+            }
+        }
+    };
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,16 +115,28 @@ public class Camera extends SherlockFragment{
 		this.getActivity().getApplicationContext().getContentResolver().notifyChange(uri, null);
 	    ContentResolver cr = this.getActivity().getApplicationContext().getContentResolver();
 	    Bitmap bitmap;
-	    try
-	    {
-	        bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr, uri);
-	        imageView.setImageBitmap(bitmap);
-	    }
-	    catch (Exception e)
+	    /*try
+	    {*/
+	        try {
+				bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr, uri);
+//				imageView.setImageBitmap(bitmap);
+		        Log.e("URI", uri.getPath());
+		        String path = uri.getPath();
+		        ORB orb = new ORB();
+		        orb.analyze(path, this.getSherlockActivity());
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    /*}*/
+	    /*catch (Exception e)
 	    {
 	        Toast.makeText(getActivity(), "Failed to load", Toast.LENGTH_SHORT).show();
 	        Log.d("TAG", "Failed to load", e);
-	    }
+	    }*/
 	}
 	
 	
@@ -116,6 +158,8 @@ public class Camera extends SherlockFragment{
 			this.getSherlockActivity().getSupportActionBar().setTitle("");
 		}
 	}
+	
+	
 	
 	/*
 	 * RUN ALGORITHMS HERE!!

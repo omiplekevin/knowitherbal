@@ -14,7 +14,7 @@
                 
     <LinearLayout
 	    android:id="@+id/drawer_view"
-	    android:layout_width="240dp"
+	    android:layout_width="310dp"
 	    android:layout_height="match_parent"
 	    android:orientation="vertical"
 	    android:layout_gravity="start">

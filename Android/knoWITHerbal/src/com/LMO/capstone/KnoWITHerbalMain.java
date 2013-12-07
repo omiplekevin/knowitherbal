@@ -46,6 +46,7 @@ import com.adapter.MenuListAdapter;
 import com.config.Config;
 import com.fragments.AboutThisApplication;
 import com.fragments.Camera;
+import com.fragments.HowToUseFragment;
 import com.fragments.OpenSourceLicense;
 import com.fragments.PlantList;
 import com.fragments.Welcome;
@@ -115,9 +116,11 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
             fTransac.replace(R.id.frame_content, new Welcome()).commit();
             
             if(!new File(Config.dbPath(getApplicationContext())).exists()){
-            	AboutThisApplication about = new AboutThisApplication();
-            	about.setContext(this);
-            	about.createWelcome();
+            	HowToUseFragment howto = new HowToUseFragment();
+				FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+				ft.replace(R.id.frame_content, howto);
+				ft.addToBackStack("help");
+				ft.commit();
             	PrepareFileForDatabase();//will run on thread
             }
             else
