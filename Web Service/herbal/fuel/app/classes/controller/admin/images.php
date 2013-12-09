@@ -37,43 +37,68 @@ class Controller_Admin_Images extends Controller_Admin{
 				    'path' => DOCROOT.'herbals_photos/'. $image->plant_id,
 				    'randomize' => false,
 				    'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
+				    'max_size'=> 1024 * 1024,
 				);
+
+
+				while(Upload::get_files()){
 
 				// process the uploaded files in $_FILES
 				Upload::process($config);
 
 				// if there are any valid files
-				if (Upload::is_valid())
-				{
-				    // save them according to the config
-				    Upload::save();
+					if (Upload::is_valid())
+					{
+					    // save them according to the config
+					    Upload::save();
+					    $value = Upload::get_files();
 
-				    $value = Upload::get_files();
-				    $image->url = $value[0]['saved_as'];
+					    foreach ($value as $files) {
+					    	$image->url = $value[0]['saved_as'];
+			    			//$image->save();
+						}
 
-				    // call a model method to update the database
-				    //Model_Uploads::add(Upload::get_files());
-				}
+					
+						// File::create_dir(DOCROOT.'herbals_photos/thumbs/', $image->plant_id , 0755 );
 
-				
 
-				if ($image and $image->save())
-				{
-					Session::set_flash('success', e('Added image #'.$image->id.'.'));
+						// call a model method to update the database
+						//Model_Uploads::add(Upload::get_files());
 
-					Response::redirect('admin/images');
-				}
+						Image::load('herbals_photos/'.$image->plant_id.'/'.$image->url)
+							->crop_resize(128, 128)
+						    ->save('herbals_photos/thumbs/'.$image->plant_id.'/'.$image->url);
+						
 
-				else
-				{
-					Session::set_flash('error', e('Could not save image.'));
-				}
-			}
+
+										
+
+						if ($image and $image->save())
+						{
+							Session::set_flash('success', e('Added image #'.$image->id.'.'));
+
+							Response::redirect('admin/images');
+						}
+
+						else
+						{
+							Session::set_flash('error', e('Could not save image.'));
+						}
+					
+					}//end if (Upload::is_valid())
+
+			  	}//end while
+
+			}//if ($val->run())
+
+
 			else
 			{
 				Session::set_flash('error', $val->error());
 			}
 		}
+
+
 		$view->set_global('plant', Arr::assoc_to_keyval(Model_Plant::find('all'), 'id', 'name'));
 
 		$this->template->title = "Images";

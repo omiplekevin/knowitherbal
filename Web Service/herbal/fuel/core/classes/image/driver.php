@@ -3,7 +3,7 @@
  * Part of the Fuel framework.
  *
  * @package    Fuel
- * @version    1.7
+ * @version    1.6
  * @author     Fuel Development Team
  * @license    MIT License
  * @copyright  2010 - 2013 Fuel Development Team
@@ -99,7 +99,7 @@ abstract class Image_Driver
 						$action[$i] = preg_replace('#\$' . $x . '#', $vars[$x], $action[$i]);
 					}
 				}
-				call_fuel_func_array(array($this, $func), $action);
+				call_user_func_array(array($this, $func), $action);
 			}
 			$this->config = $old_config;
 		}
@@ -126,7 +126,7 @@ abstract class Image_Driver
 			'filename'    => $filename,
 			'return_data' => $return_data
 		);
-		if (is_file($filename))
+		if (file_exists($filename))
 		{
 			// Check the extension
 			$ext = $this->check_extension($filename, false, $force_extension);
@@ -444,7 +444,7 @@ abstract class Image_Driver
 	{
 		$filename = realpath($filename);
 		$return = false;
-		if (is_file($filename) and $this->check_extension($filename, false))
+		if (file_exists($filename) and $this->check_extension($filename, false))
 		{
 			$x = 0;
 			$y = 0;
@@ -855,7 +855,7 @@ abstract class Image_Driver
 				$tmpfunc[$i] = var_export($action[$i], true);
 			}
 			$this->debug('', "<b>Executing <code>" . implode(", ", $tmpfunc) . "</code></b>");
-			call_fuel_func_array(array(&$this, '_' . $action[0]), array_slice($action, 1));
+			call_user_func_array(array(&$this, '_' . $action[0]), array_slice($action, 1));
 		}
 		if (($clear === null and $this->config['clear_queue']) or $clear === true)
 		{
@@ -873,16 +873,6 @@ abstract class Image_Driver
 		$this->debug("Reloading was called!");
 		$this->load($this->image_fullpath);
 		return $this;
-	}
-
-	/**
-	 * Get the file extension (type) worked out on construct
-	 *
-	 * @return  string  File extension
-	 */
-	public function extension()
-	{
-		return $this->image_extension;
 	}
 
 	/**

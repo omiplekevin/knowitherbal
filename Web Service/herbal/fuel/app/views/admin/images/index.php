@@ -1,5 +1,8 @@
-<h2>Listing Images</h2>
+<h2>Image File Listing</h2>
 <br>
+
+<?php echo Html::anchor('admin/images/create', 'Add new Image', array('class' => 'btn btn-success')); ?>
+
 <?php if ($images): ?>
 <table class="table table-striped">
 	<thead>

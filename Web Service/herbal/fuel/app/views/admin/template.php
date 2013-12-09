@@ -2,18 +2,19 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title><?php echo $title; ?></title>
+	<title><?php echo "knoWITHerbal - ".$title; ?></title>
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<style>
 		body { margin: 50px; }
 	</style>
 	<?php echo Asset::js(array(
-		'http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js',
+		'jquery.min.js',
 		'bootstrap.js'
 	)); ?>
 	<script>
 		$(function(){ $('.topbar').dropdown(); });
 	</script>
+	<link rel="shortcut icon" href="http://omiplekevin:9980/herbal/public/assets/img/fav_icon.ico" />
 </head>
 <body>
 
@@ -26,7 +27,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">My Site</a>
+				<a class="navbar-brand" href="index" style="position: relative; padding: 0;"><?php echo Html::img('assets/img/brand.png')?></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
@@ -64,7 +65,7 @@
 	</div>
 	<?php endif; ?>
 
-	<div class="container">
+	<div class="container" style="margin-bottom: 100px;">
 		<div class="row">
 			<div class="col-md-12">
 				<h1><?php echo $title; ?></h1>
@@ -89,12 +90,12 @@
 			<div class="col-md-12">
 <?php echo $content; ?>
 			</div>
-		</div>
+		</div>		
 		<hr/>
-		<footer>
-			<p class="pull-right">Page rendered in {exec_time}s using {mem_usage}mb of memory.</p>
-			<p>
-				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.<br>
+		<footer class="navbar-fixed-bottom" style="background-color:#6FE26F; height: 60px; opacity: .5;">
+			<p style="text-align:right; z-index: -100;"><?php echo Html::img('assets/img/web_footer_bg.png') ?></p>
+			<p style="text-align:center; position: relative; top: -50px">
+				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 				<small>Version: <?php echo e(Fuel::VERSION); ?></small>
 			</p>
 		</footer>

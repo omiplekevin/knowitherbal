@@ -6,7 +6,12 @@
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<style>
 		body { margin: 40px; }
+
 	</style>
+	<?php echo Asset::js(array(
+		'jquery.min.js',
+		'bootstrap.js'
+	)); ?>
 </head>
 <body>
 	<div class="container">

@@ -3,7 +3,7 @@
  * Part of the Fuel framework.
  *
  * @package    Fuel
- * @version    1.7
+ * @version    1.6
  * @author     Fuel Development Team
  * @license    MIT License
  * @copyright  2010 - 2013 Fuel Development Team
@@ -31,15 +31,15 @@ class Image_Imagemagick extends \Image_Driver
 			{
 				$this->image_temp = $this->config['temp_dir'].substr($this->config['temp_append'].md5(time() * microtime()), 0, 32).'.png';
 			}
-			while (is_file($this->image_temp));
+			while (file_exists($this->image_temp));
 		}
-		elseif (is_file($this->image_temp))
+		elseif (file_exists($this->image_temp))
 		{
 			$this->debug('Removing previous temporary image.');
 			unlink($this->image_temp);
 		}
 		$this->debug('Temp file: '.$this->image_temp);
-		if ( ! is_dir($this->config['temp_dir']))
+		if (!file_exists($this->config['temp_dir']) || !is_dir($this->config['temp_dir']))
 		{
 			throw new \RuntimeException("The temp directory that was given does not exist.");
 		}
@@ -117,7 +117,6 @@ class Image_Imagemagick extends \Image_Driver
 		$x >= 0 and $x = '+'.$x;
 		$y >= 0 and $y = '+'.$y;
 
-		$image = '"'.$this->image_temp.'"';
 		$this->exec(
 			'composite',
 			'-compose atop -geometry '.$x.$y.' '.
@@ -161,12 +160,12 @@ class Image_Imagemagick extends \Image_Driver
 
 		$image = '"'.$this->image_temp.'"';
 		$r = $radius;
-		$command = $image." \\( +clone -alpha extract ".
+		$command = $image." ( +clone -alpha extract ".
 			( ! $tr ? '' : "-draw \"fill black polygon 0,0 0,$r $r,0 fill white circle $r,$r $r,0\" ")."-flip ".
 			( ! $br ? '' : "-draw \"fill black polygon 0,0 0,$r $r,0 fill white circle $r,$r $r,0\" ")."-flop ".
 			( ! $bl ? '' : "-draw \"fill black polygon 0,0 0,$r $r,0 fill white circle $r,$r $r,0\" ")."-flip ".
 			( ! $tl ? '' : "-draw \"fill black polygon 0,0 0,$r $r,0 fill white circle $r,$r $r,0\" ").
-			'\\) -alpha off -compose CopyOpacity -composite '.$image;
+			') -alpha off -compose CopyOpacity -composite '.$image;
 		$this->exec('convert', $command);
 	}
 
@@ -306,7 +305,7 @@ class Image_Imagemagick extends \Image_Driver
 	 * @param   boolean  $passthru  Returns the output if false or pass it to browser.
 	 * @return  mixed    Either returns the output or returns nothing.
 	 */
-	protected function exec($program, $params, $passthru = false)
+	private function exec($program, $params, $passthru = false)
 	{
 		//  Determine the path
 		$this->im_path = realpath($this->config['imagemagick_dir'].$program);
@@ -349,7 +348,7 @@ class Image_Imagemagick extends \Image_Driver
 
 	public function __destruct()
 	{
-		if (is_file($this->image_temp))
+		if (file_exists($this->image_temp))
 		{
 			unlink($this->image_temp);
 		}
