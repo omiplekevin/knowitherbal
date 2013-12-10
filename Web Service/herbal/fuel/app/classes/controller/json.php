@@ -16,6 +16,11 @@ class Controller_Json extends Controller_Rest {
 		$data['images'] = Model_Image::find('all');
 		return $this->response($data);
 	}
+
+	public function get_publishes() {
+		$data['publishes'] = Model_Publish::find('all');
+		return $this->response($data);
+	}
 }
 
 
