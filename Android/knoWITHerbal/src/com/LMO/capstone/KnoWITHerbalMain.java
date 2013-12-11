@@ -3,7 +3,6 @@ package com.LMO.capstone;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -55,7 +54,6 @@ import com.helper.AsyncTaskDatabaseLoader;
 import com.helper.AsyncTaskImageDownload;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
-import com.models.PlantModel;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class KnoWITHerbalMain extends SherlockFragmentActivity{
@@ -67,8 +65,8 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 	private CharSequence title;
 	private String[] navTitles;
 	private long lastPress;
-	private DatabaseHelper dbHelper;
-	private SQLiteDatabase sqliteDB;
+	/*private DatabaseHelper dbHelper;
+	private SQLiteDatabase sqliteDB;*/
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
@@ -92,8 +90,6 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00CC00")));
 		getSupportActionBar().setIcon(getResources().getDrawable(R.drawable.ic_launcher_2));
 
-		
-		
 		drawerToggle = new ActionBarDrawerToggle(
 				this,
 				drawerLayout, 
@@ -173,7 +169,7 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		if(fm.getBackStackEntryCount() == 0){
 			if((currentTime - lastPress) > 3000)
 			{
-				Toast.makeText(this, "Press back again to exit", Toast.LENGTH_LONG).show();
+				Toast.makeText(this, "Press \'back\' again to exit", Toast.LENGTH_LONG).show();
 				lastPress = currentTime;
 			}else
 			{
@@ -223,7 +219,7 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 			for(int i=0;i<urls.size();i++)
 			{
 				Log.e("imageURL",urls.get(i));
-				forDL.add(Config.imagehostURL + urls.get(i));
+				forDL.add(urls.get(i));
 			}
 			AsyncTaskImageDownload imageDownload = new AsyncTaskImageDownload(this, forDL, Queries.getImageEntryCount(sqlite, dbHelper));
 			
@@ -297,22 +293,22 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		switch(position)
 		{
 			case 0:
-				this.title = "Camera";
+				this.title = navTitles[0];
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				ft.replace(R.id.frame_content, new Camera()).commit();
 				break;
 			case 1:
-				this.title = "Plant List";
+				this.title = navTitles[1];
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				ft.replace(R.id.frame_content, new PlantList()).commit();
 				break;
 			case 2:
-				this.title = "About this App";
+				this.title = navTitles[2];
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				ft.replace(R.id.frame_content, new AboutThisApplication()).commit();
 				break;
 			case 3:
-				this.title = "Open Source Licenses";
+				this.title = navTitles[3];
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				ft.replace(R.id.frame_content, new OpenSourceLicense()).commit();
 				break;

@@ -1,8 +1,17 @@
 package com.fragments;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +23,12 @@ import android.widget.Toast;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
+import com.config.Config;
+import com.helper.AsyncTaskDatabaseLoader;
+import com.helper.DatabaseHelper;
+import com.helper.Queries;
+import com.helper.XMLParser;
+import com.models.PublishModel;
 
 public class AboutThisApplication extends SherlockFragment{
 
@@ -22,6 +37,8 @@ public class AboutThisApplication extends SherlockFragment{
 	TextView apptitle;
 	TextView subtitle;
 	Context context;
+	SQLiteDatabase sqliteDB;
+	DatabaseHelper dbHelper;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,12 +125,59 @@ public class AboutThisApplication extends SherlockFragment{
 			ft.commit();
 			break;
 		case 1:
+			try {
+				requestUpdate();
+			} catch (XmlPullParserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		case 2:
 			break;
 		case 3:
 			break;
 		}
+	}
+	
+	private void requestUpdate() throws XmlPullParserException, IOException
+	{
+		dbHelper = new DatabaseHelper(getSherlockActivity());
+		PublishModel pubInfo = new PublishModel();
+		PublishModel temp = new PublishModel();
+		pubInfo = Queries.getPublishInfo(sqliteDB, dbHelper);
+		Log.e("COMMENT", pubInfo.getComment());
+		
+		try
+		{
+			//2013-12-10 06:00:54
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
+			Date date = format.parse(pubInfo.getCreatedAt());
+			
+			XMLParser parser = new XMLParser(this.getSherlockActivity());
+			parser.grabXML(Config.xmlhostURL, Config.publishXML, true);
+			temp = parser.readTempPublish("temp_"+Config.publishXML);
+			Date newDate = format.parse(temp.getCreatedAt());
+			Log.e("COMPARE", date.toString() + " VS " + newDate.toString() + " RESULT IS " + date.compareTo(newDate));
+			if(date.compareTo(newDate) < 0)
+			{
+				Toast.makeText(getSherlockActivity(), "Now Updating...", Toast.LENGTH_LONG).show();
+				Queries.truncateDatabase(sqliteDB, dbHelper, getSherlockActivity());
+				AsyncTaskDatabaseLoader loader = new AsyncTaskDatabaseLoader(getSherlockActivity());
+				loader.execute();
+			}
+			else
+			{
+				Toast.makeText(getSherlockActivity(), "Yout data is Up-to-date!", Toast.LENGTH_LONG).show();
+			}
+		}
+		catch(ParseException e)
+		{
+			Toast.makeText(getSherlockActivity(), "Something went wrong!", Toast.LENGTH_LONG).show();
+		}
+		
 	}
 
 }

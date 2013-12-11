@@ -1,5 +1,7 @@
 package com.helper;
 
+import com.config.Config;
+
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -7,8 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper{
 
 	public final static String dBName = "Herbals";
-	final static String plantTable = "plantTB";
-	final static String imagesTable = "imagesTB";
+	final static String plantTable = Config.plantTable;
+	final static String imagesTable = Config.imageTable;
+	final static String publishTable = Config.publishTable;
 	final static int DB_VERSION = 1;
 	
 	static Activity activity;
@@ -43,6 +46,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 	    		+ "url VARCHAR(1000) "
 	    		+ ");");
 		
+		db.execSQL("CREATE TABLE IF NOT EXISTS " + publishTable + " ("
+	    		+ "publishID INTEGER PRIMARY KEY AUTOINCREMENT, "
+	    		+ "comment VARCHAR(1000), "
+	    		+ "created_at INT, "
+	    		+ "updated_at INT "
+	    		+ ");");
+		
 	}
 
 	@Override
@@ -50,5 +60,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 		// TODO Auto-generated method stub
 		db.execSQL("DROP TABLE IF EXISTS " + plantTable);
 		db.execSQL("DROP TABLE IF EXISTS " + imagesTable);
+		db.execSQL("DROP TABLE IF EXISTS " + publishTable);
 	}
 }

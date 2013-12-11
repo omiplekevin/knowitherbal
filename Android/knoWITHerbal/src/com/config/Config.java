@@ -8,15 +8,25 @@ import com.helper.DatabaseHelper;
 
 public class Config {
 	
+	public static String plantTable = "plantTB";
+	
+	public static String imageTable = "imagesTB";
+	
+	public static String publishTable = "publishesTB";
+	
 	public static String externalDirectory = Environment.getExternalStorageDirectory() + "/.knoWITHerbal/";
 	
 	public static String imagehostURL = "http://192.168.180.1:9980/herbal/public/herbals_photos/";
 	
 	public static String xmlhostURL = "http://192.168.180.1:9980/herbal/public/json/";
 	
+	public static String thumbsURL = "thumbs/";
+	
 	public static String plantXML = "plants.xml";
 	
 	public static String imageXML = "images.xml";
+	
+	public static String publishXML = "publishes.xml";
 	
 	public static String viewsetting = "ViewSetting";
 	
@@ -71,6 +81,11 @@ public class Config {
 	
 	public static String KEY_IMAGEURL = "url";
 	
+	
+	//publish
+	public static String KEY_COMMENT = "comment";
+	
+	public static String KEY_PUBLISHITEM = "publish";
 	
 	//common
 	public static String KEY_CREATEDAT = "created_at";

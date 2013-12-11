@@ -4,9 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.opencv.android.BaseLoaderCallback;
-import org.opencv.android.LoaderCallbackInterface;
-import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDMatch;
@@ -19,19 +16,18 @@ import org.opencv.imgproc.Imgproc;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
+import android.os.AsyncTask;
+import android.text.Html;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 
-import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.config.Config;
 import com.fragments.Camera;
@@ -46,6 +42,7 @@ public class ORB extends SherlockFragment{
 	private int plantID = 0;
 	private List<PlantModel> plants;
 	private Context context;
+	ProgressDialog progressDialog;
 	
 	public void setContext(Context context)
 	{
@@ -85,99 +82,140 @@ public class ORB extends SherlockFragment{
 		}
 		else
 		{
-			SQLiteDatabase sqliteDB;
-			DatabaseHelper dbHelper = new DatabaseHelper((Activity)context);
+			progressDialog = new ProgressDialog(context);
+			final SQLiteDatabase sqliteDB;
+			final DatabaseHelper dbHelper = new DatabaseHelper((Activity)context);
 			sqliteDB = dbHelper.getReadableDatabase();
 			
 			plants = Queries.getPlants(sqliteDB, dbHelper);
-			Bitmap bitmapCaptured = getBitmap(pathCaptured);
+			final Bitmap bitmapCaptured = getBitmap(pathCaptured);
 			
-			for(int plant=0;plant<plants.size();plant++)
+			AsyncTask<Void, Void, Void> algorithm = new AsyncTask<Void, Void, Void>()
 			{
-				for(int image=0;image<plants.get(plant).imgUrls.size();image++)
-				{
-					String filename = plants.get(plant).imgUrls.get(image);
-					Log.e("IMAGE PLANT", ""+plant + ", " +image + "FILENAME: " + filename);
-					Bitmap bitmapSD = getBitmap(Config.externalDirectory + plants.get(plant).imgUrls.get(image));
-					
-					Mat bmpCap = new Mat();
-					Mat bmpSD = new Mat();
-					Mat grayBmpCap = new Mat();
-					Mat grayBmpSD = new Mat();
-					
-					Utils.bitmapToMat(bitmapCaptured, bmpCap);
-					Utils.bitmapToMat(bitmapSD, bmpSD);
-					
-					Imgproc.cvtColor(bmpCap, grayBmpCap, Imgproc.COLOR_RGB2GRAY);
-					Imgproc.cvtColor(bmpSD, grayBmpSD, Imgproc.COLOR_RGB2GRAY);
-					
-					FeatureDetector fd = FeatureDetector.create(FeatureDetector.ORB);
-					
-					MatOfKeyPoint kp1 = new MatOfKeyPoint();
-					MatOfKeyPoint kp2 = new MatOfKeyPoint();
-					
-					fd.detect(grayBmpCap, kp1);
-					fd.detect(grayBmpSD, kp2);
-					
-					DescriptorExtractor descExtract = DescriptorExtractor.create(DescriptorExtractor.BRIEF);
-					Mat desc1 = new Mat();
-					Mat desc2 = new Mat();
-					
-					MatOfDMatch matches = new MatOfDMatch();
-					
-					descExtract.compute(grayBmpCap, kp1, desc1);
-					descExtract.compute(grayBmpSD, kp2, desc2);
-					
-					MatOfDMatch matchFilterred = new MatOfDMatch();
-					
-					DescriptorMatcher descMatch = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING);
-		//			List<MatOfDMatch> listMatches = new ArrayList<MatOfDMatch>();
-					
-					if(desc1.cols() == desc1.cols() && desc1.type() == desc2.type() && desc1.cols() > 0 && desc2.cols() > 0)
-					{
-						descMatch.match(desc1, desc2, matches);
-						List<DMatch> matchesList = matches.toList();
-						List<DMatch> bestMatches = new ArrayList<DMatch>();
-						
-						double MAX = 0;
-						double MIN = 100;
-						
-						for( int i = 0; i < matchesList.size(); i++ )
-						{
-							double dist = matchesList.get(i).distance;
-							if(dist < MIN && dist != 0)
-							{
-								MIN = dist;
-							}
-							if(dist > MAX)
-							{
-								MAX = dist;
-							}
-						}
-						
-						double thresh = 2 * MIN;
-						
-						for(int i=0;i<matchesList.size();i++)
-						{
-							double dist = (double)matchesList.get(i).distance;
-							if(dist < thresh)
-							{
-								bestMatches.add(matches.toList().get(i));
-							}
-						}
-						
-						matchFilterred.fromList(bestMatches);
-						Log.e("BEST MATCHES ", matchFilterred.size() + " COLS: [" + matchFilterred.cols() + "] ROWS: [" + matchFilterred.rows() + "]");
-						if(matchFilterred.rows() < BEST){
-							plantID = plant;
-							BEST = matchFilterred.rows();
-						}
-					}
-				}
 				
-			}
+				@Override
+				protected void onPostExecute(Void result) {
+					// TODO Auto-generated method stub
+					super.onPostExecute(result);
+					progressDialog.dismiss();
+				}
+
+				@Override
+				protected void onPreExecute() {
+					// TODO Auto-generated method stub
+					super.onPreExecute();
+					int plantEntry = Queries.getPlantEntryCount(sqliteDB, dbHelper);
+					progressDialog.setIndeterminate(true);
+					progressDialog.setIndeterminate(false);
+					progressDialog.setCanceledOnTouchOutside(false);
+					progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+					progressDialog.setMax(plantEntry);
+					progressDialog.setTitle(Html.fromHtml("<b>This may take a while...</b>"));
+					progressDialog.setMessage(Html.fromHtml("<i>Analyzing</i>"));
+					progressDialog.show();
+				}
+
+				@Override
+				protected void onProgressUpdate(Void... values) {
+					// TODO Auto-generated method stub
+					super.onProgressUpdate(values);
+					progressDialog.incrementProgressBy(1);
+				}
+
+				@Override
+				protected Void doInBackground(Void... params) {
+					// TODO Auto-generated method stub
+					for(int plant=0;plant<plants.size();plant++)
+					{
+						for(int image=0;image<plants.get(plant).imgUrls.size();image++)
+						{
+							String filename = plants.get(plant).imgUrls.get(image);
+							Log.e("IMAGE PLANT", ""+plant + ", " +image + "FILENAME: " + filename);
+							Bitmap bitmapSD = getBitmap(Config.externalDirectory + plants.get(plant).imgUrls.get(image));
+							
+							Mat bmpCap = new Mat();
+							Mat bmpSD = new Mat();
+							Mat grayBmpCap = new Mat();
+							Mat grayBmpSD = new Mat();
+							
+							Utils.bitmapToMat(bitmapCaptured, bmpCap);
+							Utils.bitmapToMat(bitmapSD, bmpSD);
+							
+							Imgproc.cvtColor(bmpCap, grayBmpCap, Imgproc.COLOR_RGB2GRAY);
+							Imgproc.cvtColor(bmpSD, grayBmpSD, Imgproc.COLOR_RGB2GRAY);
+							
+							FeatureDetector fd = FeatureDetector.create(FeatureDetector.ORB);
+							
+							MatOfKeyPoint kp1 = new MatOfKeyPoint();
+							MatOfKeyPoint kp2 = new MatOfKeyPoint();
+							
+							fd.detect(grayBmpCap, kp1);
+							fd.detect(grayBmpSD, kp2);
+							
+							DescriptorExtractor descExtract = DescriptorExtractor.create(DescriptorExtractor.BRIEF);
+							Mat desc1 = new Mat();
+							Mat desc2 = new Mat();
+							
+							MatOfDMatch matches = new MatOfDMatch();
+							
+							descExtract.compute(grayBmpCap, kp1, desc1);
+							descExtract.compute(grayBmpSD, kp2, desc2);
+							
+							MatOfDMatch matchFilterred = new MatOfDMatch();
+							
+							DescriptorMatcher descMatch = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING);
+				//			List<MatOfDMatch> listMatches = new ArrayList<MatOfDMatch>();
+							
+							if(desc1.cols() == desc1.cols() && desc1.type() == desc2.type() && desc1.cols() > 0 && desc2.cols() > 0)
+							{
+								descMatch.match(desc1, desc2, matches);
+								List<DMatch> matchesList = matches.toList();
+								List<DMatch> bestMatches = new ArrayList<DMatch>();
+								
+								double MAX = 0;
+								double MIN = 100;
+								
+								for( int i = 0; i < matchesList.size(); i++ )
+								{
+									double dist = matchesList.get(i).distance;
+									if(dist < MIN && dist != 0)
+									{
+										MIN = dist;
+									}
+									if(dist > MAX)
+									{
+										MAX = dist;
+									}
+								}
+								
+								double thresh = 2 * MIN;
+								
+								for(int i=0;i<matchesList.size();i++)
+								{
+									double dist = (double)matchesList.get(i).distance;
+									if(dist < thresh)
+									{
+										bestMatches.add(matches.toList().get(i));
+									}
+								}
+								
+								matchFilterred.fromList(bestMatches);
+								Log.e("BEST MATCHES ", matchFilterred.size() + " COLS: [" + matchFilterred.cols() + "] ROWS: [" + matchFilterred.rows() + "]");
+								if(matchFilterred.rows() < BEST){
+									plantID = plant;
+									BEST = matchFilterred.rows();
+								}
+							}
+						}//child for-loop
+						publishProgress();
+					}
+					return null;
+				}//parent for-loop
+			};
+			
+			algorithm.execute();
 		}
-//		displayBEST();
+		//displayBEST();
 		return plantID;
 	}
 	

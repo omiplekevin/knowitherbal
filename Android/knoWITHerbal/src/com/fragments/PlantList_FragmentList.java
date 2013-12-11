@@ -87,7 +87,6 @@ public class PlantList_FragmentList extends SherlockFragment{
 				viewGroup.removeAllViews();
 			}
 		}
-		Log.i("FragmentList", "FragmentList destroy");
 	}
 	
 	private void instantiateView()
@@ -114,21 +113,22 @@ public class PlantList_FragmentList extends SherlockFragment{
 		listView.setSelector(R.drawable.listitem_selector);
 		listView.setAdapter(adapter);
 		searchText.addTextChangedListener(new TextWatcher() {
-			
+			PlantListAdapter newAdapter;
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
 				// TODO Auto-generated method stub
-				PlantListAdapter newAdapter;
+				
 				if(!searchText.getText().toString().equals(""))
 				{
 					newAdapter = (PlantListAdapter)ListSearch.searchPlantList(getActivity(), plantList, s, true);
+					clearBtn.setVisibility(View.VISIBLE);
 				}
 				else
 				{
 					newAdapter = new PlantListAdapter(getActivity(), plantList);
+					clearBtn.setVisibility(View.INVISIBLE);
 				}
-				listView.setAdapter(newAdapter);
-				listView.invalidateViews();
+				
 			}
 			
 			@Override
@@ -141,7 +141,8 @@ public class PlantList_FragmentList extends SherlockFragment{
 			@Override
 			public void afterTextChanged(Editable s) {
 				// TODO Auto-generated method stub
-				
+				listView.setAdapter(newAdapter);
+				listView.invalidateViews();
 			}
 		});
 	}

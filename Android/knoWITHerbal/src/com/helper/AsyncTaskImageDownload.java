@@ -76,7 +76,10 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 		{
 			Log.i("URL", urls.get(i));
 			try {
-				URL url = new URL(urls.get(i));
+				//real size--------------------------------------------
+				URL url = new URL(Config.imagehostURL + urls.get(i));
+				URL thumbs_url = new URL(Config.imagehostURL + Config.thumbsURL + urls.get(i));
+				
 				Log.e("URL image", urls.get(i));
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
@@ -84,36 +87,36 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
                 InputStream input = connection.getInputStream();
                 
                 BitmapFactory.Options option = new BitmapFactory.Options();
-                option.inSampleSize = 2;
                 Bitmap myBitmap = BitmapFactory.decodeStream(input,null,option);
-                int newH = (int)(myBitmap.getHeight() - myBitmap.getHeight()*Config.thumbnailscaleFactor);
-                int newW = (int)(myBitmap.getWidth() - myBitmap.getWidth()*Config.thumbnailscaleFactor);
-                Bitmap thumbnail = Bitmap.createScaledBitmap(myBitmap, newW, newH, true);
-                
                 String data1 = url.getFile();
                 String[] filename = data1.split("/");
-                
                 String file = filename[filename.length-1];
-                String thumbnail_file = "thumbnail_"+file;
-                
                 FileOutputStream stream = new FileOutputStream(Config.externalDirectory + file);
-                FileOutputStream thumbnail_stream = new FileOutputStream(Config.externalDirectory + ".thumbnail/" + thumbnail_file);
-                Log.i("THUMBNAIL", thumbnail_file);
-                
                 ByteArrayOutputStream outstream = new ByteArrayOutputStream();
-                ByteArrayOutputStream thumbnail_outstream = new ByteArrayOutputStream();
                 
                 myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
-                thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, thumbnail_outstream);
-                
                 byte[] byteArray = outstream.toByteArray();
-                byte[] thumbnail_byteArray = thumbnail_outstream.toByteArray();
-                
                 stream.write(byteArray);
-                thumbnail_stream.write(thumbnail_byteArray);
-                
                 stream.close();
-                thumbnail_stream.close();
+                
+                //thumbnails------------------------------------------------
+                HttpURLConnection thumb_connection = (HttpURLConnection) thumbs_url.openConnection();
+                thumb_connection.setDoInput(true);
+                thumb_connection.connect();
+                InputStream thumbs = thumb_connection.getInputStream();
+                
+                option = new BitmapFactory.Options();
+                myBitmap = BitmapFactory.decodeStream(thumbs,null,option);
+                data1 = url.getFile();
+                filename = data1.split("/");
+                file = filename[filename.length-1];
+                stream = new FileOutputStream(Config.externalDirectory + ".thumbnail/" + file);
+                outstream = new ByteArrayOutputStream();
+                
+                myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
+                byteArray = outstream.toByteArray();
+                stream.write(byteArray);
+                stream.close();
                 
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block

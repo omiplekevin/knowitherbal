@@ -2,6 +2,7 @@ package com.helper;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 import com.config.Config;
 import com.models.ImagesModel;
 import com.models.PlantModel;
+import com.models.PublishModel;
 
 public class XMLParser {
 
@@ -42,7 +44,7 @@ public class XMLParser {
 		dbHelper = new DatabaseHelper((Activity) context);
 	}
 	
-	public void grabXML(String host, String filename)
+	public void grabXML(String host, String filename, boolean forTemporary)
 	{
 		try {
 			if(isNetworkAvailable()){
@@ -82,14 +84,19 @@ public class XMLParser {
 	            }
 	            fos.close();
 	            is.close();*/
-				
 				File dir = new File (Config.externalDirectory);
 		           if(dir.exists()==false) {
 		                dir.mkdirs();
 		           }
 
 		           URL url = new URL(host + filename); //you can write here any link
-		           File file = new File(dir, filename);
+		           File file;
+		           if(!forTemporary){
+		        	   file = new File(dir, filename);
+		           }
+		           else{
+		        	   file = new File(dir, "temp_"+filename);
+		           }
 
 		           long startTime = System.currentTimeMillis();
 		           Log.d("DownloadManager", "download begining");
@@ -121,7 +128,6 @@ public class XMLParser {
 		           fos.flush();
 		           fos.close();
 		           Log.d("DownloadManager", "download ready in" + ((System.currentTimeMillis() - startTime) / 1000) + " sec");
-	            
 			}
         }
 	    catch (IOException e) {
@@ -157,9 +163,9 @@ public class XMLParser {
 		parser.setInput(new FileReader(file));
 		int eventType = parser.getEventType();
 		
-		String tagName = "";
 //****************************************************************************************
 		if(Config.plantXML.equals(source)){
+			String tagName = "";
 			List<PlantModel> listModel = new ArrayList<PlantModel>();
 			PlantModel model = null;
 			while(eventType != XmlPullParser.END_DOCUMENT)
@@ -241,6 +247,7 @@ public class XMLParser {
 //****************************************************************************************
 		else if(Config.imageXML.equals(source))
 		{
+			String tagName = "";
 			List<ImagesModel> listModel = new ArrayList<ImagesModel>();
 			ImagesModel model = null;
 			while(eventType != XmlPullParser.END_DOCUMENT)
@@ -283,5 +290,104 @@ public class XMLParser {
 				Queries.InsertImage(sqliteDB, dbHelper, item);
 			}
 		}
+//****************************************************************************************
+		else if(Config.publishXML.equals(source))
+		{
+			String tagName = "";
+			PublishModel publish = new PublishModel();
+			while(eventType != XmlPullParser.END_DOCUMENT)
+			{
+				if(eventType == XmlPullParser.START_DOCUMENT){
+					publish = new PublishModel();
+					publish.comment= "";
+				}
+				else if(eventType == XmlPullParser.END_DOCUMENT){
+					
+				}
+				else if(eventType == XmlPullParser.START_TAG){
+//					Log.e("XmlPullParser", "Start Tag " + parser.getName());
+					
+					tagName = parser.getName();
+					if(tagName.equals(Config.KEY_PUBLISHITEM))
+					{
+						publish = new PublishModel();
+						publish.comment = "";
+					}
+				}
+				else if(eventType == XmlPullParser.END_TAG){
+					tagName = "";
+				}
+				else if(eventType == XmlPullParser.TEXT){
+					if(tagName.equals(Config.KEY_COMMENT)){
+						Log.e("Comment", parser.getText());
+						publish.comment = parser.getText();
+					}
+					else if(tagName.equals(Config.KEY_CREATEDAT)){
+						Log.e("Created_At", parser.getText());
+						publish.created_at = parser.getText();
+					}
+					else if(tagName.equals(Config.KEY_UPDATEDAT)){
+						Log.e("Updated_At", parser.getText());
+						publish.updated_at = parser.getText();
+					}
+				}
+				eventType = parser.next();
+			}
+			Queries.InsertPublish(sqliteDB, dbHelper, publish);
+		}
+	}
+	
+	public PublishModel readTempPublish(String temp_source) throws XmlPullParserException, IOException
+	{
+		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+		factory.setNamespaceAware(true);
+		XmlPullParser parser = factory.newPullParser();
+		
+		File file = new File(Config.externalDirectory + temp_source);
+		
+		parser.setInput(new FileReader(file));
+		int eventType = parser.getEventType();
+		String tagName = "";
+		PublishModel publish = new PublishModel();
+		while(eventType != XmlPullParser.END_DOCUMENT)
+		{
+			if(eventType == XmlPullParser.START_DOCUMENT){
+				publish = new PublishModel();
+				publish.comment= "";
+			}
+			else if(eventType == XmlPullParser.END_DOCUMENT){
+				
+			}
+			else if(eventType == XmlPullParser.START_TAG){
+//				Log.e("XmlPullParser", "Start Tag " + parser.getName());
+				
+				tagName = parser.getName();
+				if(tagName.equals(Config.KEY_PUBLISHITEM))
+				{
+					publish = new PublishModel();
+					publish.comment = "";
+				}
+			}
+			else if(eventType == XmlPullParser.END_TAG){
+				tagName = "";
+			}
+			else if(eventType == XmlPullParser.TEXT){
+				if(tagName.equals(Config.KEY_COMMENT)){
+					Log.e("Comment", parser.getText());
+					publish.comment = parser.getText();
+				}
+				else if(tagName.equals(Config.KEY_CREATEDAT)){
+					Log.e("Created_At", parser.getText());
+					publish.created_at = parser.getText();
+				}
+				else if(tagName.equals(Config.KEY_UPDATEDAT)){
+					Log.e("Updated_At", parser.getText());
+					publish.updated_at = parser.getText();
+				}
+			}
+			eventType = parser.next();
+		}
+		
+		return publish;
 	}
 }

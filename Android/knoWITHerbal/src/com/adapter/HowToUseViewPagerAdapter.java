@@ -36,7 +36,7 @@ public class HowToUseViewPagerAdapter extends PagerAdapter{
 				// TODO Auto-generated method stub
 				
 				try {
-					InputStream inputStream = context.getAssets().open("images/help-("+(position + 1)+").png");
+					InputStream inputStream = context.getAssets().open("images/help-("+(position + 1)+").jpg");
 					return BitmapFactory.decodeStream(inputStream);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

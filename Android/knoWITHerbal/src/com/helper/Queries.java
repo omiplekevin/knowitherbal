@@ -5,14 +5,21 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import android.annotation.TargetApi;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 
+import com.config.Config;
 import com.models.ImagesModel;
 import com.models.PlantModel;
+import com.models.PublishModel;
 
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class Queries {
 
 	//======================================READ==================================
@@ -149,6 +156,26 @@ public class Queries {
 		return models;
 	}
 	
+	public static PublishModel getPublishInfo(SQLiteDatabase sqliteDB, DatabaseHelper dbHelper)
+	{
+		Cursor mCursor = null;
+		
+		sqliteDB = dbHelper.getReadableDatabase();
+		mCursor = sqliteDB.rawQuery("SELECT * FROM " + DatabaseHelper.publishTable.toString() + " ORDER BY publishID DESC LIMIT 1", null);
+		mCursor.moveToFirst();
+		
+		PublishModel model = new PublishModel();
+		model.publishID = mCursor.getInt(0);
+		model.comment = mCursor.getString(1);
+		model.created_at = mCursor.getString(2);
+		model.updated_at = mCursor.getString(3);
+			
+		mCursor.close();
+		dbHelper.close();
+		
+		return model;
+	}
+	
 	public static int getPlantEntryCount(SQLiteDatabase sqliteDB, DatabaseHelper dbHelper)
 	{
 		sqliteDB = dbHelper.getReadableDatabase();
@@ -194,9 +221,23 @@ public class Queries {
 		values.put("pID", images.getpID());
 		values.put("url", images.getUrl());
 		
-		Log.e("INSERTING",images.getUrl());
-		
 		sqliteDB.insert(DatabaseHelper.imagesTable, null, values);
+		sqliteDB.close();
+	}
+	
+	public static void InsertPublish(SQLiteDatabase sqliteDB, DatabaseHelper dbHelper, PublishModel publish)
+	{
+		Log.e("INSERTING", "####################COMMENT####################");
+		sqliteDB  = dbHelper.getWritableDatabase();
+		
+		ContentValues values = new ContentValues();
+		values.put("comment", publish.getComment());
+		values.put("created_at", publish.getCreatedAt());
+		values.put("updated_at", publish.getUpdatedAt());
+		
+		Log.e("INSERTING",publish.getComment());
+		
+		sqliteDB.insert(DatabaseHelper.publishTable, null, values);
 		sqliteDB.close();
 	}
 	
@@ -260,5 +301,15 @@ public class Queries {
 		{
 			return false;			
 		}
+	}
+	
+	//==================================TRUNCATE==================================
+	public static void truncateDatabase(SQLiteDatabase sqliteDB, DatabaseHelper dbHelper, Context context)
+	{
+		sqliteDB = dbHelper.getWritableDatabase();
+		sqliteDB.execSQL("DELETE FROM " + Config.plantTable);
+		sqliteDB.execSQL("DELETE FROM " + Config.imageTable);
+		sqliteDB.execSQL("DELETE FROM sqlite_sequence WHERE name='" + Config.plantTable + "'");
+		sqliteDB.execSQL("DELETE FROM sqlite_sequence WHERE name='" + Config.imageTable + "'");
 	}
 }

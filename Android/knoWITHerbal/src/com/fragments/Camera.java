@@ -134,7 +134,9 @@ public class Camera extends SherlockFragment{
 		        Log.e("URI", uri.getPath());
 		        String path = uri.getPath();
 		        ORB orb = new ORB();
+		        
 		        orb.setContext(this.getSherlockActivity());
+		        //===================================================================THE MADNESS!!!
 		        int id = orb.analyze(path, this.getSherlockActivity());
 		        
 		        TextView name = (TextView)view.findViewById(R.id.textView1);

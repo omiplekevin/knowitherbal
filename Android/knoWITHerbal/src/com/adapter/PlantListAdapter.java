@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,25 +63,24 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 		    @Override
 		    protected Bitmap doInBackground(Holder... params) {
 		        v = params[0];
-		        return BitmapFactory.decodeFile(Config.externalDirectory /*+ ".thumbnail/thumbnail_"*/ + imgURLs.get(0));
+		        return BitmapFactory.decodeFile(Config.externalDirectory + ".thumbnail/" + imgURLs.get(0));
 		    }
 
 		    @Override
 		    protected void onPostExecute(Bitmap result) {
 		        super.onPostExecute(result);
-		        v.pb1.setVisibility(View.GONE);
-		        v.pb2.setVisibility(View.GONE);
+		        v.pb1.setVisibility(View.INVISIBLE);
+		        v.pb2.setVisibility(View.INVISIBLE);
 		        
 		        v.plantName.setText(plantList.get(pos).getName());
 		        String clean = plantList.get(pos).getScientific().replace("||", "\n");
 				v.plantPrimeDetail.setText(clean);
 				v.plantPrimeDetail.setSelected(true);
 		        v.imageView.setImageBitmap(result);
-		        
 		        AnimatorSet anim = new AnimatorSet();
 				anim.playTogether(
-						ObjectAnimator.ofFloat(v.imageView, "alpha", 0, 0.5f, 1),
-						ObjectAnimator.ofFloat(v.imageView, "translationY", -30, 0)
+						ObjectAnimator.ofFloat(v.imageView, "alpha", 0, 0.8f, 1),
+						ObjectAnimator.ofFloat(v.imageView, "translationX", -50, 0)
 						);
 				anim.setDuration(500);
 				anim.start();

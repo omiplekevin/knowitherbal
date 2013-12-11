@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,7 +91,6 @@ public class PlantList extends SherlockFragment{
 				viewGroup.removeAllViews();
 			}
 		}
-		Log.i("PlantList", "PlantList destroy");
 		/*FragmentManager fm = getFragmentManager();
 		for(int i=0;i<fm.getBackStackEntryCount();i++){
 			fm.popBackStack("details",FragmentManager.POP_BACK_STACK_INCLUSIVE);

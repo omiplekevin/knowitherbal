@@ -116,12 +116,14 @@ public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{
 		
 		XMLParser parser = new XMLParser(context);
 		
-		parser.grabXML(Config.xmlhostURL, Config.plantXML); //http://192.168.180.1:9980/herbal/public/json + /plants.xml
-		parser.grabXML(Config.xmlhostURL, Config.imageXML); //http://192.168.180.1:9980/herbal/public/json + /images.xml
+		parser.grabXML(Config.xmlhostURL, Config.plantXML, false); //http://192.168.180.1:9980/herbal/public/json/plants.xml
+		parser.grabXML(Config.xmlhostURL, Config.imageXML, false); //http://192.168.180.1:9980/herbal/public/json/images.xml
+		parser.grabXML(Config.xmlhostURL, Config.publishXML, false); //http://192.168.180.1:9980/herbal/public/json/publishes.xml
 		
 		try {
 			parser.readXML(Config.plantXML);
 			parser.readXML(Config.imageXML);
+			parser.readXML(Config.publishXML);
 		} catch (XmlPullParserException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -145,7 +147,7 @@ public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{
 			for(int i=0;i<urls.size();i++)
 			{
 				Log.e("imageURL",urls.get(i));
-				forDL.add(Config.imagehostURL + urls.get(i));
+				forDL.add(urls.get(i));
 			}
 			AsyncTaskImageDownload imageDownload = new AsyncTaskImageDownload(context, forDL, Queries.getImageEntryCount(sqlite, dbHelper));
 			
