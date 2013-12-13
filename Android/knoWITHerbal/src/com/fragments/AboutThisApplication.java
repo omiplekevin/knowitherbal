@@ -107,7 +107,7 @@ public class AboutThisApplication extends SherlockFragment{
 			}
 		});
 		
-		imageView = (ImageView)view.findViewById(R.id.imageView1);
+		imageView = (ImageView)view.findViewById(R.id.captured);
 		apptitle = (TextView)view.findViewById(R.id.title);
 		subtitle = (TextView)view.findViewById(R.id.subtitle);
 	}

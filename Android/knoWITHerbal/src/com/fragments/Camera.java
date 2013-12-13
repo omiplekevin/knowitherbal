@@ -128,25 +128,25 @@ public class Camera extends SherlockFragment{
 	    {*/
 	        /*try {*/
 				//bitmap = android.provider.MediaStore.Images.Media.getBitmap(cr, uri);
-	        	bitmap = Bitmap.createBitmap(BitmapFactory.decodeFile(uri.getPath()));
+	        	/*bitmap = Bitmap.createBitmap(BitmapFactory.decodeFile(uri.getPath()));
 	        	Bitmap resized = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth()/2, bitmap.getHeight()/2, false);
-				imageView.setImageBitmap(resized);
+				imageView.setImageBitmap(resized);*/
 		        Log.e("URI", uri.getPath());
 		        String path = uri.getPath();
 		        ORB orb = new ORB();
 		        
 		        orb.setContext(this.getSherlockActivity());
 		        //===================================================================THE MADNESS!!!
-		        int id = orb.analyze(path, this.getSherlockActivity());
+		        orb.analyze(path, this.getSherlockActivity(), getFragmentManager());
 		        
-		        TextView name = (TextView)view.findViewById(R.id.textView1);
+		        /*TextView name = (TextView)view.findViewById(R.id.textView1);
 		        
 		        SQLiteDatabase sqliteDB;
 				DatabaseHelper dbHelper = new DatabaseHelper(this.getSherlockActivity());
 				sqliteDB = dbHelper.getReadableDatabase();
 				
 				plants = Queries.getPlants(sqliteDB, dbHelper);
-		        name.setText(plants.get(id).getName());
+		        name.setText(plants.get(id).getName());*/
 			/*} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -170,7 +170,7 @@ public class Camera extends SherlockFragment{
 		super.onActivityResult(requestCode, resultCode, data);
 		if(requestCode == 1337 && resultCode == Activity.RESULT_OK)
 		{
-			ImageView imageView = (ImageView)view.findViewById(R.id.imageView1);
+			ImageView imageView = (ImageView)view.findViewById(R.id.captured);
 			grabImage(imageView);
 		}
 		else if(resultCode == Activity.RESULT_CANCELED)

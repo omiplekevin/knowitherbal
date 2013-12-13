@@ -10,7 +10,7 @@
         android:background="#96FF96" >
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/captured"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="@dimen/margin_10dp"

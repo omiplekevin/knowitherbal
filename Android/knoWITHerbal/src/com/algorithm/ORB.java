@@ -2,6 +2,8 @@ package com.algorithm;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.opencv.android.Utils;
@@ -24,13 +26,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.util.Log;
-import android.widget.ProgressBar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
+import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.config.Config;
 import com.fragments.Camera;
+import com.fragments.ResultFragment;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
 import com.models.PlantModel;
@@ -38,18 +46,19 @@ import com.models.PlantModel;
 public class ORB extends SherlockFragment{
 	
 	String pathCaptured;
-	private int BEST = 999999;
+	private int BEST = 0;
 	private int plantID = 0;
 	private List<PlantModel> plants;
-	private Context context;
+	public Context context;
 	ProgressDialog progressDialog;
+	ArrayList<ItemModel> matchRating;
 	
 	public void setContext(Context context)
 	{
 		this.context = context;
 	}
 	
-	public int analyze(String imagePath, Context context)
+	public void analyze(String imagePath, final Context context, final FragmentManager fragmentManager)
 	{
 		pathCaptured = imagePath;
 		if(!new File(pathCaptured).isFile())
@@ -82,6 +91,7 @@ public class ORB extends SherlockFragment{
 		}
 		else
 		{
+			matchRating = new ArrayList<ItemModel>();
 			progressDialog = new ProgressDialog(context);
 			final SQLiteDatabase sqliteDB;
 			final DatabaseHelper dbHelper = new DatabaseHelper((Activity)context);
@@ -98,6 +108,17 @@ public class ORB extends SherlockFragment{
 					// TODO Auto-generated method stub
 					super.onPostExecute(result);
 					progressDialog.dismiss();
+					
+					SortMatches(matchRating);
+					
+					ResultFragment resultFragment = new ResultFragment();
+					resultFragment.setResult(pathCaptured, matchRating);
+					
+					FragmentTransaction ft = fragmentManager.beginTransaction();
+					ft.replace(R.id.FrameLayout1, resultFragment);
+					ft.addToBackStack("results");
+					ft.commit();
+					
 				}
 
 				@Override
@@ -130,8 +151,9 @@ public class ORB extends SherlockFragment{
 						for(int image=0;image<plants.get(plant).imgUrls.size();image++)
 						{
 							String filename = plants.get(plant).imgUrls.get(image);
-							Log.e("IMAGE PLANT", ""+plant + ", " +image + "FILENAME: " + filename);
+							Log.e("IMAGE PLANT", ""+plant + ", " +image + " FILENAME: " + filename);
 							Bitmap bitmapSD = getBitmap(Config.externalDirectory + plants.get(plant).imgUrls.get(image));
+//							Bitmap bitmapSD = getBitmap(Config.externalDirectory + plants.get(plant).imgUrls.get(image));
 							
 							Mat bmpCap = new Mat();
 							Mat bmpSD = new Mat();
@@ -201,10 +223,15 @@ public class ORB extends SherlockFragment{
 								
 								matchFilterred.fromList(bestMatches);
 								Log.e("BEST MATCHES ", matchFilterred.size() + " COLS: [" + matchFilterred.cols() + "] ROWS: [" + matchFilterred.rows() + "]");
-								if(matchFilterred.rows() < BEST){
+								if(matchFilterred.rows() > BEST){
 									plantID = plant;
 									BEST = matchFilterred.rows();
 								}
+								ItemModel item = new ItemModel();
+								item.x = plant;
+								item.y = image;
+								item.match = matchFilterred.rows();
+								matchRating.add(item);
 							}
 						}//child for-loop
 						publishProgress();
@@ -212,11 +239,8 @@ public class ORB extends SherlockFragment{
 					return null;
 				}//parent for-loop
 			};
-			
 			algorithm.execute();
 		}
-		//displayBEST();
-		return plantID;
 	}
 	
 	/*private Bitmap convertToARGB8888(String path)
@@ -269,11 +293,50 @@ public class ORB extends SherlockFragment{
 	
 	private void displayBEST()
 	{
-		/*LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.camera_fragment, null);
 		TextView plantName = (TextView)view.findViewById(R.id.textView1);
 		plantName.setText(plants.get(plantID).getName());
-		plantName.invalidate();*/
+		plantName.invalidate();
+	}
+	
+	private void SortMatches(ArrayList<ItemModel> items)
+	{
+		for(int i=0;i<items.size()-1;i++)
+		{
+			for(int x=i; x<items.size()-1-i;x++)
+			{
+				ItemModel lhs = items.get(x);
+				ItemModel rhs = items.get(x+1);
+				if(rhs.getMatch() > lhs.getMatch())
+				{
+					items.set(x+1, lhs);
+					items.set(x, rhs);
+				}
+			}
+		}
+	}
+	
+	public class ItemModel
+	{
+		public int x;
+		public int y;
+		public int match;
+		
+		public int getMatch()
+		{
+			return match;
+		}
+		
+		public int getX()
+		{
+			return x;
+		}
+		
+		public int getY()
+		{
+			return y;
+		}
 	}
 
 }

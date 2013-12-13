@@ -347,7 +347,8 @@ int id any 0x7f040010
 int id app_name 0x7f040055
 int id back 0x7f040011
 int id baseFrame 0x7f040013
-int id btn1 0x7f04006c
+int id btn1 0x7f04006d
+int id captured 0x7f040014
 int id clear 0x7f040042
 int id detailFrame 0x7f040066
 int id developer 0x7f04001b
@@ -367,7 +368,6 @@ int id grid_view 0x7f04005b
 int id helpPager 0x7f040048
 int id homeAsUp 0x7f040006
 int id howto 0x7f040017
-int id imageView1 0x7f040014
 int id imageView2 0x7f04004e
 int id imageViewPager 0x7f040065
 int id imageViewWrap 0x7f04005f
@@ -387,9 +387,10 @@ int id plant_listView 0x7f040058
 int id plant_name 0x7f040043
 int id progressBar1 0x7f040049
 int id progressBar2 0x7f040062
-int id radio0 0x7f040069
-int id radio1 0x7f04006a
-int id radioGroup1 0x7f040068
+int id radio0 0x7f04006a
+int id radio1 0x7f04006b
+int id radioGroup1 0x7f040069
+int id resultBase 0x7f040068
 int id searchString 0x7f04005c
 int id showCustom 0x7f040008
 int id showHome 0x7f040005
@@ -407,7 +408,7 @@ int id update 0x7f040019
 int id useLogo 0x7f040004
 int id version 0x7f040056
 int id viewPager 0x7f040064
-int id webView1 0x7f04006b
+int id webView1 0x7f04006c
 int id wrap_content 0x7f040000
 int integer abs__max_action_buttons 0x7f080000
 int layout about_this_application 0x7f030000
@@ -453,10 +454,11 @@ int layout plantlist_item_detail 0x7f030027
 int layout plantlist_item_photo 0x7f030028
 int layout plantlist_itemdetails 0x7f030029
 int layout plantlist_stickyheader 0x7f03002a
-int layout sherlock_spinner_dropdown_item 0x7f03002b
-int layout sherlock_spinner_item 0x7f03002c
-int layout view_setting_dialog 0x7f03002d
-int layout web_view 0x7f03002e
+int layout result_fragment 0x7f03002b
+int layout sherlock_spinner_dropdown_item 0x7f03002c
+int layout sherlock_spinner_item 0x7f03002d
+int layout view_setting_dialog 0x7f03002e
+int layout web_view 0x7f03002f
 int menu kno_witherbal_main 0x7f0c0000
 int menu plant_options 0x7f0c0001
 int string abs__action_bar_home_description 0x7f090000

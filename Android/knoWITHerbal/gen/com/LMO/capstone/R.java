@@ -1044,7 +1044,8 @@ containing a value of this type.
         public static final int app_name=0x7f040055;
         public static final int back=0x7f040011;
         public static final int baseFrame=0x7f040013;
-        public static final int btn1=0x7f04006c;
+        public static final int btn1=0x7f04006d;
+        public static final int captured=0x7f040014;
         public static final int clear=0x7f040042;
         public static final int detailFrame=0x7f040066;
         public static final int developer=0x7f04001b;
@@ -1064,7 +1065,6 @@ containing a value of this type.
         public static final int helpPager=0x7f040048;
         public static final int homeAsUp=0x7f040006;
         public static final int howto=0x7f040017;
-        public static final int imageView1=0x7f040014;
         public static final int imageView2=0x7f04004e;
         public static final int imageViewPager=0x7f040065;
         public static final int imageViewWrap=0x7f04005f;
@@ -1084,9 +1084,10 @@ containing a value of this type.
         public static final int plant_name=0x7f040043;
         public static final int progressBar1=0x7f040049;
         public static final int progressBar2=0x7f040062;
-        public static final int radio0=0x7f040069;
-        public static final int radio1=0x7f04006a;
-        public static final int radioGroup1=0x7f040068;
+        public static final int radio0=0x7f04006a;
+        public static final int radio1=0x7f04006b;
+        public static final int radioGroup1=0x7f040069;
+        public static final int resultBase=0x7f040068;
         public static final int searchString=0x7f04005c;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
@@ -1104,7 +1105,7 @@ containing a value of this type.
         public static final int useLogo=0x7f040004;
         public static final int version=0x7f040056;
         public static final int viewPager=0x7f040064;
-        public static final int webView1=0x7f04006b;
+        public static final int webView1=0x7f04006c;
         public static final int wrap_content=0x7f040000;
     }
     public static final class integer {
@@ -1154,10 +1155,11 @@ containing a value of this type.
         public static final int plantlist_item_photo=0x7f030028;
         public static final int plantlist_itemdetails=0x7f030029;
         public static final int plantlist_stickyheader=0x7f03002a;
-        public static final int sherlock_spinner_dropdown_item=0x7f03002b;
-        public static final int sherlock_spinner_item=0x7f03002c;
-        public static final int view_setting_dialog=0x7f03002d;
-        public static final int web_view=0x7f03002e;
+        public static final int result_fragment=0x7f03002b;
+        public static final int sherlock_spinner_dropdown_item=0x7f03002c;
+        public static final int sherlock_spinner_item=0x7f03002d;
+        public static final int view_setting_dialog=0x7f03002e;
+        public static final int web_view=0x7f03002f;
     }
     public static final class menu {
         public static final int kno_witherbal_main=0x7f0c0000;

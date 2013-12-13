@@ -12,7 +12,7 @@
         android:layout_gravity="center|center" />
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/captured"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_gravity="center|center"

@@ -30,7 +30,7 @@ public class MenuListAdapter extends ArrayAdapter<String>{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		convertView = inflater.inflate(R.layout.navigation_item, null);
-		ImageView imageView = (ImageView)convertView.findViewById(R.id.imageView1);
+		ImageView imageView = (ImageView)convertView.findViewById(R.id.captured);
 		TextView label = (TextView)convertView.findViewById(R.id.text1);
 		
 		label.setTypeface(Config.fontFace(context));

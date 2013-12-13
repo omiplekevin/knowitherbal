@@ -16,11 +16,15 @@ public class Config {
 	
 	public static String externalDirectory = Environment.getExternalStorageDirectory() + "/.knoWITHerbal/";
 	
-	public static String imagehostURL = "http://192.168.180.1:9980/herbal/public/herbals_photos/";
+	public static String hostURL = "http://192.168.180.1:9980/herbal/public/";
 	
-	public static String xmlhostURL = "http://192.168.180.1:9980/herbal/public/json/";
+	public static String imagehostURL = hostURL + "herbals_photos/";
+	
+	public static String xmlhostURL = hostURL + "json/";
 	
 	public static String thumbsURL = "thumbs/";
+	
+	public static String publicURL = "http://192.168.180.1:9980/knoWITHerbal/";
 	
 	public static String plantXML = "plants.xml";
 	
@@ -95,5 +99,8 @@ public class Config {
 	/*************************************************************
 	 * XML TAGS END
 	 * ***********************************************************/
+	
+	public static String[] prerequisites = {"OpenCV_2.4.7.1_Manager_2.15_armeabi.apk",
+											"OpenCV_2.4.7.1_binary_pack_armv7a.apk"};
 	
 }

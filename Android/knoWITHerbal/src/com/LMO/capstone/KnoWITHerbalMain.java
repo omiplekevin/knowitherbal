@@ -53,6 +53,7 @@ import com.fragments.Welcome;
 import com.helper.AsyncTaskDatabaseLoader;
 import com.helper.AsyncTaskImageDownload;
 import com.helper.DatabaseHelper;
+import com.helper.OpenCVManagerDownloader;
 import com.helper.Queries;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -108,7 +109,7 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		};
 		drawerLayout.setDrawerListener(drawerToggle);
 		
-		//application new open
+		//FIRST RUN OF THE APPLICATION============================================
 		if (savedInstanceState == null) {
 			FragmentTransaction fTransac = getSupportFragmentManager().beginTransaction();
             fTransac.replace(R.id.frame_content, new Welcome()).commit();
@@ -136,6 +137,11 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
             		PrepareFilesForImage();// will run on thread
             	}
             }
+            
+            OpenCVManagerDownloader openCVDownloader = new OpenCVManagerDownloader(this);
+            openCVDownloader.execute();
+            
+          //FIRST RUN OF THE APPLICATION============================================
         }
 		
 		try {

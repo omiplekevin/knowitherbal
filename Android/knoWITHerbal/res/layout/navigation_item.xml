@@ -8,7 +8,7 @@
         android:layout_height="wrap_content" >
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/captured"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_weight="1"
