@@ -1,14 +1,13 @@
 package com.fragments;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import org.xmlpull.v1.XmlPullParserException;
-
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -23,12 +22,8 @@ import android.widget.Toast;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
-import com.config.Config;
-import com.helper.AsyncTaskDatabaseLoader;
+import com.helper.AsyncTaskUpdateCheck;
 import com.helper.DatabaseHelper;
-import com.helper.Queries;
-import com.helper.XMLParser;
-import com.models.PublishModel;
 
 public class AboutThisApplication extends SherlockFragment{
 
@@ -82,7 +77,6 @@ public class AboutThisApplication extends SherlockFragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Toast.makeText(getSherlockActivity(), "UPDATE MODULE", Toast.LENGTH_SHORT).show();
 				switchContent(1);
 			}
 		});
@@ -125,14 +119,26 @@ public class AboutThisApplication extends SherlockFragment{
 			ft.commit();
 			break;
 		case 1:
-			try {
-				requestUpdate();
-			} catch (XmlPullParserException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(isNetworkAvailable())
+			{
+				AsyncTaskUpdateCheck update = new AsyncTaskUpdateCheck(getSherlockActivity());
+				update.execute();
+			}
+			else
+			{
+				AlertDialog.Builder builder = new AlertDialog.Builder(getSherlockActivity());
+				AlertDialog dialog = builder.create();
+				dialog.setTitle("Error");
+				dialog.setMessage("No network connectivity. Connect to available networks and try again");
+				dialog.setButton(Dialog.BUTTON_POSITIVE, "Ok", new Dialog.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						dialog.dismiss();
+					}
+				});
+				dialog.show();
 			}
 			break;
 		case 2:
@@ -142,42 +148,17 @@ public class AboutThisApplication extends SherlockFragment{
 		}
 	}
 	
-	private void requestUpdate() throws XmlPullParserException, IOException
+	private boolean isNetworkAvailable()
 	{
-		dbHelper = new DatabaseHelper(getSherlockActivity());
-		PublishModel pubInfo = new PublishModel();
-		PublishModel temp = new PublishModel();
-		pubInfo = Queries.getPublishInfo(sqliteDB, dbHelper);
-		Log.e("COMMENT", pubInfo.getComment());
-		
-		try
+		ConnectivityManager cm = (ConnectivityManager)getSherlockActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+		if(networkInfo != null && networkInfo.isConnected())
 		{
-			//2013-12-10 06:00:54
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
-			Date date = format.parse(pubInfo.getCreatedAt());
-			
-			XMLParser parser = new XMLParser(this.getSherlockActivity());
-			parser.grabXML(Config.xmlhostURL, Config.publishXML, true);
-			temp = parser.readTempPublish("temp_"+Config.publishXML);
-			Date newDate = format.parse(temp.getCreatedAt());
-			Log.e("COMPARE", date.toString() + " VS " + newDate.toString() + " RESULT IS " + date.compareTo(newDate));
-			if(date.compareTo(newDate) < 0)
-			{
-				Toast.makeText(getSherlockActivity(), "Now Updating...", Toast.LENGTH_LONG).show();
-				Queries.truncateDatabase(sqliteDB, dbHelper, getSherlockActivity());
-				AsyncTaskDatabaseLoader loader = new AsyncTaskDatabaseLoader(getSherlockActivity());
-				loader.execute();
-			}
-			else
-			{
-				Toast.makeText(getSherlockActivity(), "Yout data is Up-to-date!", Toast.LENGTH_LONG).show();
-			}
+			Log.i("isNetworkAvailable", "Available!");
+			return true;
 		}
-		catch(ParseException e)
-		{
-			Toast.makeText(getSherlockActivity(), "Something went wrong!", Toast.LENGTH_LONG).show();
-		}
-		
+		Log.i("isNetworkAvailable", "Not Available!");
+		return false;
 	}
 
 }

@@ -18,7 +18,7 @@ class Controller_Json extends Controller_Rest {
 	}
 
 	public function get_publishes() {
-		$data['publishes'] = Model_Publish::find('all');
+		$data['publishes'] = Model_Publish::find('all', array('limit' => 1, 'order_by' => array('created_at' => 'desc')));
 		return $this->response($data);
 	}
 }

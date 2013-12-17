@@ -27,7 +27,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index" style="position: relative; padding: 0;"><?php echo Html::img('assets/img/brand.png')?></a>
+				<?php echo Html::img('assets/img/brand.png')?>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">

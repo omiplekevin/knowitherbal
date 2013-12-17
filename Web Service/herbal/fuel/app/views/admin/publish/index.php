@@ -1,4 +1,4 @@
-<h2>Listing Publishes</h2>
+<h2>Publish Listing</h2>
 <br>
 <?php if ($publishes): ?>
 <table class="table table-striped">

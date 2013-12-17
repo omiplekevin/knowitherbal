@@ -1,6 +1,8 @@
 <h2>Listing Plants</h2>
 <br>
 <?php if ($plants): ?>
+
+<?php echo Html::anchor('admin/plants/create', 'Add new plant detail', array('class' => 'btn btn-success')); ?>
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -39,7 +41,7 @@
 <p>No Plants.</p>
 
 <?php endif; ?><p>
-	<?php echo Html::anchor('admin/plants/create', 'Add new Plant', array('class' => 'btn btn-success')); ?>
+	<?php echo Html::anchor('admin/plants/create', 'Add new plant detail', array('class' => 'btn btn-success')); ?>
 
 	
 

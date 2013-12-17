@@ -1,8 +1,6 @@
 package com.fragments;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 import org.opencv.android.BaseLoaderCallback;
@@ -10,11 +8,12 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,15 +26,11 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.algorithm.ORB;
-import com.config.Config;
-import com.helper.DatabaseHelper;
-import com.helper.Queries;
 import com.models.PlantModel;
 
 public class Camera extends SherlockFragment{
@@ -48,14 +43,33 @@ public class Camera extends SherlockFragment{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		 if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_7, this.getSherlockActivity(), mOpenCVCallBack))
-	        {
-	            Log.e("Load OpenCV", "Cannot connect to OpenCV Manager");
-	        }
-		 else
-		 {
-			 callIntent();
-		 }
+		try{
+			 if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_7, this.getSherlockActivity(), mOpenCVCallBack))
+		        {
+		            Log.e("Load OpenCV", "Cannot connect to OpenCV Manager");
+		            AlertDialog.Builder builder = new AlertDialog.Builder(getSherlockActivity());
+		            AlertDialog dialog = builder.create();
+		            dialog.setTitle("Needed File");
+		            dialog.setMessage("The Application needs to download the OpenCVManager and its binaries from our online resource.\n" +
+		            		"Proceed with download?");
+		            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new Dialog.OnClickListener() {
+						
+		            	@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							
+						}
+					});
+		        }
+			 else
+			 {
+				 callIntent();
+			 }
+		}
+		catch(Exception e)
+		{
+			
+		}
 	}
 	
 	private BaseLoaderCallback  mOpenCVCallBack = new BaseLoaderCallback(this.getSherlockActivity()) {

@@ -138,8 +138,8 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
             	}
             }
             
-            OpenCVManagerDownloader openCVDownloader = new OpenCVManagerDownloader(this);
-            openCVDownloader.execute();
+            /*OpenCVManagerDownloader openCVDownloader = new OpenCVManagerDownloader(this);
+            openCVDownloader.execute();*/
             
           //FIRST RUN OF THE APPLICATION============================================
         }

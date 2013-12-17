@@ -58,6 +58,7 @@ public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{
 	protected void onPreExecute() {
 		// TODO Auto-generated method stub
 		super.onPreExecute();
+		pDialog.setTitle("Updating");
 		pDialog.setMessage("Please wait while we load your database...");
 		pDialog.show();
 	}

@@ -18,7 +18,6 @@
 		<p>Available in <b>Android</b>... <i>for now... ^^,</i></p>
 		<ul>
 			<li><?php echo Html::img('assets/img/android_icon.png') ?><a href="http://play.google.com">Android</a></li>
-			<li><?php echo Html::img('assets/img/windows_8_icon.png') ?><a href="www.windowsphone.com/en-ph/store">Windows Mobile</a> (Soon)</li>
 		</ul>
 	</div>
 </div>

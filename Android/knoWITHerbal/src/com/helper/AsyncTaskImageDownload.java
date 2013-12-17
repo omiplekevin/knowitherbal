@@ -94,9 +94,8 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
                 FileOutputStream stream = new FileOutputStream(Config.externalDirectory + file);
                 ByteArrayOutputStream outstream = new ByteArrayOutputStream();
                 
-                myBitmap.compress(Bitmap.CompressFormat.JPEG, 50, outstream);
-//                byte[] byteArray = outstream.toByteArray();
-                byte[] byteArray = new byte[16384];
+                myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
+                byte[] byteArray = outstream.toByteArray();
                 stream.write(byteArray);
                 stream.close();
                 
@@ -114,11 +113,10 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
                 stream = new FileOutputStream(Config.externalDirectory + ".thumbnail/" + file);
                 outstream = new ByteArrayOutputStream();
                 
-                myBitmap.compress(Bitmap.CompressFormat.JPEG, 50, outstream);
+                myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
                 byteArray = outstream.toByteArray();
                 stream.write(byteArray);
                 stream.close();
-                System.gc();
                 Runtime.getRuntime().gc();
                 
 			} catch (MalformedURLException e) {

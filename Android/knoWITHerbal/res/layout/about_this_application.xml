@@ -99,7 +99,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:background="@android:color/transparent"
+                                android:background="@drawable/imagebutton"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/help" />
 
@@ -127,7 +127,7 @@
                                 android:id="@+id/update"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@android:color/transparent"
+                                android:background="@drawable/imagebutton"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/update" />
 
@@ -160,7 +160,7 @@
                                 android:id="@+id/developer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@android:color/transparent"
+                                android:background="@drawable/imagebutton"
                                 android:src="@drawable/dev" />
 
                             <TextView
@@ -187,7 +187,7 @@
                                 android:id="@+id/about"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@android:color/transparent"
+                                android:background="@drawable/imagebutton"
                                 android:src="@drawable/about" />
 
                             <TextView

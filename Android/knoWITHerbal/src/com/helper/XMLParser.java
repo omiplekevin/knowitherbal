@@ -99,9 +99,9 @@ public class XMLParser {
 		           }
 
 		           long startTime = System.currentTimeMillis();
-		           Log.d("DownloadManager", "download begining");
+		           /*Log.d("DownloadManager", "download begining");
 		           Log.d("DownloadManager", "download url:" + url);
-		           Log.d("DownloadManager", "downloaded file name:" + filename);
+		           Log.d("DownloadManager", "downloaded file name:" + filename);*/
 
 		           /* Open a connection to that URL. */
 		           URLConnection ucon = url.openConnection();
@@ -127,12 +127,12 @@ public class XMLParser {
 		           fos.write(baf.toByteArray());
 		           fos.flush();
 		           fos.close();
-		           Log.d("DownloadManager", "download ready in" + ((System.currentTimeMillis() - startTime) / 1000) + " sec");
+		           /*Log.d("DownloadManager", "download ready in" + ((System.currentTimeMillis() - startTime) / 1000) + " sec");*/
 			}
         }
 	    catch (IOException e) {
             Log.e("LOG ERROR", "Error: " + e);
-            Toast.makeText(context, "error " + e.getMessage().toString(), Toast.LENGTH_LONG).show();
+//            Toast.makeText(context, "error " + e.getMessage().toString(), Toast.LENGTH_LONG).show();
 
         }
 	}

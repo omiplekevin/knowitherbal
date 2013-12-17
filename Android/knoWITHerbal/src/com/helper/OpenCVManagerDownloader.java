@@ -116,7 +116,7 @@ public class OpenCVManagerDownloader extends AsyncTask<Void, Void, Void>{
 			Intent promptInstall = new Intent(Intent.ACTION_VIEW)
 		    .setDataAndType(Uri.parse(Config.externalDirectory + preReq[i]), 
 		                    "application/vnd.android.package-archive");
-			context.startActivity(promptInstall); 
+			context.getApplicationContext().startActivity(promptInstall); 
 		}*/
 	}
 

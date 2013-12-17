@@ -55,24 +55,27 @@ class Controller_Admin_Images extends Controller_Admin{
 
 					    foreach ($value as $files) {
 					    	$image->url = $value[0]['saved_as'];
-			    			//$image->save();
+			    			$image->save();
 						}
-
-					
-						// File::create_dir(DOCROOT.'herbals_photos/thumbs/', $image->plant_id , 0755 );
-
-
-						// call a model method to update the database
-						//Model_Uploads::add(Upload::get_files());
+								
+						// Read the contents of a directory
+						try
+						{
+						    $dir = File::create_dir(DOCROOT.'herbals_photos/thumbs/',$image->plant_id, 0755, null);
+						}
+						catch(\FileAccessException $e)
+						{
+						    // Operation failed
+						}
 
 						Image::load('herbals_photos/'.$image->plant_id.'/'.$image->url)
 							->crop_resize(128, 128)
 						    ->save('herbals_photos/thumbs/'.$image->plant_id.'/'.$image->url);
-						
 
 
-										
 
+
+						    
 						if ($image and $image->save())
 						{
 							Session::set_flash('success', e('Added image #'.$image->id.'.'));
