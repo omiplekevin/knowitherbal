@@ -35,7 +35,10 @@ public class DetailViewPagerAdapter extends PagerAdapter{
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return imgURL.size();
+		if(imgURL.size() == 0)
+			return 1;
+		else
+			return imgURL.size();
 	}
 
 	@Override
@@ -46,12 +49,15 @@ public class DetailViewPagerAdapter extends PagerAdapter{
 		
 		AsyncTask<Void, Void, Bitmap> loadImage = new AsyncTask<Void, Void, Bitmap>()
 		{
-			
+
 			@Override
 			protected void onPostExecute(Bitmap result) {
 				// TODO Auto-generated method stub
-				imageView.setImageBitmap(result);
 				super.onPostExecute(result);
+				if(imgURL.size() == 0)
+					imageView.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.no_photos_yet_big));
+				else
+					imageView.setImageBitmap(result);
 			}
 
 			@Override
@@ -59,7 +65,6 @@ public class DetailViewPagerAdapter extends PagerAdapter{
 				// TODO Auto-generated method stub
 				try
 				{
-					Log.e("NOW!", Config.externalDirectory + imgURL.get(position));
 					return BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(position));
 				}
 				catch(Exception e)
@@ -72,13 +77,16 @@ public class DetailViewPagerAdapter extends PagerAdapter{
 		
 		loadImage.execute();
 		
-		imageView.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				openImage(position);
-			}
-		});
+		if(imgURL.size() != 0){
+			imageView.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					openImage(position);
+				}
+			});
+		}
+		
 		((ViewPager)container).addView(imageView,0);
 		return imageView;
 	}

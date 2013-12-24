@@ -1,6 +1,28 @@
-Algorithm
-change TabHost to Custom Buttons
-	Reason:
-		Gingerbread 2.3.6, savestate is null after put into background.
-		
-save instance in listview->details, to retain last listscroll offset
+PUBLISH TABLE SCENE:
+
+			   PUBLISHES
+------------------------------------------
+ANDROID			WEB SERVICE			RESULT
+no data			no publish			no download
+
+no data			with publish		download data
+
+with data		with publish		no download
+
+with data		new publish			download data
+
+with data		new publish with	incomplete data(info & photos)
+				incomplete data		contents
+				(info & photos)
+
+				
+TO DO:
+	Android App:
+		*set HTTP timeout
+		*check existing OpenCV Manager before Camera start
+		*group codes for accessibility, divide and conquer
+		***LAST: CLEAN CODE! POLISH UI!
+	
+	Web App:
+		*custom image crop
+		*fix multiple upload

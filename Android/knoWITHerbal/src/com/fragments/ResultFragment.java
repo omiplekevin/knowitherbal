@@ -45,7 +45,7 @@ public class ResultFragment extends SherlockFragment{
 		if(view == null)
 			view = inflater.inflate(R.layout.result_fragment, null);
 		
-		imageView = (ImageView)view.findViewById(R.id.captured);
+		imageView = (ImageView)view.findViewById(R.id.logo);
 		
 		return view;
 	}

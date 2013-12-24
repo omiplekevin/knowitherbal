@@ -184,7 +184,7 @@ public class Camera extends SherlockFragment{
 		super.onActivityResult(requestCode, resultCode, data);
 		if(requestCode == 1337 && resultCode == Activity.RESULT_OK)
 		{
-			ImageView imageView = (ImageView)view.findViewById(R.id.captured);
+			ImageView imageView = (ImageView)view.findViewById(R.id.logo);
 			grabImage(imageView);
 		}
 		else if(resultCode == Activity.RESULT_CANCELED)

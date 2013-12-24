@@ -10,6 +10,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -84,6 +88,7 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.connect();
+                connection.setConnectTimeout(15000);
                 InputStream input = connection.getInputStream();
                 
                 BitmapFactory.Options option = new BitmapFactory.Options();

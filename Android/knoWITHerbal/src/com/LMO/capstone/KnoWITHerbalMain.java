@@ -44,7 +44,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.adapter.MenuListAdapter;
 import com.config.Config;
-import com.fragments.AboutThisApplication;
+import com.fragments.TheApplication;
 import com.fragments.Camera;
 import com.fragments.HowToUseFragment;
 import com.fragments.OpenSourceLicense;
@@ -175,7 +175,7 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		if(fm.getBackStackEntryCount() == 0){
 			if((currentTime - lastPress) > 3000)
 			{
-				Toast.makeText(this, "Press \'back\' again to exit", Toast.LENGTH_LONG).show();
+				Toast.makeText(this, "Press back again to exit", Toast.LENGTH_LONG).show();
 				lastPress = currentTime;
 			}else
 			{
@@ -184,7 +184,7 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		}
 		else
 		{
-			super.onBackPressed();
+				super.onBackPressed();
 		}
 		
 	}
@@ -299,27 +299,28 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		switch(position)
 		{
 			case 0:
-				this.title = navTitles[0];
+//				this.title = navTitles[0];
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				ft.replace(R.id.frame_content, new Camera()).commit();
 				break;
 			case 1:
-				this.title = navTitles[1];
+//				this.title = navTitles[1];
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				ft.replace(R.id.frame_content, new PlantList()).commit();
 				break;
 			case 2:
-				this.title = navTitles[2];
+//				this.title = navTitles[2];
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-				ft.replace(R.id.frame_content, new AboutThisApplication()).commit();
+				ft.replace(R.id.frame_content, new TheApplication()).commit();
 				break;
 			case 3:
-				this.title = navTitles[3];
+//				this.title = navTitles[3];
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				ft.replace(R.id.frame_content, new OpenSourceLicense()).commit();
 				break;
 		}
 		
+		this.title = navTitles[position];
 		drawerLayout.closeDrawer(drawer);
 	}
 	

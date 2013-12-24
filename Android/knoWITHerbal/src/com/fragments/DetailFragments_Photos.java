@@ -3,6 +3,7 @@ package com.fragments;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class DetailFragments_Photos extends SherlockFragment{
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
 		viewPager = (ViewPager)view.findViewById(R.id.viewPager);
-		adapter = new DetailViewPagerAdapter(getActivity(), item.imgUrls);
+		adapter = new DetailViewPagerAdapter(getSherlockActivity(), item.imgUrls);
 		viewPager.setAdapter(adapter);
 		viewPager.setPageTransformer(true, new DepthPageTransformer());
 	}

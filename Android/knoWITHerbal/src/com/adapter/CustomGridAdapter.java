@@ -60,7 +60,7 @@ public class CustomGridAdapter extends BaseAdapter{
 			LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			holder = new Holder();
 			convertView = inflater.inflate(R.layout.plantlist_fragment_grid_item, null);
-			holder.imageView = (ImageView)convertView.findViewById(R.id.captured);
+			holder.imageView = (ImageView)convertView.findViewById(R.id.logo);
 			holder.textView = (TextView)convertView.findViewById(R.id.title);
 			
 			convertView.setTag(holder);
@@ -79,8 +79,14 @@ public class CustomGridAdapter extends BaseAdapter{
 				protected Bitmap doInBackground(Holder... params) {
 					// TODO Auto-generated method stub
 					view = params[0];
-					imgURLs = items.get(position).imgUrls;
-					return BitmapFactory.decodeFile(Config.externalDirectory + ".thumbnail/" + imgURLs.get(0));
+					if(items.get(position).imgUrls.size() > 0){
+						imgURLs = items.get(position).imgUrls;
+						return BitmapFactory.decodeFile(Config.externalDirectory + ".thumbnail/" + imgURLs.get(0));
+					}
+					else
+					{
+						return BitmapFactory.decodeResource(context.getResources(), R.drawable.no_photos_yet);
+					}
 				}
 
 				@Override

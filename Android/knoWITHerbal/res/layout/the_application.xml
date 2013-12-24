@@ -28,7 +28,7 @@
                     android:layout_gravity="center|center" >
 
                     <ImageView
-                        android:id="@+id/captured"
+                        android:id="@+id/logo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_launcher" />
@@ -98,6 +98,7 @@
                                 android:id="@+id/howto"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center|center"
                                 android:layout_weight="1"
                                 android:background="@drawable/imagebutton"
                                 android:scaleType="fitCenter"
@@ -127,6 +128,7 @@
                                 android:id="@+id/update"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center|center"
                                 android:background="@drawable/imagebutton"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/update" />
@@ -160,6 +162,7 @@
                                 android:id="@+id/developer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center|center"
                                 android:background="@drawable/imagebutton"
                                 android:src="@drawable/dev" />
 
@@ -187,6 +190,7 @@
                                 android:id="@+id/about"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center|center"
                                 android:background="@drawable/imagebutton"
                                 android:src="@drawable/about" />
 

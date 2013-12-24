@@ -30,7 +30,7 @@ public class Welcome extends SherlockFragment{
 		// TODO Auto-generated method stub
 		View view = inflater.inflate(R.layout.opening_fragment, null);
 		getSherlockActivity().getSupportActionBar().setTitle("");
-		imageView = (ImageView)view.findViewById(R.id.captured);
+		imageView = (ImageView)view.findViewById(R.id.logo);
 		appName = (ImageView)view.findViewById(R.id.app_name);
 		version = (TextView)view.findViewById(R.id.version);
 		subtitle = (TextView)view.findViewById(R.id.title);

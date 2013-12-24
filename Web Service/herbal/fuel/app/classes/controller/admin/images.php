@@ -50,33 +50,45 @@ class Controller_Admin_Images extends Controller_Admin{
 					if (Upload::is_valid())
 					{
 					    // save them according to the config
-					    Upload::save();
+						Upload::save();
 					    $value = Upload::get_files();
 
+					    $upload_count = 0;//for upload content
+					    $i = 0;//index for POST method index used for multiple file upload
+
 					    foreach ($value as $files) {
-					    	$image->url = $value[0]['saved_as'];
-			    			$image->save();
+					    	$image->url = $value[$i++]['saved_as'];//incremental upload using the POST method index
+					    	$image->save();
+							
+							$upload_count++;
+
+			    			// Read the contents of a directory
+							try
+							{
+							    $dir = File::create_dir(DOCROOT.'herbals_photos/thumbs/',$image->plant_id, 0755, null);
+							}
+							catch(\FileAccessException $e)
+							{
+							    // Operation failed
+							}
+							Image::load('herbals_photos/'.$image->plant_id.'/'.$image->url)
+								->crop_resize(128, 128)
+							    ->save('herbals_photos/thumbs/'.$image->plant_id.'/'.$image->url);
+
 						}
-								
-						// Read the contents of a directory
-						try
+
+						if($image)
 						{
-						    $dir = File::create_dir(DOCROOT.'herbals_photos/thumbs/',$image->plant_id, 0755, null);
+							Session::set_flash('success', e('Added '.$upload_count.' image(s)'));
+
+							Response::redirect('admin/images');
 						}
-						catch(\FileAccessException $e)
+						else
 						{
-						    // Operation failed
+							Session::set_flash('error', e('Opps!, Something went wrong!'));
 						}
 
-						Image::load('herbals_photos/'.$image->plant_id.'/'.$image->url)
-							->crop_resize(128, 128)
-						    ->save('herbals_photos/thumbs/'.$image->plant_id.'/'.$image->url);
-
-
-
-
-						    
-						if ($image and $image->save())
+						/*if ($image and $image->save())
 						{
 							Session::set_flash('success', e('Added image #'.$image->id.'.'));
 
@@ -86,7 +98,7 @@ class Controller_Admin_Images extends Controller_Admin{
 						else
 						{
 							Session::set_flash('error', e('Could not save image.'));
-						}
+						}*/
 					
 					}//end if (Upload::is_valid())
 

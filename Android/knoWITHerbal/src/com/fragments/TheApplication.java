@@ -25,7 +25,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.helper.AsyncTaskUpdateCheck;
 import com.helper.DatabaseHelper;
 
-public class AboutThisApplication extends SherlockFragment{
+public class TheApplication extends SherlockFragment{
 
 	View view;
 	ImageView imageView;
@@ -41,7 +41,7 @@ public class AboutThisApplication extends SherlockFragment{
 		// TODO Auto-generated method stub
 		if(view == null)
 		{
-			view = inflater.inflate(R.layout.about_this_application, null);
+			view = inflater.inflate(R.layout.the_application, null);
 		}
 		setHasOptionsMenu(true);
 		return view;
@@ -59,11 +59,11 @@ public class AboutThisApplication extends SherlockFragment{
 		super.onViewCreated(view, savedInstanceState);
 		
 		ImageButton update = (ImageButton)view.findViewById(R.id.update);
-		ImageButton howToUse = (ImageButton)view.findViewById(R.id.howto);
+		ImageButton help = (ImageButton)view.findViewById(R.id.howto);
 		ImageButton developers = (ImageButton)view.findViewById(R.id.developer);
 		ImageButton about = (ImageButton)view.findViewById(R.id.about);
 		
-		howToUse.setOnClickListener(new OnClickListener() {
+		help.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -86,7 +86,6 @@ public class AboutThisApplication extends SherlockFragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Toast.makeText(getSherlockActivity(), "DEVELOPERS MODULE", Toast.LENGTH_SHORT).show();
 				switchContent(2);
 			}
 		});
@@ -96,29 +95,28 @@ public class AboutThisApplication extends SherlockFragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Toast.makeText(getSherlockActivity(), "ABOUT MODULE", Toast.LENGTH_SHORT).show();
 				switchContent(3);
 			}
 		});
 		
-		imageView = (ImageView)view.findViewById(R.id.captured);
+		imageView = (ImageView)view.findViewById(R.id.logo);
 		apptitle = (TextView)view.findViewById(R.id.title);
 		subtitle = (TextView)view.findViewById(R.id.subtitle);
 	}
 	
 	private void switchContent(int contentID)
 	{
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
 		switch(contentID)
 		{
-		case 0:
-			FragmentTransaction ft = getFragmentManager().beginTransaction();
+		case 0://HOW TO USE THE APPLICATION
 			HowToUseFragment howto = new HowToUseFragment();
 			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
 			ft.replace(R.id.baseFrame, howto);
 			ft.addToBackStack("help");
 			ft.commit();
 			break;
-		case 1:
+		case 1://UPDATE
 			if(isNetworkAvailable())
 			{
 				AsyncTaskUpdateCheck update = new AsyncTaskUpdateCheck(getSherlockActivity());
@@ -141,9 +139,19 @@ public class AboutThisApplication extends SherlockFragment{
 				dialog.show();
 			}
 			break;
-		case 2:
+		case 2://DEVELOPERS
+			TheDevelopersFragment devs = new TheDevelopersFragment();
+			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+			ft.replace(R.id.baseFrame, devs);
+			ft.addToBackStack("help");
+			ft.commit();
 			break;
-		case 3:
+		case 3://ABOUT
+			About about = new About();
+			ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+			ft.replace(R.id.baseFrame, about);
+			ft.addToBackStack("about");
+			ft.commit();
 			break;
 		}
 	}

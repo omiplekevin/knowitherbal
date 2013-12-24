@@ -102,6 +102,7 @@ public class PlantList_FragmentList extends SherlockFragment{
 					long id) {
 				DetailFragment details = new DetailFragment();
 				details.setItem((PlantModel)listView.getItemAtPosition(position));
+				
 				FragmentTransaction ft = getFragmentManager().beginTransaction();
 				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
 				ft.replace(R.id.list_frame, details);
