@@ -2,23 +2,14 @@ package com.LMO.capstone;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 
 import android.annotation.TargetApi;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -28,7 +19,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.ActionProvider;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.SubMenu;
@@ -44,17 +34,15 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.adapter.MenuListAdapter;
 import com.config.Config;
-import com.fragments.TheApplication;
 import com.fragments.Camera;
 import com.fragments.HowToUseFragment;
 import com.fragments.OpenSourceLicense;
 import com.fragments.PlantList;
+import com.fragments.TheApplication;
 import com.fragments.Welcome;
-import com.helper.AsyncTaskDatabaseLoader;
-import com.helper.AsyncTaskImageDownload;
 import com.helper.DatabaseHelper;
-import com.helper.OpenCVManagerDownloader;
 import com.helper.Queries;
+import com.helper.Utilities;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class KnoWITHerbalMain extends SherlockFragmentActivity{
@@ -66,8 +54,10 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 	private CharSequence title;
 	private String[] navTitles;
 	private long lastPress;
-	/*private DatabaseHelper dbHelper;
-	private SQLiteDatabase sqliteDB;*/
+	private Utilities util;
+	
+	private DatabaseHelper dbHelper;
+	private SQLiteDatabase sqliteDB;
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
@@ -79,6 +69,7 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		drawerLayout = (DrawerLayout)findViewById(R.id.drawerLayout);
 		drawerList = (ListView)findViewById(R.id.nav_list);
 		drawer = (LinearLayout)findViewById(R.id.drawer_view);
+		util = new Utilities(this);
 		
 		drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 		drawerList.setAdapter(new MenuListAdapter(this, navTitles));
@@ -120,7 +111,7 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 				ft.replace(R.id.frame_content, howto);
 				ft.addToBackStack("help");
 				ft.commit();
-            	PrepareFileForDatabase();//will run on thread
+            	util.PrepareFileForDatabase();//will run on thread
             }
             else
             {
@@ -130,18 +121,14 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
             		appDir.mkdir();
             	
             	File[] files = appDir.listFiles();
-            	DatabaseHelper dbHelper = new DatabaseHelper(this);
-            	SQLiteDatabase sqliteDB = dbHelper.getReadableDatabase();
+            	dbHelper = new DatabaseHelper(this);
             	if(files.length == 0 || files.length < Queries.getImageEntryCount(sqliteDB, dbHelper))
             	{
-            		PrepareFilesForImage();// will run on thread
+            		util.PrepareFilesForImage();// will run on thread
             	}
             }
             
-            /*OpenCVManagerDownloader openCVDownloader = new OpenCVManagerDownloader(this);
-            openCVDownloader.execute();*/
-            
-          //FIRST RUN OF THE APPLICATION============================================
+          //END OF FIRST RUN OF THE APPLICATION============================================
         }
 		
 		try {
@@ -188,99 +175,14 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		}
 		
 	}
-	
-	public void PrepareFileForDatabase()
-	{
-		/*DatabaseHelper dbHelper;
-		dbHelper = new DatabaseHelper(this);
-		SQLiteDatabase sqlite;
-		sqlite = dbHelper.getReadableDatabase();
-		*/
-		AsyncTaskDatabaseLoader dbLoader = new AsyncTaskDatabaseLoader(this);
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
-			dbLoader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-		}
-		else
-		{
-			dbLoader.execute();
-		}
-		/*sqlite.close();*/
-	}
-	
-	public void PrepareFilesForImage()
-	{
-		//image download
-		DatabaseHelper dbHelper;
-		dbHelper = new DatabaseHelper(this);
-		SQLiteDatabase sqlite;
-		sqlite = dbHelper.getReadableDatabase();
-		
-		AlertDialog.Builder builder = new AlertDialog.Builder(KnoWITHerbalMain.this);
-		AlertDialog dialog = builder.create();
-		
-		if(isNetworkAvailable())
-		{
-			ArrayList<String> urls = Queries.getImageURLS(sqlite, dbHelper, -1);
-			ArrayList<String> forDL = new ArrayList<String>();
-			for(int i=0;i<urls.size();i++)
-			{
-				Log.e("imageURL",urls.get(i));
-				forDL.add(urls.get(i));
-			}
-			AsyncTaskImageDownload imageDownload = new AsyncTaskImageDownload(this, forDL, Queries.getImageEntryCount(sqlite, dbHelper));
-			
-			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
-				imageDownload.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-			}
-			else{
-				imageDownload.execute();
-			}
-		}
-		else
-		{
-			dialog.setTitle("Error");
-			dialog.setMessage("No network connectivity. Connect to available networks and try again");
-			dialog.setButton(Dialog.BUTTON_POSITIVE, "Ok", new OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
-					System.exit(1);
-				}
-			});
-			dialog.show();
-		}
-	}
-	
-	private boolean isNetworkAvailable()
-	{
-		ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-		if(networkInfo != null && networkInfo.isConnected())
-		{
-			Log.i("isNetworkAvailable", "Available!");
-			return true;
-		}
-		Log.i("isNetworkAvailable", "Not Available!");
-		return false;
-	}
 
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		deleteTempFiles(new File(Environment.getExternalStorageDirectory() + "/.temp"));
+		util.deleteTempFiles(new File(Environment.getExternalStorageDirectory() + "/.temp"));
 		System.exit(0);
 	}
-	
-	private void deleteTempFiles(File fileOrDirectory) {
-        if (fileOrDirectory.isDirectory()){
-            for (File child : fileOrDirectory.listFiles())
-            	deleteTempFiles(child);
-        }
-
-        fileOrDirectory.delete();
-    }
 
 	private class DrawerItemClickListener implements ListView.OnItemClickListener {
 	      @Override

@@ -82,7 +82,7 @@ public class DetailFragments_Details extends SherlockFragment{
 		List<String> scientificNames = new ArrayList<String>();
 		String[] sci = item.getScientific().split("\\|\\|");
 		if(sci.length == 1 && sci[0].equals(""))
-			scientificNames.add("No entry/entries... \u2639");
+			scientificNames.add("No available entry/entries... =(");
 		else
 		{
 			for(int i=0;i<sci.length;i++)

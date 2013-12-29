@@ -50,15 +50,15 @@ public class DevPagerAdapter extends PagerAdapter{
 		switch(position)
 		{
 		case 0:
-			name.setText("Fatima D. Ledesma");
+			name.setText("Fatima D. Ledesma\nData");
 			banner.setImageBitmap(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.icecream_sandwhich)));
 			break;
 		case 1:
-			name.setText("Princess Lei R. Madriaga");
+			name.setText("Princess Lei R. Madriaga\nWeb Service");
 			banner.setImageBitmap(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.jelly_bean)));
 			break;
 		case 2:
-			name.setText("Kevin J. Omiple");
+			name.setText("Kevin J. Omiple\nAndroid Application");
 			banner.setImageBitmap(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.kitkat)));
 			break;
 		}

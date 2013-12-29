@@ -6,24 +6,31 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.adapter.HowToUseListViewAdapter;
 import com.adapter.HowToUseViewPagerAdapter;
+import com.nineoldandroids.animation.AnimatorSet;
+import com.nineoldandroids.animation.ObjectAnimator;
 
 public class HowToUseFragment extends SherlockFragment{
 
 	private View view;
+	ImageButton toRight;
+	ImageButton toLeft;
+	int currentPage;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		if(view == null)
-			view = inflater.inflate(R.layout.help, null);
+			view = inflater.inflate(R.layout.theapplication_help, null);
 		
 		return view;
 	}
@@ -32,9 +39,11 @@ public class HowToUseFragment extends SherlockFragment{
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
+		toRight = (ImageButton)view.findViewById(R.id.imageButton1);
+		toLeft = (ImageButton)view.findViewById(R.id.imageButton2);
 		
 		HowToUseViewPagerAdapter adapter = new HowToUseViewPagerAdapter(getActivity());
-		ViewPager pager = (ViewPager)view.findViewById(R.id.helpPager);
+		final ViewPager pager = (ViewPager)view.findViewById(R.id.helpPager);
 		String[] content = {""};
 		
 		final ListView listView = (ListView)view.findViewById(R.id.listView1);
@@ -42,17 +51,32 @@ public class HowToUseFragment extends SherlockFragment{
 		
 		listView.setAdapter(new HowToUseListViewAdapter(getActivity(), content));
 		
-		final ProgressBar pb = (ProgressBar)view.findViewById(R.id.progressBar1);
-		pb.setMax(adapter.getCount());
-		pb.setProgress(pager.getCurrentItem()+1);
+		toRight.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				playAnimation(1);
+				pager.setCurrentItem(pager.getCurrentItem()+1, true);
+			}
+		});
 		
+		toLeft.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				playAnimation(-1);
+				pager.setCurrentItem(pager.getCurrentItem()-1, true);
+			}
+		});
+		currentPage = 0;
 		pager.setAdapter(adapter);
 		pager.setOnPageChangeListener(new OnPageChangeListener() {
 			
 			@Override
 			public void onPageSelected(final int arg0) {
 				// TODO Auto-generated method stub
-				pb.setProgress(arg0+1);
 				AsyncTask <Void, Void, Void> changeContent = new AsyncTask<Void, Void, Void>(){
 					String[] switchContent = {""};
 					HowToUseListViewAdapter adapter;
@@ -104,6 +128,16 @@ public class HowToUseFragment extends SherlockFragment{
 					
 				};
 				changeContent.execute();
+				if(currentPage < arg0)
+				{
+					playAnimation(1);
+					currentPage = arg0;
+				}
+				else
+				{
+					playAnimation(-1);
+					currentPage = arg0;
+				}
 			}
 			
 			@Override
@@ -118,6 +152,25 @@ public class HowToUseFragment extends SherlockFragment{
 				
 			}
 		});
+	}
+	
+	private void playAnimation(int FLAG)
+	{
+		switch(FLAG)
+		{
+		case 1:
+			AnimatorSet rightAnim = new AnimatorSet();
+			rightAnim.playSequentially(ObjectAnimator.ofFloat(toRight, "translationX", 20, 0));
+			rightAnim.setDuration(500);
+			rightAnim.start();
+			break;
+		case -1:
+			AnimatorSet leftAnim = new AnimatorSet();
+			leftAnim.playSequentially(ObjectAnimator.ofFloat(toLeft, "translationX", -20, 0));
+			leftAnim.setDuration(500);
+			leftAnim.start();
+			break;
+		}
 	}
 
 }

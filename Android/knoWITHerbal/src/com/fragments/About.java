@@ -25,7 +25,7 @@ public class About extends SherlockFragment{
 		// TODO Auto-generated method stub
 		if(view == null)
 		{
-			view = inflater.inflate(R.layout.about, null);
+			view = inflater.inflate(R.layout.theapplication_about, null);
 		}
 		return view;
 	}

@@ -3,9 +3,10 @@ package com.fragments;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.app.SearchManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
@@ -24,6 +25,7 @@ import com.actionbarsherlock.view.Menu;
 import com.adapter.DetailViewPagerAdapter;
 import com.models.PlantModel;
 
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class DetailFragment extends SherlockFragment{
 	
 	/*variables*/
@@ -92,7 +94,7 @@ public class DetailFragment extends SherlockFragment{
 		plantName.setText(plantItem.getName());
 		
 		pager.setAdapter(new DetailViewPagerAdapter(getSherlockActivity(), plantItem.imgUrls));
-		pager.setPageTransformer(true, new DepthPageTransformer());
+		pager.setPageTransformer(true, new FlyRotateTransformer());
 		
 		handler = new Handler();
         Update = new Runnable() {
@@ -126,38 +128,43 @@ public class DetailFragment extends SherlockFragment{
 		plantItem = item;
 	}
 	
-	public class DepthPageTransformer implements ViewPager.PageTransformer {
-	    private float MIN_SCALE = 0.75f;
+	public class FlyRotateTransformer implements ViewPager.PageTransformer {
+	    private  float MIN_SCALE = 0.45f;
+	    private  float MIN_ALPHA = 0.15f;
 
-	    @SuppressLint("NewApi")
-		public void transformPage(View view, float position) {
+	    public void transformPage(View view, float position) {
 	        int pageWidth = view.getWidth();
+	        int pageHeight = view.getHeight();
 
 	        if (position < -1) { // [-Infinity,-1)
 	            // This page is way off-screen to the left.
 	            view.setAlpha(0);
 
-	        } else if (position <= 0) { // [-1,0]
-	            // Use the default slide transition when moving to the left page
-	            view.setAlpha(1);
-	            view.setTranslationX(0);
-	            view.setScaleX(1);
-	            view.setScaleY(1);
-
-	        } else if (position <= 1) { // (0,1]
-	            // Fade the page out.
-	            view.setAlpha(1 - position);
-
-	            // Counteract the default slide transition
-	            view.setTranslationX(pageWidth * -position);
+	        }
+	        else if (position <= 1) { // [-1,1]
+	            // Modify the default slide transition to shrink the page as well
+	            float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
+	            float vertMargin = pageHeight * (1 - scaleFactor) / 2;
+	            float horzMargin = pageWidth * (1 - scaleFactor) / 2;
+	            if (position < 0) {
+	                view.setTranslationX(horzMargin - vertMargin / 2);
+	                view.setRotationY(position * 135);
+	            } else {
+	                view.setTranslationX(-horzMargin + vertMargin / 2);
+	                view.setRotationY(position * 135);
+	            }
 
 	            // Scale the page down (between MIN_SCALE and 1)
-	            float scaleFactor = MIN_SCALE
-	                    + (1 - MIN_SCALE) * (1 - Math.abs(position));
 	            view.setScaleX(scaleFactor);
 	            view.setScaleY(scaleFactor);
 
-	        } else { // (1,+Infinity]
+	            // Fade the page relative to its size.
+	            view.setAlpha(MIN_ALPHA +
+	                    (scaleFactor - MIN_SCALE) /
+	                    (1 - MIN_SCALE) * (1 - MIN_ALPHA));
+
+	        }
+	        else { // (1,+Infinity]
 	            // This page is way off-screen to the right.
 	            view.setAlpha(0);
 	        }

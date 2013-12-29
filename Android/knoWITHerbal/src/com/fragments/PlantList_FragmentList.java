@@ -113,38 +113,40 @@ public class PlantList_FragmentList extends SherlockFragment{
 		
 		listView.setSelector(R.drawable.listitem_selector);
 		listView.setAdapter(adapter);
-		searchText.addTextChangedListener(new TextWatcher() {
-			PlantListAdapter newAdapter;
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				// TODO Auto-generated method stub
-				
-				if(!searchText.getText().toString().equals(""))
-				{
-					newAdapter = (PlantListAdapter)ListSearch.searchPlantList(getActivity(), plantList, s, true);
-					clearBtn.setVisibility(View.VISIBLE);
-				}
-				else
-				{
-					newAdapter = new PlantListAdapter(getActivity(), plantList);
-					clearBtn.setVisibility(View.INVISIBLE);
-				}
-				
-			}
-			
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
-				listView.setAdapter(newAdapter);
-				listView.invalidateViews();
-			}
-		});
+		searchText.addTextChangedListener(textwatcher);
 	}
+	
+	private TextWatcher textwatcher = new TextWatcher() {
+		PlantListAdapter newAdapter;
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			// TODO Auto-generated method stub
+			
+			if(!searchText.getText().toString().equals(""))
+			{
+				newAdapter = (PlantListAdapter)ListSearch.searchPlantList(getActivity(), plantList, s, true);
+				clearBtn.setVisibility(View.VISIBLE);
+			}
+			else
+			{
+				newAdapter = new PlantListAdapter(getActivity(), plantList);
+				clearBtn.setVisibility(View.INVISIBLE);
+			}
+			
+		}
+		
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void afterTextChanged(Editable s) {
+			// TODO Auto-generated method stub
+			listView.setAdapter(newAdapter);
+			listView.invalidateViews();
+		}
+	};
 }

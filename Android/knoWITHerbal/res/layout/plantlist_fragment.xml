@@ -26,7 +26,8 @@
                 android:drawSelectorOnTop="false"
                 android:orientation="vertical"
                 android:scrollingCache="true"
-                android:smoothScrollbar="true" >
+                android:smoothScrollbar="true" android:cacheColorHint="?android:attr/colorBackgroundCacheHint">
+
             </com.emilsjolander.components.stickylistheaders.StickyListHeadersListView>
 
             <FrameLayout

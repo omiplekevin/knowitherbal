@@ -1,7 +1,5 @@
 package com.fragments;
 
-import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -15,10 +13,12 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.MenuItem.OnMenuItemClickListener;
+import com.helper.Utilities;
 
 public class PlantList extends SherlockFragment{
 
 	View view;
+	Utilities util;
 	private boolean plantview = false;
 	/* 
 	 * plantview
@@ -63,13 +63,14 @@ public class PlantList extends SherlockFragment{
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
+		util = new Utilities(getSherlockActivity());
 		PlantList_FragmentGridList gridList = new PlantList_FragmentGridList();
 		PlantList_FragmentList listView = new PlantList_FragmentList();
 		
 		FragmentManager fm = getFragmentManager();
 		fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 		FragmentTransaction ft = getSherlockActivity().getSupportFragmentManager().beginTransaction();
-		if(isTablet(this.getActivity())){
+		if(util.isTablet(this.getActivity())){
 			ft.replace(R.id.innerFrame, gridList);
 		}
 		else{
@@ -137,11 +138,5 @@ public class PlantList extends SherlockFragment{
 				return true;
 			}
 		});
-	}
-	
-	public static boolean isTablet(Context context) {
-	    return (context.getResources().getConfiguration().screenLayout
-	            & Configuration.SCREENLAYOUT_SIZE_MASK)
-	            >= Configuration.SCREENLAYOUT_SIZE_LARGE;
 	}
 }

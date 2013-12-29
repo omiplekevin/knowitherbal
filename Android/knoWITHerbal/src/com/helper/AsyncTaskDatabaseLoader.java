@@ -28,6 +28,7 @@ public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{
 	ProgressDialog pDialog;
 	SQLiteDatabase sqliteDB;
 	DatabaseHelper dbHelper;
+	Utilities util;
 	Context context;
 	
 	public AsyncTaskDatabaseLoader(Context context) {
@@ -35,13 +36,12 @@ public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{
 		pDialog = new ProgressDialog(context);
 		this.dbHelper = new DatabaseHelper((Activity)context);
 		this.context = context;
+		util = new Utilities(context);
 	}
 	
 	@Override
 	protected Void doInBackground(Void... params) {
 		// TODO Auto-generated method stub
-		/*Dataloader.LoadPlants(sqliteDB,dbHelper);
-		Dataloader.LoadImages(sqliteDB,dbHelper);*/
 		downloadDB();
 		return null;
 	}
@@ -50,7 +50,7 @@ public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{
 	protected void onPostExecute(Void result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
-		downloadImages();
+		util.PrepareFilesForImage();
 		pDialog.dismiss();
 	}
 
@@ -78,7 +78,7 @@ public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{
              InputStream is = connection.getInputStream();
              BufferedInputStream bis = new BufferedInputStream(is);
              
-              * Read bytes to the Buffer until there is nothing more to read(-1).
+             // Read bytes to the Buffer until there is nothing more to read(-1).
               
              ByteArrayBuffer baf = new ByteArrayBuffer(50);
              int current = 0;
@@ -133,61 +133,4 @@ public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{
 			e.printStackTrace();
 		}
 	}
-	
-	private void downloadImages()
-	{
-		SQLiteDatabase sqlite;
-		sqlite = dbHelper.getReadableDatabase();
-		
-		AlertDialog.Builder builder = new AlertDialog.Builder(context);
-		AlertDialog dialog = builder.create();
-		if(isNetworkAvailable())
-		{
-			ArrayList<String> urls = Queries.getImageURLS(sqlite, dbHelper, -1);
-			ArrayList<String> forDL = new ArrayList<String>();
-			for(int i=0;i<urls.size();i++)
-			{
-				Log.e("imageURL",urls.get(i));
-				forDL.add(urls.get(i));
-			}
-			AsyncTaskImageDownload imageDownload = new AsyncTaskImageDownload(context, forDL, Queries.getImageEntryCount(sqlite, dbHelper));
-			
-			if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
-				imageDownload.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-			}
-			else{
-				imageDownload.execute();
-			}
-		}
-		else
-		{
-			dialog.setTitle("Error");
-			dialog.setMessage("No network connectivity. Connect to available networks and try again");
-			dialog.setButton(Dialog.BUTTON_POSITIVE, "Ok", new OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
-					System.exit(1);
-				}
-			});
-			dialog.show();
-		}
-	}
-	
-	private boolean isNetworkAvailable()
-	{
-		ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-		if(networkInfo != null && networkInfo.isConnected())
-		{
-			Log.i("isNetworkAvailable", "Available!");
-			return true;
-		}
-		Log.i("isNetworkAvailable", "Not Available!");
-		return false;
-	}
-	
-	
-
 }

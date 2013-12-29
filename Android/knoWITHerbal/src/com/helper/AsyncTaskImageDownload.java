@@ -30,6 +30,7 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 	ArrayList<String> urls;
 	int imageCount;
 	Context context;
+	Utilities util;
 	
 	
 	public AsyncTaskImageDownload(Context context, ArrayList<String> urls, int imageCount)
@@ -38,6 +39,7 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 		this.urls = urls;
 		this.imageCount = imageCount;
 		this.context = context;
+		util = new Utilities(context);
 	}
 	
 	@Override
@@ -141,6 +143,7 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
 		progressDialog.dismiss();
+		util.OpenCVInstallCheck();
 	}
 
 }

@@ -30,7 +30,7 @@ public class TheDevelopersFragment extends SherlockFragment{
 		// TODO Auto-generated method stub
 		if(view == null)
 		{
-			view = inflater.inflate(R.layout.developers, null);
+			view = inflater.inflate(R.layout.theapplication_developers, null);
 		}
 		return view;
 	}
@@ -42,7 +42,7 @@ public class TheDevelopersFragment extends SherlockFragment{
 		pager = (ViewPager)view.findViewById(R.id.devPager);
 		DevPagerAdapter adapter = new DevPagerAdapter(getSherlockActivity());
 		pager.setAdapter(adapter);
-		pager.setPageTransformer(true, new ZoomOutPageTransformer());
+		pager.setPageTransformer(true, new FlyRotateTransformer());
 	}
 	
 	@Override
@@ -51,7 +51,7 @@ public class TheDevelopersFragment extends SherlockFragment{
 		super.onDestroy();
 	}
 	
-	public class ZoomOutPageTransformer implements ViewPager.PageTransformer {
+	public class FlyRotateTransformer implements ViewPager.PageTransformer {
 	    private  float MIN_SCALE = 0.45f;
 	    private  float MIN_ALPHA = 0.15f;
 
@@ -63,15 +63,18 @@ public class TheDevelopersFragment extends SherlockFragment{
 	            // This page is way off-screen to the left.
 	            view.setAlpha(0);
 
-	        } else if (position <= 1) { // [-1,1]
+	        }
+	        else if (position <= 1) { // [-1,1]
 	            // Modify the default slide transition to shrink the page as well
 	            float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
 	            float vertMargin = pageHeight * (1 - scaleFactor) / 2;
 	            float horzMargin = pageWidth * (1 - scaleFactor) / 2;
 	            if (position < 0) {
 	                view.setTranslationX(horzMargin - vertMargin / 2);
+	                view.setRotationY(position * 135);
 	            } else {
 	                view.setTranslationX(-horzMargin + vertMargin / 2);
+	                view.setRotationY(position * 135);
 	            }
 
 	            // Scale the page down (between MIN_SCALE and 1)
@@ -83,7 +86,8 @@ public class TheDevelopersFragment extends SherlockFragment{
 	                    (scaleFactor - MIN_SCALE) /
 	                    (1 - MIN_SCALE) * (1 - MIN_ALPHA));
 
-	        } else { // (1,+Infinity]
+	        }
+	        else { // (1,+Infinity]
 	            // This page is way off-screen to the right.
 	            view.setAlpha(0);
 	        }

@@ -117,33 +117,40 @@ public class AsyncTaskUpdateCheck extends AsyncTask<Void, Void, Boolean>{
 	protected void onPostExecute(Boolean result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
-		if(result)
+		if(result != null)
 		{
-			Toast.makeText(context, "Now Updating...", Toast.LENGTH_LONG).show();
-			Queries.truncateDatabase(sqliteDB, dbHelper, context);
-			AsyncTaskDatabaseLoader loader = new AsyncTaskDatabaseLoader(context);
-			loader.execute();
+			if(result)
+			{
+				Toast.makeText(context, "Now Updating...", Toast.LENGTH_LONG).show();
+				Queries.truncateDatabase(sqliteDB, dbHelper, context);
+				AsyncTaskDatabaseLoader loader = new AsyncTaskDatabaseLoader(context);
+				loader.execute();
+			}
+			else
+			{
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				AlertDialog dialog = builder.create();
+				
+				dialog.setTitle("Update Version");
+				dialog.setMessage(Html.fromHtml(
+						"<b><i>You have the latest data...</b></i><br/><br/>" +
+						"<b>Date created:</b> " + pubInfo.getCreatedAt() + "<br/><br/>" +
+						"<b>Remarks:</b> " + pubInfo.getComment()));
+				dialog.setButton(Dialog.BUTTON_POSITIVE, "Ok", new Dialog.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						dialog.dismiss();
+					}
+				});
+				
+				dialog.show();
+			}
 		}
 		else
 		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(context);
-			AlertDialog dialog = builder.create();
-			
-			dialog.setTitle("Update Version");
-			dialog.setMessage(Html.fromHtml(
-					"<b><i>You have the latest data...</b></i><br/><br/>" +
-					"<b>Date created:</b> " + newDate.toString() + "<br/><br/>" +
-					"<b>Remarks:</b> " + pubInfo.getComment()));
-			dialog.setButton(Dialog.BUTTON_POSITIVE, "Ok", new Dialog.OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
-					dialog.dismiss();
-				}
-			});
-			
-			dialog.show();
+			Toast.makeText(context, "Connection timed out! Try again.", Toast.LENGTH_LONG).show();
 		}
 		pd.dismiss();
 	}

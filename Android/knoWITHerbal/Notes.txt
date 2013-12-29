@@ -19,8 +19,24 @@ with data		new publish with	incomplete data(info & photos)
 TO DO:
 	Android App:
 		*set HTTP timeout
-		*check existing OpenCV Manager before Camera start
-		*group codes for accessibility, divide and conquer
+		*group codes for easy debugging
+		*partially resolved problem:
+		 re-launch of camera and running of checkOCV() conflict, "a task can be only executed once"
+		 [NEEDS DEBUGGING!]
+		 *add "Check Settings" button in No Network Connectivity dialogs
+		 *a little bigger font size for stickylistheader - plant listView
+		 *fix cache color hint for API 10
+
+		 [TABLET]
+		 *post analysis of image, app will crash
+
+		 
+		 *Lacking Screenshots:
+		 	- Camera Fragment
+		 	- Help Section Fragment
+		 	- Developers Section Fragment
+		 	- About Section Fragment
+		 
 		***LAST: CLEAN CODE! POLISH UI!
 	
 	Web App:

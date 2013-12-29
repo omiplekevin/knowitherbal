@@ -8,7 +8,7 @@
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_gravity="bottom|center"
+        android:layout_gravity="top|center"
         android:scaleType="fitXY"
         android:src="#000000" />
 
@@ -18,11 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_marginLeft="10dp"
-        android:background="#000000"
         android:gravity="center|center"
         android:text="A"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#FFFFFF"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
 
 </FrameLayout>

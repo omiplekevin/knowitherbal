@@ -2,14 +2,13 @@ package com.helper;
 
 import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +20,6 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import android.app.Activity;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -37,17 +33,20 @@ public class XMLParser {
 	Context context;
 	SQLiteDatabase sqliteDB;
 	DatabaseHelper dbHelper;
+	Utilities util;
 	
 	// constructor
 	public XMLParser(Context context) {
 		this.context = context;
 		dbHelper = new DatabaseHelper((Activity) context);
+		util = new Utilities(context);
+		
 	}
 	
 	public void grabXML(String host, String filename, boolean forTemporary)
 	{
 		try {
-			if(isNetworkAvailable()){
+			if(util.isNetworkAvailable()){
 				/*URL url = new URL(host+filename);
 	            HttpURLConnection c = (HttpURLConnection) url.openConnection();
 	            c.setRequestMethod("GET");
@@ -98,14 +97,16 @@ public class XMLParser {
 		        	   file = new File(dir, "temp_"+filename);
 		           }
 
-		           long startTime = System.currentTimeMillis();
-		           /*Log.d("DownloadManager", "download begining");
+		           /*long startTime = System.currentTimeMillis();
+		           Log.d("DownloadManager", "download begining");
 		           Log.d("DownloadManager", "download url:" + url);
 		           Log.d("DownloadManager", "downloaded file name:" + filename);*/
 
 		           /* Open a connection to that URL. */
-		           URLConnection ucon = url.openConnection();
-
+		           HttpURLConnection ucon = (HttpURLConnection) url.openConnection();
+		           ucon.setDoInput(true);
+		           ucon.setConnectTimeout(15000);
+		           ucon.connect();
 		           /*
 		            * Define InputStreams to read from the URLConnection.
 		            */
@@ -131,22 +132,8 @@ public class XMLParser {
 			}
         }
 	    catch (IOException e) {
-            Log.e("LOG ERROR", "Error: " + e);
-//            Toast.makeText(context, "error " + e.getMessage().toString(), Toast.LENGTH_LONG).show();
-
+            Log.e("Exception", "Connection timed out!");
         }
-	}
-	
-	public boolean isNetworkAvailable() {
-	    ConnectivityManager cm = (ConnectivityManager) 
-	      context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-	    // if no network is available networkInfo will be null
-	    // otherwise check if we are connected
-	    if (networkInfo != null && networkInfo.isConnected()) {
-	        return true;
-	    }
-	    return false;
 	}
 	
 	public void readXML(String source) throws XmlPullParserException, IOException

@@ -115,10 +115,12 @@ public class PlantList_FragmentGridList extends SherlockFragment{
 			if(!searchText.getText().toString().equals(""))
 			{
 				newAdapter = (CustomGridAdapter)ListSearch.searchPlantList(getActivity(), plantList, s, false);
+				clearBtn.setVisibility(View.VISIBLE);
 			}
 			else
 			{
 				newAdapter = new CustomGridAdapter(getActivity(), plantList);
+				clearBtn.setVisibility(View.INVISIBLE);
 			}
 			gridView.setAdapter(newAdapter);
 			gridView.invalidateViews();

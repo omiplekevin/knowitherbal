@@ -1,49 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/FrameLayout1"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FF" >
+    android:background="#00FF"
+    android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/logo"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#000000"
-        android:scaleType="centerCrop" />
+        android:layout_height="135dp" >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:orientation="vertical" >
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/about_this_app_title" />
 
-        <ImageButton
-            android:id="@+id/clear"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#00FFFFFF"
-            android:src="@drawable/camera_lens_white" />
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="@dimen/margin_5dp"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/cameraBtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center|center"
+                android:layout_weight="1"
+                android:background="@drawable/imagebutton"
+                android:scaleType="fitCenter"
+                android:src="@drawable/camera_lens_white" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Launch Camera"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
         <TextView
-            android:id="@+id/plant_name"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Re-launch Camera"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFFFF" />
+            android:layout_gravity="center|center"
+            android:text="Tips for better result:\nblah blah blah"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    </LinearLayout>
+    </FrameLayout>
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top"
-        android:text="[Plant Name]"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#FFFFFF" />
-
-</FrameLayout>
+</LinearLayout>

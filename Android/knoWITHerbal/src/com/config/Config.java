@@ -100,7 +100,6 @@ public class Config {
 	 * XML TAGS END
 	 * ***********************************************************/
 	
-	public static String[] prerequisites = {"OpenCV_2.4.7.1_Manager_2.15_armeabi.apk",
-											"OpenCV_2.4.7.1_binary_pack_armv7a.apk"};
+	public static String OCVpkg = "OpenCV_2.4.7.1_Manager_2.15_armeabi.apk";
 	
 }

@@ -2,7 +2,6 @@ package com.fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,12 +17,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.helper.AsyncTaskUpdateCheck;
 import com.helper.DatabaseHelper;
+import com.helper.Utilities;
 
 public class TheApplication extends SherlockFragment{
 
@@ -34,6 +33,7 @@ public class TheApplication extends SherlockFragment{
 	Context context;
 	SQLiteDatabase sqliteDB;
 	DatabaseHelper dbHelper;
+	Utilities util;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +41,7 @@ public class TheApplication extends SherlockFragment{
 		// TODO Auto-generated method stub
 		if(view == null)
 		{
-			view = inflater.inflate(R.layout.the_application, null);
+			view = inflater.inflate(R.layout.theapplication, null);
 		}
 		setHasOptionsMenu(true);
 		return view;
@@ -57,7 +57,7 @@ public class TheApplication extends SherlockFragment{
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
-		
+		util = new Utilities(getSherlockActivity());
 		ImageButton update = (ImageButton)view.findViewById(R.id.update);
 		ImageButton help = (ImageButton)view.findViewById(R.id.howto);
 		ImageButton developers = (ImageButton)view.findViewById(R.id.developer);
@@ -117,7 +117,7 @@ public class TheApplication extends SherlockFragment{
 			ft.commit();
 			break;
 		case 1://UPDATE
-			if(isNetworkAvailable())
+			if(util.isNetworkAvailable())
 			{
 				AsyncTaskUpdateCheck update = new AsyncTaskUpdateCheck(getSherlockActivity());
 				update.execute();
@@ -155,18 +155,4 @@ public class TheApplication extends SherlockFragment{
 			break;
 		}
 	}
-	
-	private boolean isNetworkAvailable()
-	{
-		ConnectivityManager cm = (ConnectivityManager)getSherlockActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-		if(networkInfo != null && networkInfo.isConnected())
-		{
-			Log.i("isNetworkAvailable", "Available!");
-			return true;
-		}
-		Log.i("isNetworkAvailable", "Not Available!");
-		return false;
-	}
-
 }
