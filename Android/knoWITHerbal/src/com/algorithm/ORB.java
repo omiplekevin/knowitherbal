@@ -115,7 +115,8 @@ public class ORB extends SherlockFragment{
 					resultFragment.setResult(pathCaptured, matchRating);
 					
 					FragmentTransaction ft = fragmentManager.beginTransaction();
-					ft.replace(R.id.FrameLayout1, resultFragment);
+					ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+					ft.replace(R.id.camera_base, resultFragment);
 					ft.addToBackStack("results");
 					ft.commit();
 					
@@ -295,7 +296,7 @@ public class ORB extends SherlockFragment{
 	{
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.camera_fragment, null);
-		TextView plantName = (TextView)view.findViewById(R.id.textView1);
+		TextView plantName = (TextView)view.findViewById(R.id.content);
 		plantName.setText(plants.get(plantID).getName());
 		plantName.invalidate();
 	}

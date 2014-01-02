@@ -3,9 +3,10 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CCC"
+    android:background="#FFF"
     android:orientation="vertical" >
 
+<!-- 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -18,7 +19,7 @@
             android:src="@drawable/help_banner" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|center"
@@ -31,11 +32,19 @@
             android:textStyle="italic" />
 
     </FrameLayout>
-
+-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" >
+
+        <ImageView
+            android:id="@+id/webBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:alpha=".3"
+            android:src="@drawable/logo" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/helpPager"
@@ -44,24 +53,42 @@
             android:layout_weight="1" >
         </android.support.v4.view.ViewPager>
 
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
-            android:background="@android:color/transparent"
-            android:src="@drawable/to_left" />
+            android:layout_gravity="bottom|center"
+            android:background="#AA000000" >
 
-        <ImageButton
-            android:id="@+id/imageButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
-            android:background="@android:color/transparent"
-            android:src="@drawable/to_right" />
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/to_left" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center"
+                android:text="TextView"
+                android:textColor="#00CC00" />
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/to_right" />
+
+        </LinearLayout>
 
     </FrameLayout>
-
+<!--
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -79,6 +106,6 @@
 
         </ListView>
 
-    </FrameLayout>
+    </FrameLayout> -->
 
 </LinearLayout>

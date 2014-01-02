@@ -45,8 +45,8 @@ public class DevPagerAdapter extends PagerAdapter{
 		// TODO Auto-generated method stub
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.developers_page, null);
-		ImageView banner = (ImageView)view.findViewById(R.id.imageView1);
-		TextView name = (TextView)view.findViewById(R.id.textView1);
+		ImageView banner = (ImageView)view.findViewById(R.id.webBtn);
+		TextView name = (TextView)view.findViewById(R.id.content);
 		switch(position)
 		{
 		case 0:

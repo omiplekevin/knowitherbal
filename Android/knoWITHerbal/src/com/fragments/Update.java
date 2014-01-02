@@ -40,7 +40,7 @@ public class Update extends SherlockFragment{
 		dbHelper = new DatabaseHelper(getSherlockActivity());
 		pubInfo = Queries.getPublishInfo(sqliteDB, dbHelper);
 		
-		textView = (TextView)view.findViewById(R.id.textView1);
+		textView = (TextView)view.findViewById(R.id.content);
 		textView.setText(Html.fromHtml("This application contains data created on <b>"+pubInfo.getCreatedAt()+"</b>.\n" +
 				"Web Service's comment about this published data: \"<i>"+pubInfo.getComment()+"</i>\"\n\n" +
 						"Do you want to check for an update?"));

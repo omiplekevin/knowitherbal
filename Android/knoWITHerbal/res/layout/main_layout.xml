@@ -89,7 +89,7 @@
 		        android:divider="#000000"
 		        android:dividerHeight="0.5dp"
 		        android:background="#55000000"
-		        android:cacheColorHint="#00FFFFFF" />
+		        android:cacheColorHint="?android:attr/colorBackgroundCacheHint" />
 	    </FrameLayout>
 	    
 	</LinearLayout>

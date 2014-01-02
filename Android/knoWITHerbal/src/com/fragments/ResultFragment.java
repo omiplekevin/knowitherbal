@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,7 @@ public class ResultFragment extends SherlockFragment{
 		dbHelper = new DatabaseHelper(getSherlockActivity());
 		sqliteDB = dbHelper.getReadableDatabase();
 		
-		resultList = (ListView)view.findViewById(R.id.listView1);
+		resultList = (ListView)view.findViewById(R.id.about_listview);
 		imageView.setImageBitmap(Bitmap.createBitmap(BitmapFactory.decodeFile(pathCaptured)));
 		
 		ArrayList<PlantModel> plants = new ArrayList<PlantModel>();

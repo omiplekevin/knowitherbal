@@ -14,7 +14,7 @@
     
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="version"><i>version </i><b>1.7</b></string>
+    <string name="checkout"><i>Visit our website&#8230;</i></string>
     <string name="proponents">Ledesma.Madriaga.Omiple</string>
     <string name="updateDetail">
         Version includes:\n
@@ -32,7 +32,7 @@
     <string name="subtitle">a herbal leaf identifier&#8230;</string>
     
     <string name="dummy">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Content please!!
     </string>
 
 </resources>

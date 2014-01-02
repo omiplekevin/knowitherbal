@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,7 @@ public class TheDevelopersFragment extends SherlockFragment{
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
+		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>Developers</i>"));
 		pager = (ViewPager)view.findViewById(R.id.devPager);
 		DevPagerAdapter adapter = new DevPagerAdapter(getSherlockActivity());
 		pager.setAdapter(adapter);
@@ -46,11 +48,12 @@ public class TheDevelopersFragment extends SherlockFragment{
 	}
 	
 	@Override
-	public void onDestroy() {
+	public void onDestroyView() {
 		// TODO Auto-generated method stub
-		super.onDestroy();
+		super.onDestroyView();
+		getSherlockActivity().getSupportActionBar().setTitle("The Application");
 	}
-	
+
 	public class FlyRotateTransformer implements ViewPager.PageTransformer {
 	    private  float MIN_SCALE = 0.45f;
 	    private  float MIN_ALPHA = 0.15f;

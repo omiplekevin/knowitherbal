@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.sax.StartElementListener;
 
 import com.config.Config;
 
@@ -50,14 +51,24 @@ public class OpenCVManagerDownloader extends AsyncTask<Void, Void, Void>{
 	protected void onPostExecute(Void result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
-		installOpenCV();
+//		installOpenCV();
 		pDialog.dismiss();
 	}
 	
 	private void downloadOpenCV()
 	{
-		String preReq = Config.OCVpkg;
-		try {
+//		String preReq = Config.OCVpkg;
+		try{
+			String OCVUrl = "market://details?id=org.opencv.engine";
+			Intent OCVDownload = new Intent(Intent.ACTION_VIEW);
+			OCVDownload.setData(Uri.parse(OCVUrl));
+			context.startActivity(OCVDownload);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		/*try {
 			File dir = new File (Config.externalDirectory);
 	           if(dir.exists()==false) {
 	                dir.mkdirs();
@@ -67,23 +78,23 @@ public class OpenCVManagerDownloader extends AsyncTask<Void, Void, Void>{
 	           File file;
         	   file = new File(dir, preReq);
         	   
-        	   /*long startTime = System.currentTimeMillis();
+        	   long startTime = System.currentTimeMillis();
 	           Log.d("DownloadManager", "download begining");
 	           Log.d("DownloadManager", "download url:" + url);
-	           Log.d("DownloadManager", "downloaded file name:" + preReq[i]);*/
+	           Log.d("DownloadManager", "downloaded file name:" + preReq[i]);
 
-	           /* Open a connection to that URL. */
+	            Open a connection to that URL. 
 	           URLConnection ucon = url.openConnection();
 
-	           /*
+	           
 	            * Define InputStreams to read from the URLConnection.
-	            */
+	            
 	           InputStream is = ucon.getInputStream();
 	           BufferedInputStream bis = new BufferedInputStream(is);
 
-	           /*
+	           
 	            * Read bytes to the Buffer until there is nothing more to read(-1).
-	            */
+	            
 	           ByteArrayBuffer baf = new ByteArrayBuffer(5000);
 	           int current = 0;
 	           while ((current = bis.read()) != -1) {
@@ -91,7 +102,7 @@ public class OpenCVManagerDownloader extends AsyncTask<Void, Void, Void>{
 	           }
 
 
-	           /* Convert the Bytes read to a String. */
+	            Convert the Bytes read to a String. 
 	           FileOutputStream fos = new FileOutputStream(file);
 	           fos.write(baf.toByteArray());
 	           fos.flush();
@@ -101,7 +112,7 @@ public class OpenCVManagerDownloader extends AsyncTask<Void, Void, Void>{
 		
 		catch (IOException e) {  }  
 		catch (NullPointerException e) {  } 
-		catch (Exception e){  }
+		catch (Exception e){  }*/
 	}
 	
 	private void installOpenCV()

@@ -1,19 +1,18 @@
 package com.fragments;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
-import com.adapter.HowToUseListViewAdapter;
 import com.adapter.HowToUseViewPagerAdapter;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
@@ -24,6 +23,8 @@ public class HowToUseFragment extends SherlockFragment{
 	ImageButton toRight;
 	ImageButton toLeft;
 	int currentPage;
+	ViewPager pager;
+	TextView pageNumber;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,13 +36,29 @@ public class HowToUseFragment extends SherlockFragment{
 		return view;
 	}
 
+	
+	@Override
+	public void onDestroyView() {
+		// TODO Auto-generated method stub
+		super.onDestroyView();
+		getSherlockActivity().getSupportActionBar().setTitle("The Application");
+	}
+
+
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
+		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>How to Use</i>"));
+		pager = (ViewPager)view.findViewById(R.id.helpPager);
+		HowToUseViewPagerAdapter adpater = new HowToUseViewPagerAdapter(getSherlockActivity());
+		pager.setAdapter(adpater);
 		toRight = (ImageButton)view.findViewById(R.id.imageButton1);
 		toLeft = (ImageButton)view.findViewById(R.id.imageButton2);
-		
+		pageNumber = (TextView)view.findViewById(R.id.textView1);
+		currentPage = 0;
+		pageNumber.setText(""+(currentPage+1));
+		/*
 		HowToUseViewPagerAdapter adapter = new HowToUseViewPagerAdapter(getActivity());
 		final ViewPager pager = (ViewPager)view.findViewById(R.id.helpPager);
 		String[] content = {""};
@@ -50,7 +67,7 @@ public class HowToUseFragment extends SherlockFragment{
 		content = getActivity().getResources().getStringArray(R.array.help_content1);
 		
 		listView.setAdapter(new HowToUseListViewAdapter(getActivity(), content));
-		
+		*/
 		toRight.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -69,8 +86,39 @@ public class HowToUseFragment extends SherlockFragment{
 				playAnimation(-1);
 				pager.setCurrentItem(pager.getCurrentItem()-1, true);
 			}
+		});		
+		pager.setOnPageChangeListener(new OnPageChangeListener() {
+			
+			@Override
+			public void onPageSelected(int arg0) {
+				// TODO Auto-generated method stub
+				if(currentPage < arg0)
+				{
+					playAnimation(1);
+					currentPage = arg0;
+				}
+				else
+				{
+					playAnimation(-1);
+					currentPage = arg0;
+				}
+				pageNumber.setText(""+(currentPage+1));
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+				// TODO Auto-generated method stub
+				
+			}
 		});
-		currentPage = 0;
+		/*
+		
 		pager.setAdapter(adapter);
 		pager.setOnPageChangeListener(new OnPageChangeListener() {
 			
@@ -151,7 +199,7 @@ public class HowToUseFragment extends SherlockFragment{
 				// TODO Auto-generated method stub
 				
 			}
-		});
+		});*/
 	}
 	
 	private void playAnimation(int FLAG)
@@ -160,14 +208,16 @@ public class HowToUseFragment extends SherlockFragment{
 		{
 		case 1:
 			AnimatorSet rightAnim = new AnimatorSet();
-			rightAnim.playSequentially(ObjectAnimator.ofFloat(toRight, "translationX", 20, 0));
-			rightAnim.setDuration(500);
+			rightAnim.playSequentially(ObjectAnimator.ofFloat(toRight, "translationX", 0, 20),
+					ObjectAnimator.ofFloat(toRight, "translationX", 20, 0));
+			rightAnim.setDuration(50);
 			rightAnim.start();
 			break;
 		case -1:
 			AnimatorSet leftAnim = new AnimatorSet();
-			leftAnim.playSequentially(ObjectAnimator.ofFloat(toLeft, "translationX", -20, 0));
-			leftAnim.setDuration(500);
+			leftAnim.playSequentially(ObjectAnimator.ofFloat(toLeft, "translationX", 0, -20),
+					ObjectAnimator.ofFloat(toLeft, "translationX", -20, 0));
+			leftAnim.setDuration(50);
 			leftAnim.start();
 			break;
 		}

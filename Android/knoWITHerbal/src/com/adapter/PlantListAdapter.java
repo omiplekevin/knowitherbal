@@ -40,13 +40,19 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 		Holder holder;
 		if(convertView == null)
 		{
-			holder = new Holder();
 			convertView = inflater.inflate(R.layout.plantlist_item, null);
-			holder.plantName = (TextView)convertView.findViewById(R.id.plantName);
-			holder.plantPrimeDetail = (TextView)convertView.findViewById(R.id.version);
-			holder.imageView = (ImageView)convertView.findViewById(R.id.plantImageView);
-			holder.pb1 = (ProgressBar)convertView.findViewById(R.id.progressBar1);
-			holder.pb2 = (ProgressBar)convertView.findViewById(R.id.progressBar2);
+			
+			holder = new Holder();
+			final TextView plantName = (TextView)convertView.findViewById(R.id.plantName);
+			final TextView primeDetail = (TextView)convertView.findViewById(R.id.visit);
+			final ImageView imageView = (ImageView)convertView.findViewById(R.id.plantImageView);
+			final ProgressBar pb1 = (ProgressBar)convertView.findViewById(R.id.progressBar1);
+			final ProgressBar pb2 = (ProgressBar)convertView.findViewById(R.id.progressBar2);
+			holder.plantName = plantName;
+			holder.plantPrimeDetail = primeDetail;
+			holder.imageView = imageView;
+			holder.pb1 = pb1;
+			holder.pb2 = pb2;
 			
 			convertView.setTag(holder);
 		}

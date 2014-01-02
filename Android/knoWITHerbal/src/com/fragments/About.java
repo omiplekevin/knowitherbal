@@ -1,6 +1,8 @@
 package com.fragments;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,9 @@ import android.widget.TextView;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
+import com.helper.DatabaseHelper;
+import com.helper.Queries;
+import com.models.PublishModel;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 
@@ -18,6 +23,10 @@ public class About extends SherlockFragment{
 	ImageView logo;
 	ImageView title;
 	TextView subtitle;
+	TextView publishInfo;
+	private PublishModel pubInfo;
+	private SQLiteDatabase sqliteDB;
+	private DatabaseHelper dbHelper;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,9 +43,14 @@ public class About extends SherlockFragment{
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
-		logo = (ImageView)view.findViewById(R.id.imageView1);
+		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>About</i>"));
+		logo = (ImageView)view.findViewById(R.id.webBtn);
 		title = (ImageView)view.findViewById(R.id.imageView3);
-		subtitle = (TextView)view.findViewById(R.id.textView1);
+		subtitle = (TextView)view.findViewById(R.id.content);
+		publishInfo = (TextView)view.findViewById(R.id.publish_info);
+		
+		dbHelper = new DatabaseHelper(getSherlockActivity());
+		pubInfo = Queries.getPublishInfo(sqliteDB, dbHelper);
 		
 		AnimatorSet imageViewAnim = new AnimatorSet();
 		imageViewAnim.playTogether(
@@ -57,5 +71,16 @@ public class About extends SherlockFragment{
 		allAnim.playTogether(imageViewAnim, appNameAnim, subtitle);
 		allAnim.setDuration(2000);
 		allAnim.start();
+		
+		publishInfo.setText(Html.fromHtml("Content publish date:<br/><b>"+pubInfo.getCreatedAt()+"</b>.<br/><br/>" +
+				"Remarks:<br/>\"<i>"+pubInfo.getComment()+"</i>\"<br/><br/>"));
+		
+	}
+
+	@Override
+	public void onDestroyView() {
+		// TODO Auto-generated method stub
+		super.onDestroyView();
+		getSherlockActivity().getSupportActionBar().setTitle("The Application");
 	}
 }

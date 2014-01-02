@@ -60,8 +60,12 @@ public class CustomGridAdapter extends BaseAdapter{
 			LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			holder = new Holder();
 			convertView = inflater.inflate(R.layout.plantlist_fragment_grid_item, null);
-			holder.imageView = (ImageView)convertView.findViewById(R.id.logo);
-			holder.textView = (TextView)convertView.findViewById(R.id.title);
+			
+			final ImageView imageView = (ImageView)convertView.findViewById(R.id.logo);
+			final TextView textView = (TextView)convertView.findViewById(R.id.title);
+			
+			holder.imageView = imageView;
+			holder.textView = textView;
 			
 			convertView.setTag(holder);
 		}

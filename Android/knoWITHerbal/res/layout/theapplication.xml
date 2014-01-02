@@ -92,7 +92,7 @@
                                 android:src="@drawable/help" />
 
                             <TextView
-                                android:id="@+id/textView1"
+                                android:id="@+id/content"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center|center"
@@ -155,7 +155,7 @@
                                 android:src="@drawable/dev" />
 
                             <TextView
-                                android:id="@+id/textView3"
+                                android:id="@+id/publish_info"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center|center"

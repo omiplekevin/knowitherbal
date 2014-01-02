@@ -181,8 +181,9 @@ public class Queries {
 		sqliteDB = dbHelper.getReadableDatabase();
 		Cursor cursor = sqliteDB.rawQuery("SELECT COUNT(*) FROM " + DatabaseHelper.plantTable, null);
 		cursor.moveToFirst();
-		
-		return cursor.getInt(0);
+		int count = cursor.getInt(0);
+		sqliteDB.close();
+		return count;
 	}
 	
 	public static int getImageEntryCount(SQLiteDatabase sqliteDB, DatabaseHelper dbHelper)

@@ -58,6 +58,101 @@ public class Camera extends SherlockFragment{
 			
 			@Override
 			public void onClick(View v) {
+				AsyncTask<Void, Void, Boolean> checkOCV = new AsyncTask<Void, Void, Boolean>()
+				{
+					@Override
+					protected void onPreExecute() {
+						// TODO Auto-generated method stub
+						super.onPreExecute();
+						dialog.setMessage("Loading OpenCV...");
+						dialog.setIndeterminate(true);
+						dialog.setCancelable(false);
+						dialog.setCanceledOnTouchOutside(false);
+						dialog.show();
+					}
+
+					@Override
+					protected Boolean doInBackground(Void... params) {
+						// TODO Auto-generated method stub
+						final PackageManager packageManager = getSherlockActivity().getPackageManager();
+				        List<ApplicationInfo> installedApps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+				        for(ApplicationInfo info: installedApps)
+				        {
+				        	if((info.loadLabel(packageManager).equals("OpenCV Manager")) || (info.packageName.equals("org.opencv.engine")))
+				        		return true;
+				        }
+				        return false;
+					}
+
+					@Override
+					protected void onPostExecute(Boolean result) {
+						// TODO Auto-generated method stub
+						super.onPostExecute(result);
+						dialog.dismiss();
+						final AlertDialog.Builder builder = new AlertDialog.Builder(getSherlockActivity());
+					    final AlertDialog postDialog = builder.create();
+						if(result)
+						{
+							if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_7, getSherlockActivity(), mOpenCVCallBack))
+							{
+							    Log.e("OCV INTERNAL ERROR!", "Cannot connect to OpenCV Manager");
+							    postDialog.setTitle("Oops!");
+							    postDialog.setMessage("Something went wrong internally...");
+							    postDialog.show();
+							    postDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Dismiss", new DialogInterface.OnClickListener() {
+									
+									@Override
+									public void onClick(DialogInterface dialog, int which) {
+										// TODO Auto-generated method stub
+										postDialog.dismiss();
+									}
+								});
+							}
+							else
+							{
+								callIntent();
+							}
+						}
+						else
+						{
+							imageButton.setEnabled(false);
+							postDialog.setTitle("Oops!");
+							postDialog.setMessage(Html.fromHtml("It seems that you don't have OpenCV Manager installed...<br>" +
+									"Do you want to download and install <b>OpenCV Manager?</b><br><br>"));
+						    postDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									// TODO Auto-generated method stub
+									OpenCVManagerDownloader OCVDownload = new OpenCVManagerDownloader(getSherlockActivity());
+									OCVDownload.execute();
+									postDialog.dismiss();
+									imageButton.setEnabled(true);
+								}
+							});
+						    postDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Maybe later", new DialogInterface.OnClickListener() {
+								
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									// TODO Auto-generated method stub
+									final AlertDialog warning = builder.create();
+									warning.setMessage("Camera feature will not be available.\nOpenCV Manager is required by this feature.");
+									warning.setButton(AlertDialog.BUTTON_POSITIVE, "Dismiss", new DialogInterface.OnClickListener() {
+										
+										@Override
+										public void onClick(DialogInterface dialog, int which) {
+											// TODO Auto-generated method stub
+											warning.dismiss();
+										}
+									});
+									
+									warning.show();
+								}
+							});
+						    postDialog.show();
+						}
+					}
+				};
 				checkOCV.execute();
 			}
 		});
@@ -146,105 +241,5 @@ public class Camera extends SherlockFragment{
 			this.getSherlockActivity().getSupportActionBar().setTitle("");*/
 		}
 	}
-	
-	AsyncTask<Void, Void, Boolean> checkOCV = new AsyncTask<Void, Void, Boolean>()
-	{
-		@Override
-		protected void onPreExecute() {
-			// TODO Auto-generated method stub
-			super.onPreExecute();
-			dialog.setMessage("Loading OpenCV...");
-			dialog.setIndeterminate(true);
-			dialog.setCancelable(false);
-			dialog.setCanceledOnTouchOutside(false);
-			dialog.show();
-		}
-
-		@Override
-		protected Boolean doInBackground(Void... params) {
-			// TODO Auto-generated method stub
-			final PackageManager packageManager = getSherlockActivity().getPackageManager();
-	        List<ApplicationInfo> installedApps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
-	        for(ApplicationInfo info: installedApps)
-	        {
-	        	if((info.loadLabel(packageManager).equals("OpenCV Manager")) || (info.packageName.equals("org.opencv.engine")))
-	        		return true;
-	        }
-	        return false;
-		}
-
-		@Override
-		protected void onPostExecute(Boolean result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			dialog.dismiss();
-			final AlertDialog.Builder builder = new AlertDialog.Builder(getSherlockActivity());
-		    final AlertDialog postDialog = builder.create();
-			if(result)
-			{
-				if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_7, getSherlockActivity(), mOpenCVCallBack))
-				{
-				    Log.e("OCV INTERNAL ERROR!", "Cannot connect to OpenCV Manager");
-				    postDialog.setTitle("Oops!");
-				    postDialog.setMessage("Something went wrong internally...");
-				    postDialog.show();
-				    postDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Dismiss", new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
-							postDialog.dismiss();
-						}
-					});
-				}
-				else
-				{
-					callIntent();
-				}
-			}
-			else
-			{
-				imageButton.setEnabled(false);
-				postDialog.setTitle("Oops!");
-				postDialog.setMessage(Html.fromHtml("It seems that you don't have OpenCV Manager installed...<br>" +
-						"Do you want to download and install <b>OpenCV Manager?</b><br><br>"));
-			    postDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
-						OpenCVManagerDownloader OCVDownload = new OpenCVManagerDownloader(getSherlockActivity());
-						OCVDownload.execute();
-						postDialog.dismiss();
-						imageButton.setEnabled(true);
-					}
-				});
-			    postDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Maybe later", new DialogInterface.OnClickListener() {
-					
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
-						final AlertDialog warning = builder.create();
-						warning.setMessage("Camera feature will not be available.\nOpenCV Manager is required by this feature.");
-						warning.setButton(AlertDialog.BUTTON_POSITIVE, "Dismiss", new DialogInterface.OnClickListener() {
-							
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								// TODO Auto-generated method stub
-								if(checkOCV.getStatus() == AsyncTask.Status.RUNNING)
-									Log.e("THREAD", "checkOCV is running!");
-								if(checkOCV.getStatus() == AsyncTask.Status.PENDING)
-									Log.e("THREAD", "checkOCV is pending!");
-								warning.dismiss();
-							}
-						});
-						
-						warning.show();
-					}
-				});
-			    postDialog.show();
-			}
-		}
-	};
 	
 }

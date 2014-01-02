@@ -66,14 +66,22 @@
             android:src="@drawable/welcome_bg_3" />
 
         <TextView
-            android:id="@+id/version"
+            android:id="@+id/visit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:layout_marginBottom="@dimen/margin_10dp"
-            android:layout_marginRight="@dimen/margin_30dp"
+            android:layout_marginRight="@dimen/margin_20dp"
             android:gravity="center|center"
-            android:text="@string/version" />
+            android:text="@string/checkout" />
+
+        <ImageView
+            android:id="@+id/webBtn"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="@dimen/margin_12dp"
+            android:layout_marginRight="@dimen/margin_12dp"
+            android:src="@drawable/web_btn" />
 
     </FrameLayout>
 

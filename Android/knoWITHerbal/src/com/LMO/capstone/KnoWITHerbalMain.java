@@ -19,6 +19,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.ActionProvider;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.SubMenu;
@@ -122,9 +123,9 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
             	
             	File[] files = appDir.listFiles();
             	dbHelper = new DatabaseHelper(this);
-            	if(files.length == 0 || files.length < Queries.getImageEntryCount(sqliteDB, dbHelper))
+            	if(files.length == 1 || files.length < Queries.getImageEntryCount(sqliteDB, dbHelper))
             	{
-            		util.PrepareFilesForImage();// will run on thread
+            		util.PrepareFileForDatabase();// will run on thread
             	}
             }
             

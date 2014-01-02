@@ -37,7 +37,7 @@ public class OpenSourceLicenseAdapter extends ArrayAdapter<String> implements St
 		{
 			holder = new Holder();
 			convertView = inflater.inflate(R.layout.license_item, null);
-			holder.license = (TextView)convertView.findViewById(R.id.textView1);
+			holder.license = (TextView)convertView.findViewById(R.id.content);
 			convertView.setTag(holder);
 		}
 		else
@@ -68,7 +68,7 @@ public class OpenSourceLicenseAdapter extends ArrayAdapter<String> implements St
 			holder = new HeaderViewHolder();
 			convertView = inflater.inflate(R.layout.osl_stickyheader, null);
 			holder.image = (ImageView)convertView.findViewById(R.id.logo);
-			holder.library = (TextView)convertView.findViewById(R.id.textView1);
+			holder.library = (TextView)convertView.findViewById(R.id.content);
 			convertView.setTag(holder);
 		}
 		else

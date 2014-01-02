@@ -9,10 +9,14 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
+import android.widget.TextView;
+
+import com.LMO.capstone.R;
 
 public class HowToUseViewPagerAdapter extends PagerAdapter{
 
@@ -26,8 +30,11 @@ public class HowToUseViewPagerAdapter extends PagerAdapter{
 	@Override
 	public Object instantiateItem(ViewGroup container,final int position) {
 		// TODO Auto-generated method stub
-		final ImageView helpView = new ImageView(context);
-		helpView.setScaleType(ScaleType.FIT_CENTER);
+//		final ImageView helpView = new ImageView(context);
+		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View helpView = inflater.inflate(R.layout.theapplication_help_page, null);
+		final ImageView imageView = (ImageView)helpView.findViewById(R.id.webBtn);
+		final TextView textView = (TextView)helpView.findViewById(R.id.content);
 		AsyncTask<Void, Void, Bitmap> loadHelp = new AsyncTask<Void, Void, Bitmap>()
 		{
 
@@ -49,7 +56,39 @@ public class HowToUseViewPagerAdapter extends PagerAdapter{
 			@Override
 			protected void onPostExecute(Bitmap result) {
 				// TODO Auto-generated method stub
-				helpView.setImageBitmap(result);
+				imageView.setImageBitmap(result);
+				String res = "";
+				switch(position)
+				{
+				case 0:
+					res = context.getResources().getString(R.string.help_content1);
+					break;
+				case 1:
+					res = context.getResources().getString(R.string.help_content2);
+					break;
+				case 2:
+					res = context.getResources().getString(R.string.help_content3);
+					break;
+				case 3:
+					res = context.getResources().getString(R.string.help_content4);
+					break;
+				case 4:
+					res = context.getResources().getString(R.string.help_content5);
+					break;
+				case 5:
+					res = context.getResources().getString(R.string.help_content6);
+					break;
+				case 6:
+					res = context.getResources().getString(R.string.help_content7);
+					break;
+				case 7:
+					res = context.getResources().getString(R.string.help_content8);
+					break;
+				case 8:
+					res = context.getResources().getString(R.string.help_content9);
+					break;
+				}
+				textView.setText(Html.fromHtml(res));
 			}
 		};
 		

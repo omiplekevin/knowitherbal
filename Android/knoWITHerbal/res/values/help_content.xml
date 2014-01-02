@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="help_content1">
+    <string name="help_content1">&lt;b&gt;Welcome Screen&lt;/b&gt; &lt;br/&gt; &#8226; Tap the upper left icon or flick to the right from the left edge of the screen to open the menu .</string>
+    
+    <string name="help_content2">
+    	&lt;b&gt;Main Menu&lt;/b&gt;&lt;br/&gt; &#8226; This shows the basic options the user can use. This includes &lt;b&gt;Camera&lt;/b&gt;, &lt;b&gt;Plant List&lt;/b&gt;, &lt;b&gt;The Application&lt;/b&gt; and &lt;b&gt;Open Source Licenses&lt;/b&gt;. 
+    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt; Camera&lt;/b&gt;&lt;br/&gt; &#8226; Allows you to access the phone’s camera to take pictures for recognition.
+    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt; Plant List&lt;/b&gt;&lt;br/&gt; &#8226; Allows you to view the list of plant recognized by this application.
+    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt; The Application&lt;/b&gt;&lt;br/&gt; &#8226; Informs you about the applications features, Help section, Update section and Developers Section.
+    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt; Open Source Licenses&lt;/b&gt;&lt;br/&gt; &#8226; Licenses of the libraries used for making this application.
+    </string>
+    
+    <string name="help_content3">
+        &lt;b&gt;1. View Toggle (to List View)&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; This shows the list of herbal plants recognized by the application in list view. This is the default view for &lt;b&gt;&lt;i&gt;smart phones.&lt;/i&gt;&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; Tap upper right button to change view.
+    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt;2. View Toggle (to Grid View)&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; This shows the list of herbal plants recognized by the application in grid view. This is the default view for &lt;b&gt;&lt;i&gt;tablets.&lt;/i&gt;&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; Tap upper right button to change view.
+    </string>
+    
+    <string name="help_content4">
+        &lt;b&gt;Detailed View&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; This is the detailed view of every plant in the list. It includes the plant’s
+    	    &lt;i&gt;&lt;b&gt;pictures&lt;/b&gt;, 
+    	    &lt;b&gt;name&lt;/b&gt;, 
+    	    &lt;b&gt;scientific name&lt;/b&gt;, 
+    	    &lt;b&gt;common name&lt;/b&gt;, 
+    	    &lt;b&gt;vernacular name&lt;/b&gt;, 
+    	    &lt;b&gt;properties&lt;/b&gt;, 
+    	    &lt;b&gt;usage&lt;/b&gt;, and 
+    	    &lt;b&gt;availability&lt;/b&gt;.&lt;/i&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; &lt;b&gt;Web search&lt;/b&gt; button is available to give more information about the plant selected.
+    </string>
+    
+    <string name="help_content5">
+        &lt;b&gt;Expandable Sections&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; This shows the expanded version of the detailed view of every plant. When you click on the main list, it will show all the items under that list.
+    </string>
+    
+    <string name="help_content6">
+        &lt;b&gt;Full Image View&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; Tap on the plant\'s picture and you will see the full view of the image.
+    	&lt;br/&gt;&lt;br/&gt;&#8226; Pinch to zoom the picture.
+    </string>
+    
+    <string name="help_content7">
+        &lt;b&gt;Search&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; This application is also capable of searching for specific plant in the list. Upon entering your query, the list automatically lists all matching entries.
+    </string>
+    
+    <string name="help_content8">
+        &lt;b&gt;Search&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; An example of using the search functionality. The user typed in “&lt;i&gt;sa&lt;/i&gt;”, the application then displays the list of plants that contains with “&lt;i&gt;sa&lt;/i&gt;”. Search basis is upon the &lt;i&gt;plant’s name&lt;/i&gt; &lt;b&gt;OR&lt;/b&gt; &lt;i&gt;plant’s common name.&lt;/i&gt;
+    </string>
+    
+    <string name="help_content9">
+        &lt;b&gt;Sub Menus&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; Content please!! 
+    </string>
+    <!-- <string-array name="help_content1">
     	<item>&lt;b&gt;Welcome Screen&lt;/b&gt; – Touch the upper left icon to start.</item>
     </string-array>
     
@@ -49,5 +107,11 @@
     
     <string-array name="help_content9">
     	<item>An example of using the search functionality. The user typed in “&lt;i&gt;sa&lt;/i&gt;”, the application then displays the list of plants that contains with “&lt;i&gt;sa&lt;/i&gt;”. Search basis is upon the &lt;i&gt;plant’s name&lt;/i&gt; &lt;b&gt;OR&lt;/b&gt; &lt;i&gt;plant’s common name.&lt;/i&gt;</item>
-    </string-array>
+    </string-array> -->
 </resources>
+
+<!--
+	&#8226; = bullet
+	&lt; = <
+	&gt; = >
+ -->

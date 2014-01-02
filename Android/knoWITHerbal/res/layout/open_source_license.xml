@@ -11,9 +11,11 @@
         android:divider="@android:color/transparent"
         android:dividerHeight="2dp"
         android:drawSelectorOnTop="false"
+        android:listSelector="@drawable/selector"
         android:orientation="vertical"
         android:scrollingCache="true"
         android:smoothScrollbar="true" >
+
     </com.emilsjolander.components.stickylistheaders.StickyListHeadersListView>
 
 </FrameLayout>
