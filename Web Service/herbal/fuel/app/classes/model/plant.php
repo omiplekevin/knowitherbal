@@ -1,6 +1,8 @@
 <?php
 class Model_Plant extends \Orm\Model
 {
+	protected static $_belongs_to = array('images' => array('key_from' => 'id'));
+
 	protected static $_properties = array(
 		'id',
 		'name',

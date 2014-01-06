@@ -7,8 +7,8 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th>Plant id</th>
-			<th>Url</th>
+			<th>Plant Name</th>
+			<th>Image</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -16,7 +16,7 @@
 <?php foreach ($images as $item): ?>		<tr>
 
 			<td><?php echo $item->plant->name; ?></td>
-			<td><?php echo $item->url; ?></td>
+			<td><?php echo Html::img('herbals_photos/thumbs/'.$item->plant->id.'/'.$item->url); ?></td>
 			<td>
 				<?php echo Html::anchor('admin/images/view/'.$item->id, 'View'); ?> |
 				<?php echo Html::anchor('admin/images/edit/'.$item->id, 'Edit'); ?> |

@@ -3,18 +3,24 @@ class Controller_Admin_Plants extends Controller_Admin{
 
 	public function action_index()
 	{
-		$data['plants'] = Model_Plant::find('all');
+		$plant = Model_Plant::find('all', array('related' => array('images')));
+		
+		$data['plants'] = $plant;
+
 		$this->template->title = "Plants";
-		$this->template->content = View::forge('admin\plants/index', $data);
+		$this->template->content = View::forge('admin\plants/index', $data, array('plant' => $plant));
 
 	}
 
 	public function action_view($id = null)
 	{
-		$data['plant'] = Model_Plant::find($id);
+
+		$plant = Model_Plant::find($id, array('related' => array('images')));
+		
+		$data['plants'] = $plant;
 
 		$this->template->title = "Plant";
-		$this->template->content = View::forge('admin\plants/view', $data);
+		$this->template->content = View::forge('admin\plants/view', $data, array('plant' => $plant));
 
 	}
 

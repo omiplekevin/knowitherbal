@@ -1,26 +1,33 @@
-<h2>Viewing #<?php echo $plant->id; ?></h2>
+<h2>Viewing #<?php echo $plants->id; ?></h2>
 
 <p>
 	<strong>Name:</strong>
-	<?php echo $plant->name; ?></p>
+	<?php echo $plants->name; ?></p>
 <p>
 	<strong>Scientific names:</strong>
-	<?php echo $plant->scientific_names; ?></p>
+	<?php echo $plants->scientific_names; ?></p>
 <p>
 	<strong>Common names:</strong>
-	<?php echo $plant->common_names; ?></p>
+	<?php echo $plants->common_names; ?></p>
 <p>
 	<strong>Vernacular names:</strong>
-	<?php echo $plant->vernacular_names; ?></p>
+	<?php echo $plants->vernacular_names; ?></p>
 <p>
 	<strong>Properties:</strong>
-	<?php echo $plant->properties; ?></p>
+	<?php echo $plants->properties; ?></p>
 <p>
 	<strong>Usage:</strong>
-	<?php echo $plant->usage; ?></p>
+	<?php echo $plants->usage; ?></p>
 <p>
 	<strong>Filename:</strong>
-	<?php echo $plant->filename; ?></p>
+	<?php echo $plants->filename; ?></p>
+<p>
+	<strong>Images:</strong>
+	<?php foreach ($plants->images as $images):?>
+	<?php //echo Html::img('herbals_photos/thumbs/'.$images->plant->id.'/'.$images->url);
+    echo $images->id;
+	 ?>
+	<?php endforeach ?> </p>
 
-<?php echo Html::anchor('admin/plants/edit/'.$plant->id, 'Edit'); ?> |
+<?php echo Html::anchor('admin/plants/edit/'.$plants->id, 'Edit'); ?> |
 <?php echo Html::anchor('admin/plants', 'Back'); ?>
