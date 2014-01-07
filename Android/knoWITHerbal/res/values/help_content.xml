@@ -4,19 +4,21 @@
     
     <string name="help_content2">
     	&lt;b&gt;Main Menu&lt;/b&gt;&lt;br/&gt; &#8226; This shows the basic options the user can use. This includes &lt;b&gt;Camera&lt;/b&gt;, &lt;b&gt;Plant List&lt;/b&gt;, &lt;b&gt;The Application&lt;/b&gt; and &lt;b&gt;Open Source Licenses&lt;/b&gt;. 
-    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt; Camera&lt;/b&gt;&lt;br/&gt; &#8226; Allows you to access the phone’s camera to take pictures for recognition.
-    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt; Plant List&lt;/b&gt;&lt;br/&gt; &#8226; Allows you to view the list of plant recognized by this application.
-    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt; The Application&lt;/b&gt;&lt;br/&gt; &#8226; Informs you about the applications features, Help section, Update section and Developers Section.
-    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt; Open Source Licenses&lt;/b&gt;&lt;br/&gt; &#8226; Licenses of the libraries used for making this application.
+    	&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt; Camera&lt;/b&gt;&lt;br/&gt; &#8226; Allows you to access the phone’s camera to take pictures for recognition.
+    	&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt; Plant List&lt;/b&gt;&lt;br/&gt; &#8226; Allows you to view the list of plant recognized by this application.
+    	&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt; The Application&lt;/b&gt;&lt;br/&gt; &#8226; Informs you about the applications features, Help section, Update section and Developers Section.
+    	&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt; Open Source Licenses&lt;/b&gt;&lt;br/&gt; &#8226; Licenses of the libraries used for making this application.
     </string>
     
     <string name="help_content3">
         &lt;b&gt;1. View Toggle (to List View)&lt;/b&gt;
-    	&lt;br/&gt;&lt;br/&gt;&#8226; This shows the list of herbal plants recognized by the application in list view. This is the default view for &lt;b&gt;&lt;i&gt;smart phones.&lt;/i&gt;&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; This shows the list of herbal plants recognized by the application in list view. This is the default view for &lt;b&gt;&lt;i&gt;smart phone devices.&lt;/i&gt;&lt;/b&gt;
     	&lt;br/&gt;&lt;br/&gt;&#8226; Tap upper right button to change view.
-    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt;2. View Toggle (to Grid View)&lt;/b&gt;
-    	&lt;br/&gt;&lt;br/&gt;&#8226; This shows the list of herbal plants recognized by the application in grid view. This is the default view for &lt;b&gt;&lt;i&gt;tablets.&lt;/i&gt;&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;2. View Toggle (to *Grid View)&lt;/b&gt;
+    	&lt;br/&gt;&lt;br/&gt;&#8226; This shows the list of herbal plants recognized by the application in grid view. This is the default view for &lt;b&gt;&lt;i&gt;tablet devices.&lt;/i&gt;&lt;/b&gt;
     	&lt;br/&gt;&lt;br/&gt;&#8226; Tap upper right button to change view.
+    	&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;b&gt;*NOTICE[BETA]:&lt;/b&gt;
+    	&lt;hr/&gt;&lt;br/&gt;&#8226; Some users may encounter wrong image presentation while viewing Grid View mode running on Gingerbread 2.3.6 (API 10). This is caused by slow Read/Write by the device.
     </string>
     
     <string name="help_content4">
@@ -30,7 +32,7 @@
     	    &lt;b&gt;properties&lt;/b&gt;, 
     	    &lt;b&gt;usage&lt;/b&gt;, and 
     	    &lt;b&gt;availability&lt;/b&gt;.&lt;/i&gt;
-    	&lt;br/&gt;&lt;br/&gt;&#8226; &lt;b&gt;Web search&lt;/b&gt; button is available to give more information about the plant selected.
+    	&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&#8226; &lt;b&gt;Web search&lt;/b&gt; button is available to give more information about the plant selected.
     </string>
     
     <string name="help_content5">

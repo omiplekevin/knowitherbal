@@ -29,10 +29,17 @@
         </string>
         
     <string name="action_search">List Search</string>
-    <string name="subtitle">a herbal leaf identifier&#8230;</string>
+    <string name="subtitle"><i>a herbal leaf identifier&#8230;</i></string>
     
     <string name="dummy">
         Content please!!
     </string>
-
+    
+    <string name="camera_help1">
+        <b>Controlled Environment</b>\n\n&#8226; When capturing a plant\'s leaf, place the plant above a white surface.
+        </string>
+        
+    <string name="camera_help2">
+        <b>Well-Lit Environment</b>\n\n&#8226; Well-Lit environment can produce good image and can lead to better results.
+        </string>
 </resources>

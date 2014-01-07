@@ -4,15 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <TextView
+    <com.adapter.CustomTextView
         android:id="@+id/exListItem"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="17dip"
-        android:paddingTop="5dp"
+        android:background="#DEDEDE"
         android:paddingBottom="5dp"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
-        android:background="#DEDEDE" />
-    
+        android:paddingTop="5dp"
+        android:textAppearance="@android:style/TextAppearance.Medium" />
 
 </LinearLayout>

@@ -7,6 +7,11 @@ public class PublishModel {
 	public String created_at;
 	public String updated_at;
 	
+	public int getpublishID()
+	{
+		return publishID;
+	}
+	
 	public String getComment()
 	{
 		return comment;

@@ -202,6 +202,7 @@ public class Queries {
 		sqliteDB  = dbHelper.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
+//		values.put("pID", plant.getpID());
 		values.put("name", plant.getName());
 		values.put("scientific_name", plant.getScientific());
 		values.put("common_names", plant.getCommon());
@@ -219,6 +220,7 @@ public class Queries {
 		sqliteDB  = dbHelper.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
+//		values.put("imgID", images.getimgID());
 		values.put("pID", images.getpID());
 		values.put("url", images.getUrl());
 		
@@ -232,6 +234,7 @@ public class Queries {
 		sqliteDB  = dbHelper.getWritableDatabase();
 		
 		ContentValues values = new ContentValues();
+//		values.put("publishID", publish.getpublishID());
 		values.put("comment", publish.getComment());
 		values.put("created_at", publish.getCreatedAt());
 		values.put("updated_at", publish.getUpdatedAt());

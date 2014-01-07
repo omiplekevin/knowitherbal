@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|center" >
 
-                    <TextView
+                    <com.adapter.CustomTextView
                         android:id="@+id/title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -83,15 +83,15 @@
 
                             <ImageButton
                                 android:id="@+id/howto"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
                                 android:layout_gravity="center|center"
                                 android:layout_weight="1"
                                 android:background="@drawable/imagebutton"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/help" />
 
-                            <TextView
+                            <com.adapter.CustomTextView
                                 android:id="@+id/content"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -113,14 +113,14 @@
 
                             <ImageButton
                                 android:id="@+id/update"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
                                 android:layout_gravity="center|center"
                                 android:background="@drawable/imagebutton"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/update" />
 
-                            <TextView
+                            <com.adapter.CustomTextView
                                 android:id="@+id/textView2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -148,13 +148,15 @@
 
                             <ImageButton
                                 android:id="@+id/developer"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
                                 android:layout_gravity="center|center"
+                                android:layout_weight="1"
                                 android:background="@drawable/imagebutton"
-                                android:src="@drawable/dev" />
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/developers" />
 
-                            <TextView
+                            <com.adapter.CustomTextView
                                 android:id="@+id/publish_info"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -176,13 +178,14 @@
 
                             <ImageButton
                                 android:id="@+id/about"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
                                 android:layout_gravity="center|center"
                                 android:background="@drawable/imagebutton"
+                                android:scaleType="fitCenter"
                                 android:src="@drawable/about" />
 
-                            <TextView
+                            <com.adapter.CustomTextView
                                 android:id="@+id/textView4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

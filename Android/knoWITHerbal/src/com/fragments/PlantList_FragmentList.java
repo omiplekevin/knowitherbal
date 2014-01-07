@@ -63,6 +63,7 @@ public class PlantList_FragmentList extends SherlockFragment{
 		super.onViewCreated(view, savedInstanceState);
 		getSherlockActivity().getSupportActionBar().setTitle("Plant List");
 		
+		
 		clearBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override

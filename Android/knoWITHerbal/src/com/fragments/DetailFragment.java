@@ -86,6 +86,7 @@ public class DetailFragment extends SherlockFragment{
 				// TODO Auto-generated method stub
 				Intent search = new Intent();
 				search.setAction(Intent.ACTION_WEB_SEARCH);
+				search.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				search.putExtra(SearchManager.QUERY, plantItem.getName() + " Plant");
 				startActivity(search);
 			}

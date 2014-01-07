@@ -44,7 +44,7 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 			
 			holder = new Holder();
 			final TextView plantName = (TextView)convertView.findViewById(R.id.plantName);
-			final TextView primeDetail = (TextView)convertView.findViewById(R.id.visit);
+			final TextView primeDetail = (TextView)convertView.findViewById(R.id.primeDetail);
 			final ImageView imageView = (ImageView)convertView.findViewById(R.id.plantImageView);
 			final ProgressBar pb1 = (ProgressBar)convertView.findViewById(R.id.progressBar1);
 			final ProgressBar pb2 = (ProgressBar)convertView.findViewById(R.id.progressBar2);
@@ -88,8 +88,7 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 		        v.imageView.setImageBitmap(result);
 		        AnimatorSet anim = new AnimatorSet();
 				anim.playTogether(
-						ObjectAnimator.ofFloat(v.imageView, "alpha", 0, 0.8f, 1),
-						ObjectAnimator.ofFloat(v.imageView, "translationX", -50, 0)
+						ObjectAnimator.ofFloat(v.imageView, "alpha", 0, 0.5f, 1)
 						);
 				anim.setDuration(500);
 				anim.start();
@@ -97,6 +96,18 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 		};
 		
 		loadDetail.execute(holder);
+		
+		if(Config.FUNMODE){
+			AnimatorSet viewAnim = new AnimatorSet();
+			viewAnim.playSequentially(
+					/*ObjectAnimator.ofFloat(convertView, "translationY", 30,0),*/
+					ObjectAnimator.ofFloat(convertView, "rotationY", 90,-30),
+					ObjectAnimator.ofFloat(convertView, "rotationY", -30,10),
+					ObjectAnimator.ofFloat(convertView, "rotationY", 10,0)
+					);
+			viewAnim.setDuration(300);
+			viewAnim.start();
+		}
 		
 		return convertView;
 	}

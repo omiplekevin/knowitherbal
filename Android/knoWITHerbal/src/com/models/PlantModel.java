@@ -17,7 +17,7 @@ public class PlantModel {
 	
 	public ArrayList<String> imgUrls;
 	
-	
+	public int getpID() { return pID; }
 	public String getName() {	return name;	}
 	public String getScientific(){	return scientific_name;   }
 	public String getCommon()	{	return common_names;		}

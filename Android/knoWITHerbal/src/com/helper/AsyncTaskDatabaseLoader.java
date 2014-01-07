@@ -21,6 +21,7 @@ import android.os.Build;
 import android.util.Log;
 
 import com.config.Config;
+import com.utilities.Utilities;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{

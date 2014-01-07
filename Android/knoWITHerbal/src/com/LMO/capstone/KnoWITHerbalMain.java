@@ -2,6 +2,7 @@ package com.LMO.capstone;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -43,7 +44,7 @@ import com.fragments.TheApplication;
 import com.fragments.Welcome;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
-import com.helper.Utilities;
+import com.utilities.Utilities;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class KnoWITHerbalMain extends SherlockFragmentActivity{
@@ -125,10 +126,11 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
             	dbHelper = new DatabaseHelper(this);
             	if(files.length == 1 || files.length < Queries.getImageEntryCount(sqliteDB, dbHelper))
             	{
+            		
+            		Queries.truncateDatabase(sqliteDB, dbHelper, getApplicationContext());
             		util.PrepareFileForDatabase();// will run on thread
             	}
             }
-            
           //END OF FIRST RUN OF THE APPLICATION============================================
         }
 		

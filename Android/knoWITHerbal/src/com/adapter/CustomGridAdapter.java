@@ -2,6 +2,7 @@ package com.adapter;
 
 import java.util.ArrayList;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -99,7 +100,9 @@ public class CustomGridAdapter extends BaseAdapter{
 					super.onPostExecute(result);
 					view.imageView.setImageBitmap(result);
 					AnimatorSet anim = new AnimatorSet();
-					if(position%2 == 0){
+					anim.playTogether(
+							ObjectAnimator.ofFloat(view.imageView, "alpha", 0, 0.5f, 1));
+					/*if(position%2 == 0){
 						anim.playTogether(
 								ObjectAnimator.ofFloat(view.imageView, "alpha", 0, 0.5f, 1),
 								ObjectAnimator.ofFloat(view.imageView, "translationX", 50, 0));
@@ -109,8 +112,8 @@ public class CustomGridAdapter extends BaseAdapter{
 						anim.playTogether(
 								ObjectAnimator.ofFloat(view.imageView, "alpha", 0, 0.5f, 1),
 								ObjectAnimator.ofFloat(view.imageView, "translationX", -50, 0));
-					}
-					anim.setDuration(500);
+					}*/
+					anim.setDuration(400);
 					anim.start();
 				}
 				
@@ -119,6 +122,17 @@ public class CustomGridAdapter extends BaseAdapter{
 			loadThumbnail.execute(holder);
 			
 			holder.textView.setText(items.get(position).getName());
+			if(Config.FUNMODE){
+				AnimatorSet viewAnim = new AnimatorSet();
+				viewAnim.playSequentially(
+						/*ObjectAnimator.ofFloat(convertView, "translationY", 30,0),*/
+						ObjectAnimator.ofFloat(convertView, "rotationY", 90,-30),
+						ObjectAnimator.ofFloat(convertView, "rotationY", -30,10),
+						ObjectAnimator.ofFloat(convertView, "rotationY", 10,0)
+						);
+				viewAnim.setDuration(300);
+				viewAnim.start();
+			}
 
 		return convertView;
 	}

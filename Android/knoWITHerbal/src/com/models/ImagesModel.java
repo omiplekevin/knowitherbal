@@ -6,6 +6,11 @@ public class ImagesModel {
 	public int pID;
 	public String url;
 
+	public int getimgID()
+	{
+		return imgID;
+	}
+	
 	public int getpID()
 	{
 		return pID;

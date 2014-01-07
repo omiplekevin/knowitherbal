@@ -27,6 +27,7 @@ import com.config.Config;
 import com.models.ImagesModel;
 import com.models.PlantModel;
 import com.models.PublishModel;
+import com.utilities.Utilities;
 
 public class XMLParser {
 

@@ -39,7 +39,7 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/camera_lens_white" />
 
-                <TextView
+                <com.adapter.CustomTextView
                     android:id="@+id/content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,13 +53,68 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|center"
-                android:text="Tips for better result:\nblah blah blah"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10dp"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:text="Tips:"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="italic|bold" />
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center|center"
+                        android:layout_marginTop="@dimen/margin_20dp"
+                        android:src="@drawable/capture_plant" />
+
+                    <com.adapter.CustomTextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:layout_marginRight="@dimen/margin_20dp"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:text="@string/camera_help1"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center|center"
+                        android:layout_marginTop="@dimen/margin_20dp"
+                        android:src="@drawable/high_lights" />
+                    
+                    <com.adapter.CustomTextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center"
+                        android:layout_marginBottom="@dimen/margin_20dp"
+                        android:layout_marginLeft="@dimen/margin_20dp"
+                        android:layout_marginRight="@dimen/margin_20dp"
+                        android:layout_marginTop="@dimen/margin_10dp"
+                        android:text="@string/camera_help2"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                </LinearLayout>
+            </ScrollView>
+
         </FrameLayout>
     </LinearLayout>
 

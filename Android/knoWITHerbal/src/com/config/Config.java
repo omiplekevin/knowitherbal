@@ -36,7 +36,13 @@ public class Config {
 	
 	public static Typeface fontFace(Context context)
 	{
-		Typeface font = Typeface.createFromAsset(context.getAssets(), "MicroFLF.ttf");
+		Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/MicroFLF.ttf");
+		return font;
+	}
+	
+	public static Typeface globalFont(Context context)
+	{
+		Typeface font = Typeface.createFromAsset(context.getAssets(), "fonts/Vera.ttf");
 		return font;
 	}
 	
@@ -101,5 +107,7 @@ public class Config {
 	 * ***********************************************************/
 	
 	public static String OCVpkg = "OpenCV_2.4.7.1_Manager_2.15_armeabi.apk";
+	
+	public static boolean FUNMODE = false;
 	
 }

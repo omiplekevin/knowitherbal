@@ -1,8 +1,14 @@
-package com.helper;
+package com.utilities;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.helper.AsyncTaskDatabaseLoader;
+import com.helper.AsyncTaskImageDownload;
+import com.helper.DatabaseHelper;
+import com.helper.OpenCVManagerDownloader;
+import com.helper.Queries;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

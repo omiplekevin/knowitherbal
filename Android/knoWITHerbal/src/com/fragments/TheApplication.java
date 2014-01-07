@@ -22,7 +22,7 @@ import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.helper.AsyncTaskUpdateCheck;
 import com.helper.DatabaseHelper;
-import com.helper.Utilities;
+import com.utilities.Utilities;
 
 public class TheApplication extends SherlockFragment{
 

@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
+import com.config.Config;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
 import com.models.PublishModel;
@@ -27,6 +30,8 @@ public class About extends SherlockFragment{
 	private PublishModel pubInfo;
 	private SQLiteDatabase sqliteDB;
 	private DatabaseHelper dbHelper;
+	private long lastClick;
+	private int comboClick;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +48,7 @@ public class About extends SherlockFragment{
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
+		comboClick = 0;
 		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>About</i>"));
 		logo = (ImageView)view.findViewById(R.id.webBtn);
 		title = (ImageView)view.findViewById(R.id.imageView3);
@@ -74,6 +80,36 @@ public class About extends SherlockFragment{
 		
 		publishInfo.setText(Html.fromHtml("Content publish date:<br/><b>"+pubInfo.getCreatedAt()+"</b>.<br/><br/>" +
 				"Remarks:<br/>\"<i>"+pubInfo.getComment()+"</i>\"<br/><br/>"));
+		
+		logo.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				long currentTime = System.currentTimeMillis();
+				if((currentTime-lastClick) < 1000)
+				{
+					comboClick++;
+					if(comboClick == 5)
+					{
+						if(!Config.FUNMODE)
+						{
+							Toast.makeText(getSherlockActivity(), "FUNMODE! Check your plant lists! ^_^", Toast.LENGTH_LONG).show();
+							Config.FUNMODE = true;
+						}
+						else
+						{
+							Toast.makeText(getSherlockActivity(), "FUNMODE disabled", Toast.LENGTH_LONG).show();
+							Config.FUNMODE = false;
+						}
+					}
+				}
+				else
+				{
+					lastClick = currentTime;
+					comboClick = 0;
+				}
+			}
+		});
 		
 	}
 

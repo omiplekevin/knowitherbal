@@ -68,7 +68,7 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/to_left" />
 
-            <TextView
+            <com.adapter.CustomTextView
                 android:id="@+id/textView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

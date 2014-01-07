@@ -14,14 +14,27 @@ with data		new publish			download data
 with data		new publish with	incomplete data(info & photos)
 				incomplete data		contents
 				(info & photos)
-
 				
+###########################
+UNRESOLVED ISSUES:
+###########################
+	plant list, index 0, after intent to web search and abrupt back to app, API Lvl. 10 crashes.
+		= NORMAL, RAM Allocation, Low RAM Allocation Process.
+
+###########################
 TO DO:
+###########################
+
+	GENERAL:
+		PK IDs is not synchronized
+			=RESOLUTION: 
+			
 	Android App:
 		*group codes for easy debugging
 		*SEE: C:\My Files\Personal Files\My Pictures\draftKnowItHerbal\Screenshots
 		***REFINE ALGORITHM AND RESULT ITEMS(URGENT!!!!!)
-
+		*CV ninyo + Pics
+		
 		[TABLET]
 		*post analysis of image, app will crash (maybe RAM issues)
 		
@@ -41,3 +54,4 @@ TO DO:
 		*image slider
 		*homepage content
 		*UI for better UX
+		*Update auto-increment in web service upon delete of an item...

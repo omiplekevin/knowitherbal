@@ -23,6 +23,7 @@ import android.text.Html;
 import android.util.Log;
 
 import com.config.Config;
+import com.utilities.Utilities;
 
 public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 	
@@ -83,8 +84,10 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 			Log.i("URL", urls.get(i));
 			try {
 				//real size--------------------------------------------
-				URL url = new URL(Config.imagehostURL + urls.get(i));
-				URL thumbs_url = new URL(Config.imagehostURL + Config.thumbsURL + urls.get(i));
+				String urlString = urls.get(i);
+				URL url = new URL(Config.imagehostURL + urlString);
+				String[] splitForThumbs = urlString.split("/");
+				URL thumbs_url = new URL(Config.imagehostURL + splitForThumbs[0] +Config.thumbsURL + splitForThumbs[1]);
 				
 				Log.e("URL image", urls.get(i));
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -101,7 +104,7 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
                 FileOutputStream stream = new FileOutputStream(Config.externalDirectory + file);
                 ByteArrayOutputStream outstream = new ByteArrayOutputStream();
                 
-                myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
+                myBitmap.compress(Bitmap.CompressFormat.JPEG, 40, outstream);
                 byte[] byteArray = outstream.toByteArray();
                 stream.write(byteArray);
                 stream.close();
@@ -120,7 +123,7 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
                 stream = new FileOutputStream(Config.externalDirectory + ".thumbnail/" + file);
                 outstream = new ByteArrayOutputStream();
                 
-                myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
+                myBitmap.compress(Bitmap.CompressFormat.JPEG, 40, outstream);
                 byteArray = outstream.toByteArray();
                 stream.write(byteArray);
                 stream.close();
