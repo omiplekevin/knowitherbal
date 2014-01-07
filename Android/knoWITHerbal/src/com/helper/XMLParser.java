@@ -2,6 +2,7 @@ package com.helper;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -377,5 +378,44 @@ public class XMLParser {
 		}
 		
 		return publish;
+	}
+	
+	public boolean checkPublish(String source) throws XmlPullParserException, IOException
+	{
+		boolean hasPublish = false;
+		File file = new File(Config.externalDirectory + source);
+		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+		factory.setNamespaceAware(true);
+		XmlPullParser parser = factory.newPullParser();
+		
+		parser.setInput(new FileReader(file));
+		int eventType = parser.getEventType();
+		String tagName = "";
+		while(eventType != XmlPullParser.END_DOCUMENT)
+		{
+			if(eventType == XmlPullParser.START_DOCUMENT){
+			}
+			else if(eventType == XmlPullParser.END_DOCUMENT){
+				
+			}
+			else if(eventType == XmlPullParser.START_TAG){
+//				Log.e("XmlPullParser", "Start Tag " + parser.getName());
+				
+				tagName = parser.getName();
+			}
+			else if(eventType == XmlPullParser.END_TAG){
+				tagName = "";
+			}
+			else if(eventType == XmlPullParser.TEXT){
+				if(tagName.equals(Config.KEY_CREATEDAT)){
+					hasPublish = true;
+				}
+				else if(tagName.equals(Config.KEY_UPDATEDAT)){
+				}
+			}
+			eventType = parser.next();
+		}
+		
+		return hasPublish;
 	}
 }

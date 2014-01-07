@@ -26,9 +26,7 @@ TO DO:
 ###########################
 
 	GENERAL:
-		PK IDs is not synchronized
-			=RESOLUTION: 
-			
+	
 	Android App:
 		*group codes for easy debugging
 		*SEE: C:\My Files\Personal Files\My Pictures\draftKnowItHerbal\Screenshots

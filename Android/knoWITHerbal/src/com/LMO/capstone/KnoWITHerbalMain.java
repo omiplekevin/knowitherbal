@@ -1,10 +1,15 @@
 package com.LMO.capstone;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,6 +25,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Html;
 import android.util.Log;
 import android.view.ActionProvider;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -44,6 +50,7 @@ import com.fragments.TheApplication;
 import com.fragments.Welcome;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
+import com.helper.XMLParser;
 import com.utilities.Utilities;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -113,7 +120,8 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 				ft.replace(R.id.frame_content, howto);
 				ft.addToBackStack("help");
 				ft.commit();
-            	util.PrepareFileForDatabase();//will run on thread
+				if(util.isNetworkAvailable())
+					performDownload();
             }
             else
             {
@@ -126,9 +134,9 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
             	dbHelper = new DatabaseHelper(this);
             	if(files.length == 1 || files.length < Queries.getImageEntryCount(sqliteDB, dbHelper))
             	{
-            		
             		Queries.truncateDatabase(sqliteDB, dbHelper, getApplicationContext());
-            		util.PrepareFileForDatabase();// will run on thread
+            		if(util.isNetworkAvailable())
+    					performDownload();
             	}
             }
           //END OF FIRST RUN OF THE APPLICATION============================================
@@ -154,9 +162,32 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 	}
 	
 	//end of onCreate()
-	
-	
-	
+	private void performDownload()
+	{
+		XMLParser preParser = new XMLParser(this);
+		preParser.grabXML(Config.xmlhostURL, Config.publishXML, false);
+		try {
+			if(preParser.checkPublish(Config.publishXML))
+				util.PrepareFileForDatabase();//will run on thread
+			else{
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				AlertDialog dialog = builder.create();
+				dialog.setTitle("Oops!");
+				dialog.setMessage("We are currently digging up herbal plant data. Hold on! Check for updates anytime.");
+				dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Dismiss", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						dialog.dismiss();
+					}
+				});
+				dialog.show();
+			}
+		}
+		catch (XmlPullParserException e) {}
+		catch (IOException e) {}
+	}
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub

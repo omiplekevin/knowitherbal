@@ -1,13 +1,16 @@
 package com.helper;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 import org.apache.http.params.BasicHttpParams;
@@ -81,13 +84,64 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 		// TODO Auto-generated method stub
 		for(int i=0;i<urls.size();i++)
 		{
-			Log.i("URL", urls.get(i));
+//			Log.i("URL", urls.get(i));
+			int count;
+			String[] splitURL = urls.get(i).split("/");
+			/*FOR REAL DIMENSION IMAGE*/
+			
 			try {
-				//real size--------------------------------------------
-				String urlString = urls.get(i);
+				URL url = new URL(Config.imagehostURL + splitURL[0]+"/"+splitURL[1]);
+				URLConnection conexion = url.openConnection();
+				conexion.connect();
+
+				int lenghtOfFile = conexion.getContentLength();
+				Log.e("ANDRO_ASYNC", "Lenght of file: " + lenghtOfFile);
+
+				InputStream input = new BufferedInputStream(url.openStream());
+				OutputStream output = new FileOutputStream(Config.externalDirectory + splitURL[1]);
+
+				byte data[] = new byte[1024];
+
+				long total = 0;
+
+					while ((count = input.read(data)) != -1) {
+						output.write(data, 0, count);
+					}
+
+					output.flush();
+					output.close();
+					input.close();
+				} catch (Exception e) {}
+			
+			try {
+				URL url = new URL(Config.imagehostURL + splitURL[0]+ "/" + Config.thumbsURL + splitURL[1]);
+				URLConnection conexion = url.openConnection();
+				conexion.connect();
+
+				int lenghtOfFile = conexion.getContentLength();
+				Log.e("ANDRO_ASYNC", "Lenght of file: " + lenghtOfFile);
+
+				InputStream input = new BufferedInputStream(url.openStream());
+				OutputStream output = new FileOutputStream(Config.externalDirectory + ".thumbnail/" + splitURL[1]);
+
+				byte data[] = new byte[1024];
+
+				long total = 0;
+
+					while ((count = input.read(data)) != -1) {
+						output.write(data, 0, count);
+					}
+
+					output.flush();
+					output.close();
+					input.close();
+				} catch (Exception e) {}
+			/*try {
+				real size--------------------------------------------*/
+				/*String urlString = urls.get(i);
 				URL url = new URL(Config.imagehostURL + urlString);
 				String[] splitForThumbs = urlString.split("/");
-				URL thumbs_url = new URL(Config.imagehostURL + splitForThumbs[0] +Config.thumbsURL + splitForThumbs[1]);
+				URL thumbs_url = new URL(Config.imagehostURL + splitForThumbs[0] + "/" +Config.thumbsURL + splitForThumbs[1]);
 				
 				Log.e("URL image", urls.get(i));
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -104,12 +158,13 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
                 FileOutputStream stream = new FileOutputStream(Config.externalDirectory + file);
                 ByteArrayOutputStream outstream = new ByteArrayOutputStream();
                 
-                myBitmap.compress(Bitmap.CompressFormat.JPEG, 40, outstream);
-                byte[] byteArray = outstream.toByteArray();
+                myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
+                final int BUFFER_SIZE = 45 * 1024;
+                byte[] byteArray = new byte[BUFFER_SIZE];
                 stream.write(byteArray);
                 stream.close();
                 
-                //thumbnails------------------------------------------------
+                thumbnails------------------------------------------------
                 HttpURLConnection thumb_connection = (HttpURLConnection) thumbs_url.openConnection();
                 thumb_connection.setDoInput(true);
                 thumb_connection.connect();
@@ -123,19 +178,17 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
                 stream = new FileOutputStream(Config.externalDirectory + ".thumbnail/" + file);
                 outstream = new ByteArrayOutputStream();
                 
-                myBitmap.compress(Bitmap.CompressFormat.JPEG, 40, outstream);
+                myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
                 byteArray = outstream.toByteArray();
                 stream.write(byteArray);
                 stream.close();
                 Runtime.getRuntime().gc();
                 
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 			publishProgress();
 		}
 		return null;
