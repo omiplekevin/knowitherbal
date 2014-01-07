@@ -96,7 +96,13 @@ class Controller_Admin_Publish extends Controller_Admin{
 	{
 		if ($publish = Model_Publish::find($id))
 		{
+			$query = DB::query("SELECT `id` FROM `publishes` ORDER BY `id` DESC LIMIT 1")->execute()->as_array();
+
 			$publish->delete();
+
+			// print_r($query);
+			// exit();
+			$query2 = DB::query("ALTER TABLE `publishes` AUTO_INCREMENT = ".$query[0]["id"])->execute();
 
 			Session::set_flash('success', e('Deleted publish #'.$id));
 		}

@@ -9,7 +9,7 @@
 
 <p>
 	<strong>Thumbnail:</strong>
-	<?php echo Html::img('herbals_photos/thumbs/'.$image->plant->id.'/'.$image->url); ?></p>
+	<?php echo Html::img('herbals_photos/'.$image->plant->id.'/thumbs/'.$image->url); ?></p>
 
 <?php echo Html::anchor('admin/images/edit/'.$image->id, 'Edit'); ?> |
 <?php echo Html::anchor('admin/images', 'Back'); ?>

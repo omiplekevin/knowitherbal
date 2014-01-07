@@ -64,7 +64,7 @@ class Controller_Admin_Plants extends Controller_Admin{
 
 									//$parse = simplexml_load_file('http://herbal.dev/herbals/'.$plant->filename);
 									//$parse = simplexml_load_file('http://localhost/herbal/public/herbals/'.$plant->filename);
-									$parse = simplexml_load_file('http://192.168.180.1:9980/herbal/public/herbals/'.$plant->filename);
+									$parse = simplexml_load_file('http://localhost/herbal/public/herbals/'.$plant->filename);
 									foreach ($parse as $input){
 									$name = $input->name;
 									$sciname = $input->sci_name;
@@ -124,14 +124,14 @@ class Controller_Admin_Plants extends Controller_Admin{
 
 			if ($plant->save())
 			{
-				Session::set_flash('success', e('Updated plant #' . $id));
+				Session::set_flash('success', e('Updated plant '.$plant->name.'.'));
 
 				Response::redirect('admin/plants');
 			}
 
 			else
 			{
-				Session::set_flash('error', e('Could not update plant #' . $id));
+				Session::set_flash('error', e('Could not update plant '.$plant->name.'.'));
 			}
 		}
 
@@ -163,16 +163,27 @@ class Controller_Admin_Plants extends Controller_Admin{
 		if ($plant = Model_Plant::find($id))
 		{
 			$plant->delete();
+			// $query = DB::select('id')->from('plants')->order_by('id', 'desc')->limit(1);
+			
+			$query = DB::query("SELECT `id` FROM `plants` ORDER BY `id` DESC LIMIT 1")->execute()->as_array();
 
-			Session::set_flash('success', e('Deleted plant #'.$id));
+			// print_r($query);
+			// exit();
+
+			$query2 = DB::query("ALTER TABLE `plants` AUTO_INCREMENT = ".$query[0]["id"])->execute();
+
+
+			Session::set_flash('success', e('Deleted plant '.$plant->name.'.'));
+
 		}
 
 		else
 		{
-			Session::set_flash('error', e('Could not delete plant #'.$id));
+			Session::set_flash('error', e('Could not delete plant '.$plant->name.'.'));
 		}
 
 		Response::redirect('admin/plants');
+
 
 	}
 

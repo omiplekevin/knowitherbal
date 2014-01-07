@@ -4,17 +4,22 @@
 	<meta charset="utf-8">
 	<title><?php echo "knoWITHerbal - ".$title; ?></title>
 	<?php echo Asset::css('bootstrap.css'); ?>
+	<?php echo Asset::css('paginate.css'); ?>
 	<style>
 		body { margin: 50px; }
 	</style>
 	<?php echo Asset::js(array(
 		'jquery.min.js',
-		'bootstrap.js'
+		'bootstrap.js',
+		'seemore.js',
+		'custom.js',
+		'jquery.paginate.js',
+		'jquery.paginate.min.js'
 	)); ?>
 	<script>
 		$(function(){ $('.topbar').dropdown(); });
 	</script>
-	<link rel="shortcut icon" href="http://omiplekevin:9980/herbal/public/assets/img/fav_icon.ico" />
+	<link rel="shortcut icon" href="http://localhost/herbal/public/assets/img/fav_icon.ico" />
 </head>
 <body>
 

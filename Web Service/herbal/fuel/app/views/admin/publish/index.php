@@ -1,6 +1,10 @@
 <h2>Publish Listing</h2>
 <br>
 <?php if ($publishes): ?>
+
+	<div id = "paginate" style = "float: right"></div><br><br>
+	<div id = "status" style = "float: right; margin-right: -150px"></div>
+	
 <table class="table table-striped">
 	<thead>
 		<tr>

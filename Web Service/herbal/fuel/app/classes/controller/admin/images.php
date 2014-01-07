@@ -63,9 +63,17 @@ class Controller_Admin_Images extends Controller_Admin{
 							$upload_count++;
 
 			    			// Read the contents of a directory
+			    			try
+							{
+							    $dir = File::create_dir(DOCROOT.'herbals_photos', $image->plant_id, 0755, null);
+							}
+							catch(\FileAccessException $e)
+							{
+							    // Operation failed
+							}
 							try
 							{
-							    $dir = File::create_dir(DOCROOT.'herbals_photos/thumbs/',$image->plant_id, 0755, null);
+							    $dir = File::create_dir(DOCROOT.'herbals_photos/'.$image->plant_id,'/thumbs', 0755, null);
 							}
 							catch(\FileAccessException $e)
 							{
@@ -73,7 +81,7 @@ class Controller_Admin_Images extends Controller_Admin{
 							}
 							Image::load('herbals_photos/'.$image->plant_id.'/'.$image->url)
 								->crop_resize(128, 128)
-							    ->save('herbals_photos/thumbs/'.$image->plant_id.'/'.$image->url);
+							    ->save('herbals_photos/'.$image->plant_id.'/thumbs/'.$image->url);
 
 						}
 
@@ -169,6 +177,9 @@ class Controller_Admin_Images extends Controller_Admin{
 		if ($image = Model_Image::find($id))
 		{
 			$image->delete();
+
+			$query = DB::query("SELECT `id` FROM `images` ORDER BY `id` DESC LIMIT 1")->execute()->as_array();
+			$query2 = DB::query("ALTER TABLE `images` AUTO_INCREMENT = ".$query[0]["id"])->execute();
 
 			Session::set_flash('success', e('Deleted image #'.$id));
 		}

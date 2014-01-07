@@ -25,7 +25,7 @@
 	<strong>Images:</strong>
 	<?php foreach ($plants->images as $images):?>
 	<?php //echo Html::img('herbals_photos/thumbs/'.$images->plant->id.'/'.$images->url);
-    echo $images->id;
+    //echo $images->id;
 	 ?>
 	<?php endforeach ?> </p>
 
