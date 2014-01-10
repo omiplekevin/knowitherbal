@@ -5,6 +5,8 @@
 	<title><?php echo "knoWITHerbal - ".$title; ?></title>
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('paginate.css'); ?>
+	<?php echo Asset::css('uploadfile.css'); ?>
+
 	<style>
 		body { margin: 50px; }
 	</style>
@@ -14,7 +16,8 @@
 		'seemore.js',
 		'custom.js',
 		'jquery.paginate.js',
-		'jquery.paginate.min.js'
+		'jquery.paginate.min.js',
+		'jquery.uploadfile.min.js'
 	)); ?>
 	<script>
 		$(function(){ $('.topbar').dropdown(); });

@@ -9,9 +9,18 @@
 	</div>
 	<div class="col-md-4">
 		<h2><?php echo Html::img('assets/img/statistics.png')?><span style="margin-left: 10px;">Statistics</span></h2>
-		<p>Plant Entries: ###</p>
-		<p>Image Entries: ###</p>
-		<p>Last Update: MM/DD/YY</p>
+		
+		<?php
+
+			$count_plant = DB::query("SELECT COUNT(*) FROM `plants`")->execute()->as_array();
+			$count_image = DB::query("SELECT COUNT(*) FROM `images`")->execute()->as_array();
+			$last_update = DB::query("SELECT FROM `publishes` ORDER BY `id` LIMIT 1");
+
+			echo "<strong><p>Plant Entries: </strong>".$count_plant[0]['COUNT(*)'];
+			echo "<strong><p>Image Entries: </strong>".$count_image[0]['COUNT(*)'];
+			echo "<p>Last Update: MM/DD/YY</p>";
+		?>
+
 	</div>
 	<div class="col-md-4">
 		<h2><?php echo Html::img('assets/img/developer.png')?><span style="margin-left: 10px;">Other platform</span></h2>

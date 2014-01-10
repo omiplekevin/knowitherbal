@@ -1,31 +1,33 @@
-<h2>Viewing #<?php echo $plants->id; ?></h2>
+<h2><strong><?php echo $plants->name; ?></strong></h2></br>
 
-<p>
-	<strong>Name:</strong>
-	<?php echo $plants->name; ?></p>
-<p>
-	<strong>Scientific names:</strong>
-	<?php echo $plants->scientific_names; ?></p>
-<p>
-	<strong>Common names:</strong>
-	<?php echo $plants->common_names; ?></p>
-<p>
-	<strong>Vernacular names:</strong>
-	<?php echo $plants->vernacular_names; ?></p>
-<p>
-	<strong>Properties:</strong>
-	<?php echo $plants->properties; ?></p>
-<p>
-	<strong>Usage:</strong>
-	<?php echo $plants->usage; ?></p>
-<p>
-	<strong>Filename:</strong>
-	<?php echo $plants->filename; ?></p>
+<h5><strong>Scientific names:</strong></br>
+	<p style="text-align:justify; padding-left:2em"></br>
+		<?php echo $plants->scientific_names; ?></p></h5>
+
+<h5><strong>Common names:</strong>
+	<p style="text-align:justify; padding-left:2em"></br>
+		<?php echo $plants->common_names; ?></p></h5>
+
+<h5><strong>Vernacular names:</strong>
+	<p style="text-align:justify; padding-left:2em"></br>
+		<?php echo $plants->vernacular_names; ?></p></h5>
+
+<h5><strong>Properties:</strong>
+	<p style="text-align:justify; padding-left:2em"></br>
+		<?php echo $plants->properties; ?></p></h5>
+
+<h5><strong>Usage:</strong>
+	<p style="text-align:justify; padding-left:2em"></br>
+		<?php echo $plants->usage; ?></p></h5>
+
+<h5><strong>Filename:</strong>
+	<p style="padding-left:2em"></br>
+		<?php echo $plants->filename; ?></p></h5>
 <p>
 	<strong>Images:</strong>
-	<?php foreach ($plants->images as $images):?>
-	<?php //echo Html::img('herbals_photos/thumbs/'.$images->plant->id.'/'.$images->url);
-    //echo $images->id;
+	<?php foreach ($plants->images as $image):?>
+	<?php //echo Html::img('herbals_photos/'.$image->plant->id.'/thumbs/'.$image->url);
+          echo $plants->id;
 	 ?>
 	<?php endforeach ?> </p>
 

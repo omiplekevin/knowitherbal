@@ -37,7 +37,7 @@ class Controller_Admin_Images extends Controller_Admin{
 				    'path' => DOCROOT.'herbals_photos/'. $image->plant_id,
 				    'randomize' => false,
 				    'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
-				    'max_size'=> 1024 * 1024,
+				    
 				);
 
 
@@ -176,9 +176,8 @@ class Controller_Admin_Images extends Controller_Admin{
 	{
 		if ($image = Model_Image::find($id))
 		{
-			$image->delete();
-
 			$query = DB::query("SELECT `id` FROM `images` ORDER BY `id` DESC LIMIT 1")->execute()->as_array();
+			$image->delete();
 			$query2 = DB::query("ALTER TABLE `images` AUTO_INCREMENT = ".$query[0]["id"])->execute();
 
 			Session::set_flash('success', e('Deleted image #'.$id));

@@ -10,25 +10,36 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th><p>Name</p></th>
-			<th><p>Scientific names</p></th>
-			<th><p>Common names</p></th>
-			<th><p>Vernacular names</p></th>
-			<th style="margin-right:150px;"><p style="margin-right:150px">Properties</p></th>
-			<th><p>Usage</p></th>
-			<th><p>Filename</p></th>
+			<th style="margin-right:80px"><p style="margin-right:80px; text-align:center">Name</p></th>
+			<th><p style="text-align:center">Scientific names</p></th>
+			<th><p style="text-align:center">Common names</p></th>
+			<th><p style="text-align:center">Vernacular names</p></th>
+			<th style="margin-right:80px;"><p style="margin-right:80px; text-align:center">Properties</p></th>
+			<th><p style="text-align:center">Usage</p></th>
+			<th><p style="text-align:center">Filename</p></th>
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 <?php foreach ($plants as $plant): ?>		<tr>
 			
-			<td><?php echo $plant->name; ?></td>
-			<td><p class = "seemore"><?php echo $plant->scientific_names; ?></p></td>
-			<td><p class = "seemore"><?php echo $plant->common_names; ?></p></td>
-			<td><p class = "seemore"><?php echo $plant->vernacular_names; ?></p></td>
-			<td><p class = "seemore" ><?php echo $plant->properties; ?></p></td>
-			<td><p class = "seemore"><?php echo $plant->usage; ?></p></td>
+			<td><font size="4"><strong><?php echo $plant->name; ?></strong></font></td>
+
+			<td><p class = "seemore" style = "text-align:justify">
+				<?php echo $plant->scientific_names; ?></p></td>
+
+			<td><p class = "seemore" style = "text-align:justify">
+				<?php echo $plant->common_names; ?></p></td>
+
+			<td><p class = "seemore" style = "text-align:justify">
+				<?php echo $plant->vernacular_names; ?></p></td>
+
+			<td><p class = "seemore" style = "text-align:justify">
+				<?php echo $plant->properties; ?></p></td>
+
+			<td><p class = "seemore" style = "text-align:justify">
+				<?php echo $plant->usage; ?></p></td>
+
 			<td><?php echo $plant->filename; ?></td>
 			<td>
 				<?php echo Html::anchor('admin/plants/view/'.$plant->id, 'View'); ?> |
