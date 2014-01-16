@@ -25,5 +25,5 @@ public class PlantModel {
 	public String getProperties(){  return properties;  }
 	public String getUsage(){  return usage;  }
 	public String getAvailability(){  return availability;  }
-	public List<String> getImgURLS(){  return imgUrls;  }
+	public ArrayList<String> getImgURLS(){  return imgUrls;  }
 }

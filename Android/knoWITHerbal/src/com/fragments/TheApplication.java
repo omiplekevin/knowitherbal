@@ -133,7 +133,7 @@ public class TheApplication extends SherlockFragment{
 						AlertDialog.Builder builder = new AlertDialog.Builder(getSherlockActivity());
 						AlertDialog dialog = builder.create();
 						dialog.setTitle("Oops!");
-						dialog.setMessage("We are currently digging up herbal plant data. Hold on! Check for updates anytime.");
+						dialog.setMessage("We are currently digging up herbal plant data. Hold on! We'll be publishing data soon. Check for updates anytime.");
 						dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Dismiss", new DialogInterface.OnClickListener() {
 							
 							@Override

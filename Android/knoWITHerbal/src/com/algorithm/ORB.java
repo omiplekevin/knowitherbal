@@ -3,7 +3,6 @@ package com.algorithm;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.opencv.android.Utils;
@@ -30,9 +29,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
@@ -230,9 +226,19 @@ public class ORB extends SherlockFragment{
 								}
 								ItemModel item = new ItemModel();
 								item.x = plant;
-								item.y = image;
 								item.match = matchFilterred.rows();
-								matchRating.add(item);
+								
+								boolean foundDuplicate = false;
+								for(int i=0;i<matchRating.size();i++)
+								{
+									if(matchRating.get(i).getX() == plant)
+									{
+										foundDuplicate = true;
+										break;
+									}
+								}
+								if(!foundDuplicate)
+									matchRating.add(item);
 							}
 						}//child for-loop
 						publishProgress();
@@ -292,18 +298,9 @@ public class ORB extends SherlockFragment{
 		return img1;
 	}
 	
-	private void displayBEST()
-	{
-		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.camera_fragment, null);
-		TextView plantName = (TextView)view.findViewById(R.id.content);
-		plantName.setText(plants.get(plantID).getName());
-		plantName.invalidate();
-	}
-	
 	private void SortMatches(ArrayList<ItemModel> items)
 	{
-		for(int i=0;i<items.size()-1;i++)
+		/*for(int i=0;i<items.size()-1;i++)
 		{
 			for(int x=i; x<items.size()-1-i;x++)
 			{
@@ -315,13 +312,25 @@ public class ORB extends SherlockFragment{
 					items.set(x, rhs);
 				}
 			}
+		}*/
+		
+		List<Integer> matches = new ArrayList<Integer>();
+		for(int i=0;i<items.size();i++)
+		{
+			matches.add(items.get(i).getX());
 		}
+		
+		Collections.sort(matches);
+		Collections.reverse(matches);
+		
+		for(int n : matches)
+			Log.e("ITEM[SORTED]", ""+n);
+		
 	}
 	
 	public class ItemModel
 	{
 		public int x;
-		public int y;
 		public int match;
 		
 		public int getMatch()
@@ -332,11 +341,6 @@ public class ORB extends SherlockFragment{
 		public int getX()
 		{
 			return x;
-		}
-		
-		public int getY()
-		{
-			return y;
 		}
 	}
 

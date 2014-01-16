@@ -2,13 +2,11 @@ package com.helper;
 
 import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -415,7 +413,8 @@ public class XMLParser {
 			}
 			eventType = parser.next();
 		}
-		
+		if(!hasPublish)
+			Toast.makeText(context, "No Published Data...", Toast.LENGTH_LONG).show();
 		return hasPublish;
 	}
 }

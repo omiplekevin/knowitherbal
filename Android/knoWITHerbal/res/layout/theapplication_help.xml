@@ -34,17 +34,6 @@
     </FrameLayout>
 -->
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_5dp"
-        android:layout_marginLeft="@dimen/margin_10dp"
-        android:layout_marginTop="@dimen/margin_5dp"
-        android:text="the Manual:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="italic|bold" />
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,7 +67,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/to_left" />
+                android:src="@drawable/ic_action_previous_item" />
 
             <com.adapter.CustomTextView
                 android:id="@+id/textView1"
@@ -95,9 +84,20 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/to_right" />
+                android:src="@drawable/ic_action_next_item" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_5dp"
+            android:background="#AAFFFFFF"
+            android:paddingLeft="@dimen/margin_5dp"
+            android:text="the Manual:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="italic|bold" />
 
     </FrameLayout>
 <!--

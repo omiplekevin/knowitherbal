@@ -65,18 +65,10 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		progressDialog.setMax(imageCount);
 		progressDialog.setTitle(Html.fromHtml("<b>This may take a while...</b>"));
-		progressDialog.setMessage(Html.fromHtml("Downloading additional files for <b><i>knoWITHerbal</i></b>"));
+		progressDialog.setMessage(Html.fromHtml("Downloading additional files..."));
 		progressDialog.show();
 		boolean dir = (new File(Config.externalDirectory)).mkdir();
 		boolean thumbDir = (new File(Config.externalDirectory + ".thumbnail/")).mkdir();
-		if(!dir)
-		{
-			Log.w("ASYNCTASK","directory not created!\nMaybe created already or Insufficient Storage!");
-		}
-		if(!thumbDir)
-		{
-			Log.w("ASYNCTASK", "thumbnail directory not created! expect \"laggy\" performance... =(");
-		}
 	}
 
 	@Override
@@ -95,14 +87,13 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 				conexion.connect();
 
 				int lenghtOfFile = conexion.getContentLength();
-				Log.e("ANDRO_ASYNC", "Lenght of file: " + lenghtOfFile);
+				Log.e("ANDROID_ASYNC", "Length of file: " + lenghtOfFile);
 
 				InputStream input = new BufferedInputStream(url.openStream());
 				OutputStream output = new FileOutputStream(Config.externalDirectory + splitURL[1]);
 
 				byte data[] = new byte[1024];
 
-				long total = 0;
 
 					while ((count = input.read(data)) != -1) {
 						output.write(data, 0, count);
@@ -113,22 +104,21 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 					input.close();
 				} catch (Exception e) {}
 			
+			/*FOR THUMBNAIL DIMENSION IMAGE*/
 			try {
 				URL url = new URL(Config.imagehostURL + splitURL[0]+ "/" + Config.thumbsURL + splitURL[1]);
 				URLConnection conexion = url.openConnection();
 				conexion.connect();
 
 				int lenghtOfFile = conexion.getContentLength();
-				Log.e("ANDRO_ASYNC", "Lenght of file: " + lenghtOfFile);
+				Log.e("ANDROID_ASYNC", "Length of file: " + lenghtOfFile);
 
 				InputStream input = new BufferedInputStream(url.openStream());
 				OutputStream output = new FileOutputStream(Config.externalDirectory + ".thumbnail/" + splitURL[1]);
 
 				byte data[] = new byte[1024];
 
-				long total = 0;
-
-					while ((count = input.read(data)) != -1) {
+				while ((count = input.read(data)) != -1) {
 						output.write(data, 0, count);
 					}
 

@@ -1,9 +1,9 @@
 package com.LMO.capstone;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
+import java.util.Locale;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -25,13 +25,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.text.Html;
-import android.util.Log;
 import android.view.ActionProvider;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.SubMenu;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -48,6 +45,7 @@ import com.fragments.OpenSourceLicense;
 import com.fragments.PlantList;
 import com.fragments.TheApplication;
 import com.fragments.Welcome;
+import com.helper.AsyncTaskUpdateCheck;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
 import com.helper.XMLParser;
@@ -109,40 +107,30 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		};
 		drawerLayout.setDrawerListener(drawerToggle);
 		
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+		
 		//FIRST RUN OF THE APPLICATION============================================
 		if (savedInstanceState == null) {
 			FragmentTransaction fTransac = getSupportFragmentManager().beginTransaction();
             fTransac.replace(R.id.frame_content, new Welcome()).commit();
             
-            if(!new File(Config.dbPath(getApplicationContext())).exists()){
-            	HowToUseFragment howto = new HowToUseFragment();
-				FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-				ft.replace(R.id.frame_content, howto);
-				ft.addToBackStack("help");
-				ft.commit();
-				if(util.isNetworkAvailable())
-					performDownload();
-            }
-            else
-            {
-            	File appDir = new File(Config.externalDirectory);
-            	
-            	if(!appDir.exists())
-            		appDir.mkdir();
-            	
-            	File[] files = appDir.listFiles();
-            	dbHelper = new DatabaseHelper(this);
-            	if(files.length == 1 || files.length < Queries.getImageEntryCount(sqliteDB, dbHelper))
-            	{
-            		Queries.truncateDatabase(sqliteDB, dbHelper, getApplicationContext());
-            		if(util.isNetworkAvailable())
-    					performDownload();
-            	}
-            }
-          //END OF FIRST RUN OF THE APPLICATION============================================
+            try {
+				resolver();
+			} catch (XmlPullParserException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+         
         }
+		//END OF FIRST RUN OF THE APPLICATION============================================
 		
-		try {
+		/*try {
 			ViewConfiguration config = ViewConfiguration.get(this);
 			Field menuKeyField = ViewConfiguration.class
 			.getDeclaredField("sHasPermanentMenuKey");
@@ -153,28 +141,60 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-		}
-		
-		if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
+		}*/
 	}
 	
-	//end of onCreate()
-	private void performDownload()
+	private void resolver() throws XmlPullParserException, IOException
 	{
 		XMLParser preParser = new XMLParser(this);
 		preParser.grabXML(Config.xmlhostURL, Config.publishXML, false);
-		try {
-			if(preParser.checkPublish(Config.publishXML))
-				util.PrepareFileForDatabase();//will run on thread
-			else{
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				AlertDialog dialog = builder.create();
-				dialog.setTitle("Oops!");
-				dialog.setMessage("We are currently digging up herbal plant data. Hold on! Check for updates anytime.");
-				dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Dismiss", new DialogInterface.OnClickListener() {
+		boolean publishCheck = preParser.checkPublish(Config.publishXML);
+		if(!new File(Config.dbPath(getApplicationContext())).exists()){ //no DB, no Folder
+        	HowToUseFragment howto = new HowToUseFragment();
+			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+			ft.replace(R.id.frame_content, howto);
+			ft.addToBackStack("help");
+			ft.commit();
+			if(util.isNetworkAvailable() && publishCheck)
+				util.PrepareFileForDatabase();
+        }
+        else
+        {
+        	File appDir = new File(Config.externalDirectory);
+        	if(!appDir.exists()) appDir.mkdir();
+        	
+        	FileFilter filter = new FileFilter() {
+				@Override
+				public boolean accept(File pathname) {
+					// TODO Auto-generated method stub
+					return pathname.toString().toLowerCase(Locale.getDefault()).contains(".jpg") ||
+					pathname.toString().toLowerCase(Locale.getDefault()).contains(".png") ||
+					pathname.toString().toLowerCase(Locale.getDefault()).contains(".bmp") ||
+					pathname.toString().toLowerCase(Locale.getDefault()).contains(".gif") ||
+					pathname.toString().toLowerCase(Locale.getDefault()).contains(".jpeg");
+				}
+			};
+        	File[] files = appDir.listFiles(filter);
+        	dbHelper = new DatabaseHelper(this);
+        	int imageEntryCount = Queries.getImageEntryCount(sqliteDB, dbHelper);
+			
+        	if(files.length == 1 || (files.length+1) < imageEntryCount)
+        	{
+        		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        		AlertDialog dialog = builder.create();
+        		dialog.setTitle("Oops!");
+        		dialog.setMessage("It seems your data is invalid!\nRe-download now?");
+        		dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// TODO Auto-generated method stub
+						if(util.isNetworkAvailable())
+	    					Queries.truncateDatabase(sqliteDB, dbHelper, getApplicationContext());
+							util.PrepareFileForDatabase();
+					}
+				});
+        		dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Maybe later", new DialogInterface.OnClickListener() {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -182,12 +202,19 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 						dialog.dismiss();
 					}
 				});
-				dialog.show();
-			}
-		}
-		catch (XmlPullParserException e) {}
-		catch (IOException e) {}
+        		dialog.show();
+        	}
+        	
+        	if(util.isNetworkAvailable() && publishCheck)
+        	{
+				AsyncTaskUpdateCheck updateCheck = new AsyncTaskUpdateCheck(this);
+				updateCheck.execute();
+        	}
+        }
 	}
+	
+	//end of onCreate()
+
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub

@@ -19,6 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|center"
+                android:layout_marginTop="@dimen/margin_30dp"
                 android:adjustViewBounds="true"
                 android:paddingTop="@dimen/margin_10dp"
                 android:scaleType="fitCenter" />

@@ -46,8 +46,8 @@ public class AsyncTaskUpdateCheck extends AsyncTask<Void, Void, Boolean>{
 		// TODO Auto-generated method stub
 		super.onPreExecute();
 		pd.setIndeterminate(true);
-		pd.setTitle("Updating");
-		pd.setMessage("Please Wait...");
+		pd.setTitle("Please wait...");
+		pd.setMessage("Checking for updates.");
 		pd.setCancelable(false);
 		pd.setCanceledOnTouchOutside(false);
 		pd.show();
@@ -56,12 +56,12 @@ public class AsyncTaskUpdateCheck extends AsyncTask<Void, Void, Boolean>{
 	@Override
 	protected Boolean doInBackground(Void... params) {
 		// TODO Auto-generated method stub
-
-		dbHelper = new DatabaseHelper((Activity)context);
-		pubInfo = Queries.getPublishInfo(sqliteDB, dbHelper);
 		
 		try
 		{
+			dbHelper = new DatabaseHelper((Activity)context);
+			pubInfo = Queries.getPublishInfo(sqliteDB, dbHelper);
+			
 			//YYYY-MM-DD HH:MM:SS
 			date = format.parse(pubInfo.getCreatedAt());
 			
@@ -109,6 +109,8 @@ public class AsyncTaskUpdateCheck extends AsyncTask<Void, Void, Boolean>{
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (Exception e) {
+			return true; // force update
 		}
 		return null;
 	}
@@ -121,10 +123,28 @@ public class AsyncTaskUpdateCheck extends AsyncTask<Void, Void, Boolean>{
 		{
 			if(result)
 			{
-				Toast.makeText(context, "Now Updating...", Toast.LENGTH_LONG).show();
-				Queries.truncateDatabase(sqliteDB, dbHelper, context);
-				AsyncTaskDatabaseLoader loader = new AsyncTaskDatabaseLoader(context);
-				loader.execute();
+				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				AlertDialog dialog = builder.create();
+				dialog.setTitle("Update");
+				dialog.setMessage("New publish available! Update now?");
+				dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Toast.makeText(context, "Now Updating...", Toast.LENGTH_LONG).show();
+						Queries.truncateDatabase(sqliteDB, dbHelper, context);
+						AsyncTaskDatabaseLoader loader = new AsyncTaskDatabaseLoader(context);
+						loader.execute();
+						}
+					
+				});
+				dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Maybe Later", new DialogInterface.OnClickListener(){
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) { dialog.dismiss(); }
+					
+				});
+				dialog.show();
 			}
 			else
 			{

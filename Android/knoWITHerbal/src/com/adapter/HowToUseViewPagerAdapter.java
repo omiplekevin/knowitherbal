@@ -87,6 +87,9 @@ public class HowToUseViewPagerAdapter extends PagerAdapter{
 				case 8:
 					res = context.getResources().getString(R.string.help_content9);
 					break;
+				case 9:
+					res = context.getResources().getString(R.string.help_content10);
+					break;
 				}
 				textView.setText(Html.fromHtml(res));
 			}
@@ -103,7 +106,7 @@ public class HowToUseViewPagerAdapter extends PagerAdapter{
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 9;
+		return 10;
 	}
 
 	@Override

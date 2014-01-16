@@ -18,15 +18,16 @@ with data		new publish with	incomplete data(info & photos)
 ###########################
 UNRESOLVED ISSUES:
 ###########################
+	
 	plant list, index 0, after intent to web search and abrupt back to app, API Lvl. 10 crashes.
 		= NORMAL, RAM Allocation, Low RAM Allocation Process.
-
+		
 ###########################
 TO DO:
 ###########################
 
 	GENERAL:
-	
+
 	Android App:
 		*group codes for easy debugging
 		*SEE: C:\My Files\Personal Files\My Pictures\draftKnowItHerbal\Screenshots

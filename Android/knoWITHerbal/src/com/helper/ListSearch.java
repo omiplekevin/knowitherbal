@@ -23,7 +23,14 @@ public class ListSearch {
 				newList.add(plantList.get(i));
 				justAdded = true;
 			}
+			
 			if((searchInCommonName(plantList.get(i), s)) && !justAdded)
+			{
+				newList.add(plantList.get(i));
+				justAdded = true;
+			}
+			
+			if((searchInUsageName(plantList.get(i), s)) && !justAdded)
 			{
 				newList.add(plantList.get(i));
 			}
@@ -40,6 +47,18 @@ public class ListSearch {
 		for(int c=0;c<commonNames.length;c++)
 		{
 			if((commonNames[c].toLowerCase(Locale.getDefault())).contains(s)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static boolean searchInUsageName(PlantModel item, CharSequence s)
+	{
+		String[] usage = item.getUsage().split("\\|\\|");
+		for(int c=0;c<usage.length;c++)
+		{
+			if((usage[c].toLowerCase(Locale.getDefault())).contains(s)){
 				return true;
 			}
 		}
