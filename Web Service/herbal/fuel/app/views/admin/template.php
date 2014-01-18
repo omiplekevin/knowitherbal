@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="icon" 
+      type="image/png" 
+      href="http://localhost:9980/herbal/public/assets/img/fav_icon.ico">
 	<meta charset="utf-8">
 	<title><?php echo "knoWITHerbal - ".$title; ?></title>
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('paginate.css'); ?>
-	<?php echo Asset::css('uploadfile.css'); ?>
-
+	<?php /*echo Asset::css('generic.css');*/ ?>
+	<?php echo Asset::css('js-image-slider.css'); ?>
 	<style>
 		body { margin: 50px; }
 	</style>
@@ -17,12 +20,14 @@
 		'custom.js',
 		'jquery.paginate.js',
 		'jquery.paginate.min.js',
-		'jquery.uploadfile.min.js'
+		'js-image-slider.js'
 	)); ?>
+	
 	<script>
 		$(function(){ $('.topbar').dropdown(); });
 	</script>
-	<link rel="shortcut icon" href="http://localhost/herbal/public/assets/img/fav_icon.ico" />
+
+	
 </head>
 <body>
 
@@ -47,7 +52,7 @@
 				</ul>
 				<ul class="nav navbar-nav pull-right">
 					<li class="dropdown">
-						<a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo $current_user->username ?> <b class="caret"></b></a>
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo 'Howdy '.$current_user->username.'!' ?> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 
 							<?php
@@ -100,9 +105,9 @@
 			</div>
 		</div>		
 		<hr/>
-		<footer class="navbar-fixed-bottom" style="background-color:#6FE26F; height: 60px; opacity: .5;">
-			<p style="text-align:right; z-index: -100;"><?php echo Html::img('assets/img/web_footer_bg.png') ?></p>
-			<p style="text-align:center; position: relative; top: -50px">
+		<footer class="navbar-fixed-bottom" style="background-color:#222222; height: 30px; opacity: .9;">
+			<p style="text-align:center; position: relative; top: -3px; color: #FFF;">Developed under FuelPHP</p>
+			<p style="text-align:center; position: relative; top: -20px; color: #FFF;">
 				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 				<small>Version: <?php echo e(Fuel::VERSION); ?></small>
 			</p>

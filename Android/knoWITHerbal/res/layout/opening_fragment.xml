@@ -83,14 +83,6 @@
             android:layout_marginRight="@dimen/margin_12dp"
             android:src="@drawable/web_btn" />
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="64dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|left"
-            android:adjustViewBounds="true"
-            android:src="@drawable/beta" />
-
     </FrameLayout>
 
 </LinearLayout>

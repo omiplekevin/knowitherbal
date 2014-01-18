@@ -132,7 +132,7 @@ public class XMLParser {
 			}
         }
 	    catch (IOException e) {
-            Log.e("Exception", "Connection timed out!");
+            Toast.makeText(context, "Connection timed out!", Toast.LENGTH_LONG).show();
         }
 	}
 	
@@ -378,8 +378,10 @@ public class XMLParser {
 		return publish;
 	}
 	
-	public boolean checkPublish(String source) throws XmlPullParserException, IOException
+	/*public void checkPublish() throws XmlPullParserException, IOException
 	{
+		grabXML(Config.xmlhostURL, Config.publishXML, false); 
+		String source = Config.publishXML;
 		boolean hasPublish = false;
 		File file = new File(Config.externalDirectory + source);
 		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
@@ -415,6 +417,7 @@ public class XMLParser {
 		}
 		if(!hasPublish)
 			Toast.makeText(context, "No Published Data...", Toast.LENGTH_LONG).show();
+		
 		return hasPublish;
-	}
+	}*/
 }

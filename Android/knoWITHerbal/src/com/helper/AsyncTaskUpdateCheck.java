@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -38,7 +39,7 @@ public class AsyncTaskUpdateCheck extends AsyncTask<Void, Void, Boolean>{
 		pd = new ProgressDialog(context);
 		pubInfo = new PublishModel();
 		temp = new PublishModel();
-		format = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
+		format = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss", Locale.getDefault());
 	}
 	
 	@Override
@@ -71,10 +72,6 @@ public class AsyncTaskUpdateCheck extends AsyncTask<Void, Void, Boolean>{
 			newDate = format.parse(temp.getCreatedAt());
 			if(date.compareTo(newDate) < 0)
 			{
-				/*Toast.makeText(getSherlockActivity(), "Now Updating...", Toast.LENGTH_LONG).show();
-				Queries.truncateDatabase(sqliteDB, dbHelper, getSherlockActivity());
-				AsyncTaskDatabaseLoader loader = new AsyncTaskDatabaseLoader(getSherlockActivity());
-				loader.execute();*/
 				return true;
 			}
 			else
@@ -110,7 +107,6 @@ public class AsyncTaskUpdateCheck extends AsyncTask<Void, Void, Boolean>{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			return true; // force update
 		}
 		return null;
 	}

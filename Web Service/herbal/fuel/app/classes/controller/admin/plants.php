@@ -64,7 +64,7 @@ class Controller_Admin_Plants extends Controller_Admin{
 
 									//$parse = simplexml_load_file('http://herbal.dev/herbals/'.$plant->filename);
 									//$parse = simplexml_load_file('http://localhost/herbal/public/herbals/'.$plant->filename);
-									$parse = simplexml_load_file('http://localhost/herbal/public/herbals/'.$plant->filename);
+									$parse = simplexml_load_file('http://localhost:9980/herbal/public/herbals/'.$plant->filename);
 									foreach ($parse as $input){
 									$name = $input->name;
 									$sciname = $input->sci_name;

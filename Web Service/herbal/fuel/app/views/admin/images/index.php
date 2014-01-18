@@ -22,9 +22,9 @@
 			<td><?php echo Html::img('herbals_photos/'.$item->plant->id.'/thumbs/'.$item->url); ?></td>
 
 			<td>
-				<?php echo Html::anchor('admin/images/view/'.$item->id, 'View'); ?> |
-				<?php echo Html::anchor('admin/images/edit/'.$item->id, 'Edit'); ?> |
-				<?php echo Html::anchor('admin/images/delete/'.$item->id, 'Delete', array('onclick' => "return confirm('Are you sure?')")); ?>
+				<?php echo Html::anchor('admin/images/view/'.$item->id, Html::img('assets/img/open.png')); ?> |
+				<?php echo Html::anchor('admin/images/edit/'.$item->id, Html::img('assets/img/edit.png')); ?> |
+				<?php echo Html::anchor('admin/images/delete/'.$item->id, Html::img('assets/img/delete.png'), array('onclick' => "return confirm('Are you sure?')")); ?>
 
 			</td>
 		</tr>

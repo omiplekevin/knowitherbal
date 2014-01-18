@@ -122,31 +122,8 @@ public class TheApplication extends SherlockFragment{
 		case 1://UPDATE
 			if(util.isNetworkAvailable())
 			{
-				XMLParser preParser = new XMLParser(getSherlockActivity());
-				preParser.grabXML(Config.xmlhostURL, Config.publishXML, false);
-				try {
-					if(preParser.checkPublish(Config.publishXML)){
-						AsyncTaskUpdateCheck update = new AsyncTaskUpdateCheck(getSherlockActivity());
-						update.execute();
-					}
-					else{
-						AlertDialog.Builder builder = new AlertDialog.Builder(getSherlockActivity());
-						AlertDialog dialog = builder.create();
-						dialog.setTitle("Oops!");
-						dialog.setMessage("We are currently digging up herbal plant data. Hold on! We'll be publishing data soon. Check for updates anytime.");
-						dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Dismiss", new DialogInterface.OnClickListener() {
-							
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								// TODO Auto-generated method stub
-								dialog.dismiss();
-							}
-						});
-						dialog.show();
-					}
-				}
-				catch (XmlPullParserException e) {}
-				catch (IOException e) {}
+				AsyncTaskUpdateCheck update = new AsyncTaskUpdateCheck(getSherlockActivity());
+				update.execute();
 			}
 			else
 			{

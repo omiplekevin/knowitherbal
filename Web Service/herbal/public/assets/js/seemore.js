@@ -4,7 +4,7 @@
 		// split all the words and store it in an array
 		var words = sentence.split(' ');
 		var new_sentence = '';
-
+		show = 10;
 		// loop through each word
 		for (i = 0; i < words.length; i++) {
 	

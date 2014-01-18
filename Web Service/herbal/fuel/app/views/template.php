@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="icon" 
+      type="image/png" 
+      href="http://localhost:9980/herbal/public/assets/img/fav_icon.ico">
 	<meta charset="utf-8">
 	<title><?php echo $title; ?></title>
 	<?php echo Asset::css('bootstrap.css'); ?>
@@ -36,7 +39,7 @@
 <?php endif; ?>
 		</div>
 		<div class="col-md-12">
-<?php echo $content; ?>
+			<?php echo $content; ?>
 		</div>
 		<footer>
 			<p class="pull-right">Page rendered in {exec_time}s using {mem_usage}mb of memory.</p>

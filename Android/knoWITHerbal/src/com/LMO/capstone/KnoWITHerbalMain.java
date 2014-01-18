@@ -48,7 +48,6 @@ import com.fragments.Welcome;
 import com.helper.AsyncTaskUpdateCheck;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
-import com.helper.XMLParser;
 import com.utilities.Utilities;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -146,16 +145,13 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 	
 	private void resolver() throws XmlPullParserException, IOException
 	{
-		XMLParser preParser = new XMLParser(this);
-		preParser.grabXML(Config.xmlhostURL, Config.publishXML, false);
-		boolean publishCheck = preParser.checkPublish(Config.publishXML);
 		if(!new File(Config.dbPath(getApplicationContext())).exists()){ //no DB, no Folder
         	HowToUseFragment howto = new HowToUseFragment();
 			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 			ft.replace(R.id.frame_content, howto);
 			ft.addToBackStack("help");
 			ft.commit();
-			if(util.isNetworkAvailable() && publishCheck)
+			if(util.isNetworkAvailable())
 				util.PrepareFileForDatabase();
         }
         else
@@ -203,12 +199,6 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 					}
 				});
         		dialog.show();
-        	}
-        	
-        	if(util.isNetworkAvailable() && publishCheck)
-        	{
-				AsyncTaskUpdateCheck updateCheck = new AsyncTaskUpdateCheck(this);
-				updateCheck.execute();
         	}
         }
 	}
