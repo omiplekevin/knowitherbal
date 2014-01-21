@@ -10,7 +10,10 @@
 			<?php endif; ?>
 
 			<?php if (isset($login_error)): ?>
-				<div class="error"><?php echo $login_error; ?></div>
+				<div class="error" style="color: #FF0000; text-shadow 0px, 1px, 3px, rgba(255,0,0,1); position: absolute; margin-top: -30px;">
+					<?php /*echo $login_error;*/ ?>
+					<?php echo 'Incorrect E-mail or Password!'; ?>
+				</div>
 			<?php endif; ?>
 
 			<div class="form-group <?php echo ! $val->error('email') ?: 'has-error' ?>" style="margin-top: 40px;">

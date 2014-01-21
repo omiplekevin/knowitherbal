@@ -55,8 +55,15 @@ function mcImgSlider(k){for(var T=function(a){return document.getElementById(a)}
 
 			echo "<strong><p>Plant Entries: </strong>".$count_plant[0]['COUNT(*)'];
 			echo "<strong><p>Image Entries: </strong>".$count_image[0]['COUNT(*)'];
-			$date = date_create($last_update[0]['created_at']);
-			echo "<strong><p>Last Update: </strong>".date_format($date, 'g:ia \o\n l jS F Y');
+			try
+			{
+				$date = date_create($last_update[0]['created_at']);
+				echo "<strong><p>Last Publish: </strong>".date_format($date, 'g:ia \o\n l jS F Y');
+			}
+			catch(Exception $e)
+			{
+				echo "<strong><p>Last Publish: </strong> No data.";
+			}
 		?>
 	</div>
 	<div class="col-md-4">

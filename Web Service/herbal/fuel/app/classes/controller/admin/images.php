@@ -36,12 +36,12 @@ class Controller_Admin_Images extends Controller_Admin{
 				$config = array(
 				    'path' => DOCROOT.'herbals_photos/'. $image->plant_id,
 				    'randomize' => false,
-				    'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
-				    'max_size'=> 1024 * 1024,
+				    'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png')
+				    // 'max_size'=> 1024 * 1024,
 				);
 
 
-				while(Upload::get_files()){
+				// while(Upload::get_files()){
 
 				// process the uploaded files in $_FILES
 				Upload::process($config);
@@ -50,16 +50,19 @@ class Controller_Admin_Images extends Controller_Admin{
 					if (Upload::is_valid())
 					{
 					    // save them according to the config
-						Upload::save();
-					    $value = Upload::get_files();
+					    Upload::save();
+						$value = Upload::get_files();
+						// Upload::save($config['path'], array_keys($value));
 
 					    $upload_count = 0;//for upload content
 					    $i = 0;//index for POST method index used for multiple file upload
 
 					    foreach ($value as $files) {
-					    	$image->url = $value[$i++]['saved_as'];//incremental upload using the POST method index
-					    	$image->save();
-							
+					    	$image->url = $value[$upload_count]['saved_as'];//incremental upload using the POST method index
+					    	$date = new DateTime();
+					    	DB::Query("INSERT INTO `images`(`plant_id`,`url`,`created_at`, `updated_at`) VALUES ('".$image->plant_id."','".$value[$upload_count]['name']."', '".$date->getTimestamp()."', '".$date->getTimestamp()."')")->execute();
+					    	// $image->save();
+
 							$upload_count++;
 
 			    			// Read the contents of a directory
@@ -79,10 +82,10 @@ class Controller_Admin_Images extends Controller_Admin{
 							{
 							    // Operation failed
 							}
+
 							Image::load('herbals_photos/'.$image->plant_id.'/'.$image->url)
 								->crop_resize(128, 128)
 							    ->save('herbals_photos/'.$image->plant_id.'/thumbs/'.$image->url);
-
 						}
 
 						if($image)
@@ -110,7 +113,7 @@ class Controller_Admin_Images extends Controller_Admin{
 					
 					}//end if (Upload::is_valid())
 
-			  	}//end while
+			  	// }//end while
 
 			}//if ($val->run())
 

@@ -57,19 +57,23 @@
 
 							<?php
 						$files = new GlobIterator(APPPATH.'classes/controller/admin/*.php');
+						$i = 0;
+						$icons = array("images.png", "plants.png", "publish.png");
 						foreach($files as $file)
 						{
+
 							$section_segment = $file->getBasename('.php');
 							$section_title = Inflector::humanize($section_segment);
 							?>
 							<li class="<?php echo Uri::segment(2) == $section_segment ? 'active' : '' ?>">
-								<?php echo Html::anchor('admin/'.$section_segment, $section_title) ?>
+								<?php echo Html::anchor('admin/'.$section_segment, Html::img('assets/img/'.$icons[$i])."&nbsp&nbsp&nbsp&nbsp&nbsp".$section_title) ?>
 							</li>
 							<?php
+							$i++;
 						}
 					?>
 							
-							<li><?php echo Html::anchor('admin/logout', 'Logout') ?></li>
+							<li><?php echo Html::anchor('admin/logout', Html::img('assets/img/logout.png')."&nbsp&nbsp&nbsp&nbsp&nbsp".'Logout') ?></li>
 						</ul>
 					</li>
 				</ul>
