@@ -1,12 +1,12 @@
 package com.fragments;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +30,11 @@ public class ResultFragment extends SherlockFragment{
 	DatabaseHelper dbHelper;
 	String pathCaptured;
 	ImageView imageView;
-	ArrayList<ItemModel> items;
+	List<ItemModel> result;
 	
-	public void setResult(String pathCaptured, ArrayList<ItemModel> matchRating)
+	public void setResult(String pathCaptured, List<ItemModel> result)
 	{
-		this.items = matchRating;
+		this.result = result;
 		this.pathCaptured = pathCaptured;
 	}
 	
@@ -45,9 +45,7 @@ public class ResultFragment extends SherlockFragment{
 		// TODO Auto-generated method stub
 		if(view == null)
 			view = inflater.inflate(R.layout.result_fragment, null);
-		
 		imageView = (ImageView)view.findViewById(R.id.logo);
-		
 		return view;
 	}
 
@@ -60,15 +58,16 @@ public class ResultFragment extends SherlockFragment{
 		sqliteDB = dbHelper.getReadableDatabase();
 		
 		resultList = (ListView)view.findViewById(R.id.about_listview);
-		imageView.setImageBitmap(Bitmap.createBitmap(BitmapFactory.decodeFile(pathCaptured)));
+		Bitmap scaledBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(pathCaptured), 1024, 1024, false);
+		imageView.setImageBitmap(Bitmap.createBitmap(scaledBitmap));
 		
 		ArrayList<PlantModel> plants = new ArrayList<PlantModel>();
 		plants = Queries.getPlants(sqliteDB, dbHelper);
 		
 		ArrayList<PlantModel> plantResults = new ArrayList<PlantModel>();
-		for(int i=0;i<items.size();i++)
+		for(int i=0;i<6;i++)
 		{
-			plantResults.add(plants.get(items.get(i).x));
+			plantResults.add(plants.get(result.get(i).plantID));
 		}
 		
 		adapter = new PlantListAdapter(getSherlockActivity(), plantResults);
