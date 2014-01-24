@@ -1,4 +1,4 @@
-<h2>Listing Plants</h2>
+<h2><?php echo Html::img('assets/img/plants_large.png'); ?>Plant List</h2>
 <br>
 
 <?php if ($plants): ?>
@@ -16,7 +16,7 @@
 			<th style="margin-right:150px;"><p style="margin-right:150px">Properties</p></th>
 			<th><p>Usage</p></th>
 			<!-- <th><p>Filename</p></th> -->
-			<th><p style="margin-right: 70px; margin-left: 70px;"> </p></th>
+			<th><p style="margin-right: 30px;"> </p></th>
 		</tr>
 	</thead>
 	<tbody>

@@ -8,7 +8,7 @@
             <a> <img src="http://localhost:9980/herbal/public/assets/img/1/5.jpg"/> </a> -->
 	    </div>
 		<div style="z-index: 90; position: absolute; margin-top: -80px; background-color: rgba(0,10,0,.8); width: 1140px; color: #E8E8E8; padding: 0px 0px 0px 20px;">
-			<h1 style="text-shadow: 0px 1px 7px #000;">Welcome!<?php echo Html::img('assets/img/brand.png') ?></h1>
+			<h1 style="text-shadow: 0px 1px 7px #000;">Dashboard<?php echo Html::img('assets/img/brand.png') ?></h1>
 		</div>
 	</div>
 </div>

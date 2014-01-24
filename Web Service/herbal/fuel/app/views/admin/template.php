@@ -59,21 +59,21 @@
 						$files = new GlobIterator(APPPATH.'classes/controller/admin/*.php');
 						$i = 0;
 						$icons = array("images.png", "plants.png", "publish.png", "users.png");
-						foreach($files as $file)
-						{
+								foreach($files as $file)
+								{
 
-							$section_segment = $file->getBasename('.php');
-							$section_title = Inflector::humanize($section_segment);
+									$section_segment = $file->getBasename('.php');
+									$section_title = Inflector::humanize($section_segment);
+									?>
+									<li class="<?php echo Uri::segment(2) == $section_segment ? 'active' : '' ?>">
+										<?php echo Html::anchor('admin/'.$section_segment, Html::img('assets/img/'.$icons[$i]).'&nbsp;&nbsp;&nbsp;&nbsp;'.$section_title) ?>
+									</li>
+									<?php
+									$i++;
+								}
 							?>
-							<li class="<?php echo Uri::segment(2) == $section_segment ? 'active' : '' ?>">
-								<?php echo Html::anchor('admin/'.$section_segment, Html::img('assets/img/'.$icons[$i])."&nbsp&nbsp&nbsp&nbsp&nbsp".$section_title) ?>
-							</li>
-							<?php
-							$i++;
-						}
-					?>
 							
-							<li><?php echo Html::anchor('admin/logout', Html::img('assets/img/logout.png')."&nbsp&nbsp&nbsp&nbsp&nbsp".'Logout') ?></li>
+							<li><?php echo Html::anchor('admin/logout', Html::img('assets/img/logout.png').'&nbsp;&nbsp;&nbsp;&nbsp;Logout') ?></li>
 						</ul>
 					</li>
 				</ul>
@@ -85,9 +85,8 @@
 	<div class="container" style="margin-bottom: 100px;">
 		<div class="row">
 			<div class="col-md-12">
-				<!-- <h1><?php echo $title; ?> -->
+				<h1><?php if($title == "Login") echo Html::img('assets/img/login_large.png').$title; ?>
 				</h1>
-				<hr>
 <?php if (Session::get_flash('success')): ?>
 				<div class="alert alert-success alert-dismissable">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

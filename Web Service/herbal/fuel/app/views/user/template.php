@@ -76,8 +76,7 @@
 	<div class="container" style="margin-bottom: 100px;">
 		<div class="row">
 			<div class="col-md-12">
-				<h1><?php echo $title; ?></h1>
-				<hr>
+				<!-- <h1><?php echo $title; ?></h1> -->
 <?php if (Session::get_flash('success')): ?>
 				<div class="alert alert-success alert-dismissable">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -99,7 +98,6 @@
 <?php echo $content; ?>
 			</div>
 		</div>		
-		<hr/>
 		<footer class="navbar-fixed-bottom" style="background-color:#222222; height: 30px; opacity: .9;">
 			<p style="text-align:center; position: relative; top: -3px; color: #FFF;">Developed under FuelPHP</p>
 			<p style="text-align:center; position: relative; top: -20px; color: #FFF;">
