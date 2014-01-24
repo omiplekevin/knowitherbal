@@ -5,7 +5,7 @@
       type="image/png" 
       href="http://localhost:9980/herbal/public/assets/img/fav_icon.ico">
 	<meta charset="utf-8">
-	<title><?php echo "knoWITHerbal - ".$title; ?></title>
+	<title><?php echo "knowITherbal - ".$title; ?></title>
 	<?php echo Asset::css('bootstrap.css'); ?>
 	<?php echo Asset::css('paginate.css'); ?>
 	<?php /*echo Asset::css('generic.css');*/ ?>
@@ -58,7 +58,7 @@
 							<?php
 						$files = new GlobIterator(APPPATH.'classes/controller/admin/*.php');
 						$i = 0;
-						$icons = array("images.png", "plants.png", "publish.png");
+						$icons = array("images.png", "plants.png", "publish.png", "users.png");
 						foreach($files as $file)
 						{
 
@@ -85,7 +85,8 @@
 	<div class="container" style="margin-bottom: 100px;">
 		<div class="row">
 			<div class="col-md-12">
-				<h1><?php echo $title; ?></h1>
+				<!-- <h1><?php echo $title; ?> -->
+				</h1>
 				<hr>
 <?php if (Session::get_flash('success')): ?>
 				<div class="alert alert-success alert-dismissable">

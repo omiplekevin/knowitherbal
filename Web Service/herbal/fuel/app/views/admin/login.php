@@ -37,6 +37,11 @@
 			<div class="actions">
 				<?php echo Form::submit(array('value'=>'Login', 'name'=>'submit', 'class' => 'btn btn-lg btn-primary btn-block')); ?>
 			</div>
+
+			<div>
+				<a id="custom_anchor" href="http://localhost:9980/herbal/public/user" title="Visitor" style="color: #AAED93; text-decoration: none;">
+				Proceed to visitors' page</a>
+			</div>
 		<?php echo Form::close(); ?>
 	</div>
 </div>

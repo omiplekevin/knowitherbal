@@ -29,8 +29,9 @@
 			$urls = DB::query("SELECT `url` FROM `images` WHERE `plant_id` = ".$plants->id)->execute()->as_array();
 			foreach($urls as $url)
 			{
-				echo "<div style='margin: 5px; position: relative; float: left; box-shadow: 0px 2px 5px #000;'>"
-				.Html::img('herbals_photos/'.$plants->id.'/thumbs'.'/'.$url['url'])."</div>";
+				echo "<a style='margin: 5px; position: relative; float: left; box-shadow: 0px 2px 5px #000;' target='_blank' href='"
+				.Config::get('base_url')."herbals_photos/".$plants->id."/".$url['url']."'>"
+				.Html::img('herbals_photos/'.$plants->id.'/thumbs'.'/'.$url['url'])."</a>";
 			}
 		?>
 	</div>

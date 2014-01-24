@@ -1,4 +1,4 @@
-<h2>Publish Listing</h2>
+<h2><?php echo Html::img('assets/img/publish_large.png'); ?>Publish List</h2>
 <br>
 <?php if ($publishes): ?>
 
@@ -9,6 +9,7 @@
 	<thead>
 		<tr>
 			<th>Comment</th>
+			<th>Date Published</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -16,6 +17,8 @@
 <?php foreach ($publishes as $item): ?>		<tr>
 
 			<td><?php echo $item->comment; ?></td>
+			<?php $date = date_create($item->created_at); ?>
+			<td><?php echo date('F jS, Y - l g:ia', date_timestamp_get($date)); ?></td>
 			<td>
 				<?php echo Html::anchor('admin/publish/view/'.$item->id, Html::img('assets/img/open.png'), array('title' => 'View')); ?></a> |
 				<?php echo Html::anchor('admin/publish/edit/'.$item->id, Html::img('assets/img/edit.png'), array('title' => 'Edit')); ?> |

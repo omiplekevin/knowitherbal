@@ -1,4 +1,4 @@
-<h2>Listing Plants</h2>
+<h2><?php echo Html::img('assets/img/plants_large.png'); ?>Plant List</h2>
 <br>
 
 <?php if ($plants): ?>

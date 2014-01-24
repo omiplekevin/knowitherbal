@@ -1,4 +1,4 @@
-<h2>Image File Listing</h2>
+<h2><?php echo Html::img('assets/img/images_large.png'); ?>Image List</h2>
 <br>
 
 <?php if ($images): ?>
