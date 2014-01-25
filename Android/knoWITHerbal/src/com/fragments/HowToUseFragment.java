@@ -55,7 +55,7 @@ public class HowToUseFragment extends SherlockFragment{
 		pager.setAdapter(adpater);
 		toRight = (ImageButton)view.findViewById(R.id.imageButton1);
 		toLeft = (ImageButton)view.findViewById(R.id.imageButton2);
-		pageNumber = (TextView)view.findViewById(R.id.textView1);
+		pageNumber = (TextView)view.findViewById(R.id.rating_label);
 		currentPage = 0;
 		pageNumber.setText(""+(currentPage+1));
 		/*

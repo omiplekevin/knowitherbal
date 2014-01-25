@@ -963,7 +963,7 @@ containing a value of this type.
         public static final int dev=0x7f02007a;
         public static final int developers=0x7f02007b;
         public static final int drawer_shadow=0x7f02007c;
-        public static final int focused=0x7f0200a6;
+        public static final int focused=0x7f0200a7;
         public static final int github_icon=0x7f02007d;
         public static final int grid=0x7f02007e;
         public static final int help=0x7f02007f;
@@ -993,19 +993,20 @@ containing a value of this type.
         public static final int no_photos_yet=0x7f020097;
         public static final int no_photos_yet_big=0x7f020098;
         public static final int rounded_rect=0x7f020099;
-        public static final int selected=0x7f0200a7;
-        public static final int selector=0x7f02009a;
-        public static final int thumb_frame=0x7f02009b;
-        public static final int title=0x7f02009c;
-        public static final int to_grid=0x7f02009d;
-        public static final int to_list=0x7f02009e;
-        public static final int update=0x7f02009f;
-        public static final int view_setting=0x7f0200a0;
-        public static final int web_btn=0x7f0200a1;
-        public static final int web_search=0x7f0200a2;
-        public static final int welcome_bg=0x7f0200a3;
-        public static final int welcome_bg_2=0x7f0200a4;
-        public static final int welcome_bg_3=0x7f0200a5;
+        public static final int sample_capture=0x7f02009a;
+        public static final int selected=0x7f0200a8;
+        public static final int selector=0x7f02009b;
+        public static final int thumb_frame=0x7f02009c;
+        public static final int title=0x7f02009d;
+        public static final int to_grid=0x7f02009e;
+        public static final int to_list=0x7f02009f;
+        public static final int update=0x7f0200a0;
+        public static final int view_setting=0x7f0200a1;
+        public static final int web_btn=0x7f0200a2;
+        public static final int web_search=0x7f0200a3;
+        public static final int welcome_bg=0x7f0200a4;
+        public static final int welcome_bg_2=0x7f0200a5;
+        public static final int welcome_bg_3=0x7f0200a6;
     }
     public static final class id {
         public static final int FrameLayout1=0x7f040042;
@@ -1109,6 +1110,7 @@ containing a value of this type.
         public static final int radio0=0x7f040078;
         public static final int radio1=0x7f040079;
         public static final int radioGroup1=0x7f040077;
+        public static final int rating_label=0x7f04003b;
         public static final int scrollView1=0x7f04003a;
         public static final int scrollview_base=0x7f04006f;
         public static final int searchString=0x7f040057;
@@ -1119,7 +1121,6 @@ containing a value of this type.
         public static final int subtitle=0x7f040048;
         public static final int tabMode=0x7f040003;
         public static final int text1=0x7f04004b;
-        public static final int textView1=0x7f04003b;
         public static final int textView2=0x7f04003d;
         public static final int textView3=0x7f04003f;
         public static final int textView4=0x7f04006e;
@@ -1195,6 +1196,7 @@ containing a value of this type.
         public static final int plant_options=0x7f0c0001;
     }
     public static final class string {
+        public static final int about=0x7f090022;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abs__action_bar_home_description=0x7f090000;
@@ -1237,8 +1239,8 @@ containing a value of this type.
         public static final int action_search=0x7f09001f;
         public static final int action_settings=0x7f090018;
         public static final int app_name=0x7f090017;
-        public static final int camera_help1=0x7f090022;
-        public static final int camera_help2=0x7f090023;
+        public static final int camera_help1=0x7f090023;
+        public static final int camera_help2=0x7f090024;
         public static final int checkout=0x7f09001c;
         public static final int drawer_close=0x7f09001b;
         public static final int drawer_open=0x7f09001a;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">knoWITHerbal</string>
+    <string name="app_name">knowITherbal</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     
@@ -35,8 +35,13 @@
         Content please!!
     </string>
     
+    <string name="about">
+        \"knowITherbal\" is an application used by the botanists and future botanist, hikers, and common people for identifying herbal plant\'s leaf captured by the application using the mobile phone camera and analyze the image by using some of the algorithms to identify the feature of the leaf.
+	</string>
+    
     <string name="camera_help1">
-        <b>Controlled Environment</b>\n\n&#8226; When capturing a plant\'s leaf, place the plant above a white surface.
+        <b>Controlled Environment</b>\n\n&#8226; When capturing a plant\'s leaf, it is recommended to place white background behind the plant.
+        \n\n&#8226; If possible, approximate a distance of 1ft from the subject plant to your mobile phone camera.
         </string>
         
     <string name="camera_help2">

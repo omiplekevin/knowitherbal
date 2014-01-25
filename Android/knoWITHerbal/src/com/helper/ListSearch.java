@@ -36,7 +36,7 @@ public class ListSearch {
 			}
 		}
 		if(listOrGrid)
-			return new PlantListAdapter(context, newList);
+			return new PlantListAdapter(context, newList, false);
 		else
 			return new CustomGridAdapter(context, newList);
 	}

@@ -51,7 +51,6 @@ public class PlantList_FragmentList extends SherlockFragment{
 			listView = (StickyListHeadersListView)view.findViewById(R.id.plant_listView);
 			searchText = (EditText)view.findViewById(R.id.editText1);
 			clearBtn = (ImageButton)view.findViewById(R.id.clear);
-			instantiateView();
 		}
 		
 		return view;
@@ -62,7 +61,7 @@ public class PlantList_FragmentList extends SherlockFragment{
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
 		getSherlockActivity().getSupportActionBar().setTitle("Plant List");
-		
+		instantiateView();
 		
 		clearBtn.setOnClickListener(new OnClickListener() {
 			
@@ -95,7 +94,8 @@ public class PlantList_FragmentList extends SherlockFragment{
 		dbHelper = new DatabaseHelper(this.getActivity());
 		plantList = Queries.getPlants(sqliteDB, dbHelper);
 		
-		adapter = new PlantListAdapter(getActivity(), plantList);
+		adapter = new PlantListAdapter(getActivity(), plantList, false);
+		
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -130,7 +130,7 @@ public class PlantList_FragmentList extends SherlockFragment{
 			}
 			else
 			{
-				newAdapter = new PlantListAdapter(getActivity(), plantList);
+				newAdapter = new PlantListAdapter(getActivity(), plantList, false);
 				clearBtn.setVisibility(View.INVISIBLE);
 			}
 			

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +27,14 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 	Context context;
 	ArrayList<PlantModel> plantList;
 	LayoutInflater inflater;
+	boolean hasRating;
 	
-	public PlantListAdapter(Context context, ArrayList<PlantModel> items)
+	public PlantListAdapter(Context context, ArrayList<PlantModel> items, boolean hasRating)
 	{
 		super(context,0, items);
 		this.context = context;
 		this.plantList = items;
+		this.hasRating = hasRating;
 		inflater = (LayoutInflater)this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
@@ -53,6 +56,12 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 			holder.imageView = imageView;
 			holder.pb1 = pb1;
 			holder.pb2 = pb2;
+			if(hasRating)
+			{
+				final TextView rating = (TextView)convertView.findViewById(R.id.rating_label);
+				rating.setVisibility(View.VISIBLE);
+				holder.rating = rating;
+			}
 			
 			convertView.setTag(holder);
 		}
@@ -86,6 +95,14 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 				v.plantPrimeDetail.setText(clean);
 				v.plantPrimeDetail.setSelected(true);
 		        v.imageView.setImageBitmap(result);
+		        if(hasRating)
+		        {
+		        	float invert = 100-plantList.get(pos).getRating();
+		        	float div = invert / 100;
+		        	float r = div * 100;
+//		        	Log.e("INVERT,DIV,R", ""+invert+","+Float.toString(div)+","+Float.toString(r));
+		        	v.rating.setText(Float.toString(r)+ "% match");
+		        }
 		        AnimatorSet anim = new AnimatorSet();
 				anim.playTogether(
 						ObjectAnimator.ofFloat(v.imageView, "alpha", 0, 0.5f, 1)
@@ -121,6 +138,7 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 		ImageView imageView;
 		ProgressBar pb1;
 		ProgressBar pb2;
+		TextView rating;
 	}
 	
 	

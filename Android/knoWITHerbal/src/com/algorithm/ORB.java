@@ -35,6 +35,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.util.Log;
+import android.view.WindowManager;
 
 import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
@@ -93,6 +94,7 @@ public class ORB extends SherlockFragment{
 		}
 		else
 		{
+			
 			finalMatches = new ArrayList<ItemModel>();
 			progressDialog = new ProgressDialog(context);
 			final SQLiteDatabase sqliteDB;
@@ -112,10 +114,6 @@ public class ORB extends SherlockFragment{
 					progressDialog.dismiss();
 					
 					SortMatches();
-					for(ItemModel item : finalMatches)
-					{
-						Log.e("ITEM" , ""+item.getMatch() + " " + item.getX());
-					}
 					
 					ResultFragment resultFragment = new ResultFragment();
 					resultFragment.setResult(pathCaptured, finalMatches);
@@ -130,8 +128,9 @@ public class ORB extends SherlockFragment{
 					// TODO Auto-generated method stub
 					super.onPreExecute();
 					int plantEntry = Queries.getPlantEntryCount(sqliteDB, dbHelper);
-					progressDialog.setIndeterminate(true);
+					progressDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 					progressDialog.setIndeterminate(false);
+					progressDialog.setCancelable(false);
 					progressDialog.setCanceledOnTouchOutside(false);
 					progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 					progressDialog.setMax(plantEntry);
@@ -156,7 +155,6 @@ public class ORB extends SherlockFragment{
 						{
 							String filename = plants.get(plant).imgUrls.get(image);
 							Bitmap bitmapSD = getBitmap(Config.externalDirectory + plants.get(plant).imgUrls.get(image));
-//							Bitmap bitmapSD = getBitmap(Config.externalDirectory + plants.get(plant).imgUrls.get(image));
 							
 							Mat bmpCap = new Mat();
 							Mat bmpSD = new Mat();
@@ -180,7 +178,7 @@ public class ORB extends SherlockFragment{
 							DescriptorExtractor extractor = DescriptorExtractor.create(FeatureDetector.ORB);
 
 							Mat descriptor_object = new Mat();
-							Mat descriptor_scene = new Mat() ;
+							Mat descriptor_scene = new Mat();
 
 							extractor.compute(img_object, keypoints_object, descriptor_object);
 							extractor.compute(img_scene, keypoints_scene, descriptor_scene);
@@ -192,91 +190,76 @@ public class ORB extends SherlockFragment{
 									&& descriptor_object.type() == descriptor_scene.type()
 									&& descriptor_object.cols() > 0
 									&& descriptor_scene.cols() > 0)
-							{
-								matcher.match(descriptor_object, descriptor_scene, matches);
-								List<DMatch> matchesList = matches.toList();
-	
-								Double max_dist = 0.0;
-								Double min_dist = 200.0;
-	
-								for(int i = 0; i < descriptor_object.rows(); i++){
-								    Double dist = (double) matchesList.get(i).distance;
-								    if(dist < min_dist) min_dist = dist;
-								    if(dist > max_dist) max_dist = dist;
-								}
-	
-//								System.out.println("-- Max dist : " + max_dist);
-//								System.out.println("-- Min dist : " + min_dist);    
-	
-								LinkedList<DMatch> good_matches = new LinkedList<DMatch>();
-								MatOfDMatch gm = new MatOfDMatch();
-	
-								for(int i = 0; i < descriptor_object.rows(); i++){
-								    if(matchesList.get(i).distance < 2*min_dist){
-								        good_matches.addLast(matchesList.get(i));
-								    }
-								}
-	
-								gm.fromList(good_matches);
-	
-	//							Mat img_matches = new Mat();
-	//							Features2d.drawMatches(
-	//							        img_object,
-	//							        keypoints_object, 
-	//							        img_scene,
-	//							        keypoints_scene, 
-	//							        gm, 
-	//							        img_matches, 
-	//							        new Scalar(255,0,0), 
-	//							        new Scalar(0,0,255), 
-	//							        new MatOfByte(), 
-	//							        2);
-	
-								LinkedList<Point> objList = new LinkedList<Point>();
-								LinkedList<Point> sceneList = new LinkedList<Point>();
-	
-								List<KeyPoint> keypoints_objectList = keypoints_object.toList();
-								List<KeyPoint> keypoints_sceneList = keypoints_scene.toList();
-	
-								for(int i = 0; i<good_matches.size(); i++){
-								    objList.addLast(keypoints_objectList.get(good_matches.get(i).queryIdx).pt);
-								    sceneList.addLast(keypoints_sceneList.get(good_matches.get(i).trainIdx).pt);
-								}
-	
-								MatOfPoint2f obj = new MatOfPoint2f();
-								obj.fromList(objList);
-	
-								MatOfPoint2f scene = new MatOfPoint2f();
-								scene.fromList(sceneList);
-	
-								Mat mask = new Mat();
-								Calib3d.findHomography(obj, scene, 8, 10, mask);
-								
-								int maskVal = 0;
-								for(int i=0;i<mask.rows();i++)
 								{
-									for(int j=0;j<mask.cols();j++)
+									matcher.match(descriptor_object, descriptor_scene, matches);
+									List<DMatch> matchesList = matches.toList();
+		
+									Double max_dist = 0.0;
+									Double min_dist = 200.0;
+		
+									for(int i = 0; i < descriptor_object.rows(); i++){
+									    Double dist = (double) matchesList.get(i).distance;
+									    if(dist < min_dist) min_dist = dist;
+									    if(dist > max_dist) max_dist = dist;
+									}
+		
+									LinkedList<DMatch> good_matches = new LinkedList<DMatch>();
+									MatOfDMatch gm = new MatOfDMatch();
+		
+									for(int i = 0; i < descriptor_object.rows(); i++){
+									    if(matchesList.get(i).distance < 2*min_dist){
+									        good_matches.addLast(matchesList.get(i));
+									    }
+									}
+		
+									gm.fromList(good_matches);
+		
+									LinkedList<Point> objList = new LinkedList<Point>();
+									LinkedList<Point> sceneList = new LinkedList<Point>();
+		
+									List<KeyPoint> keypoints_objectList = keypoints_object.toList();
+									List<KeyPoint> keypoints_sceneList = keypoints_scene.toList();
+		
+									for(int i = 0; i<good_matches.size(); i++){
+									    objList.addLast(keypoints_objectList.get(good_matches.get(i).queryIdx).pt);
+									    sceneList.addLast(keypoints_sceneList.get(good_matches.get(i).trainIdx).pt);
+									}
+		
+									MatOfPoint2f obj = new MatOfPoint2f();
+									obj.fromList(objList);
+		
+									MatOfPoint2f scene = new MatOfPoint2f();
+									scene.fromList(sceneList);
+		
+									Mat mask = new Mat();
+									Calib3d.findHomography(obj, scene, 8, 10, mask);
+									
+									int maskVal = 0;
+									for(int i=0;i<mask.rows();i++)
 									{
-										if((mask.get(i, j)[0] == 1))
+										for(int j=0;j<mask.cols();j++)
 										{
-											++maskVal;
+											if((mask.get(i, j)[0] == 1))
+											{
+												++maskVal;
+											}
 										}
 									}
-								}
-
-								Log.e("IMAGE PLANT", ""+ plant + ", " + image + " FILENAME: " + filename + "MATCH = " + maskVal);
-								ItemModel item = new ItemModel(plant, maskVal);
-								
-								finalMatches.add(item);
-	//							LinkedList<Point> cornerList = new LinkedList<Point>();
-	//							cornerList.add(new Point(0,0));
-	//							cornerList.add(new Point(img_object.cols(),0));
-	//							cornerList.add(new Point(img_object.cols(),img_object.rows()));
-	//							cornerList.add(new Point(0,img_object.rows()));
 	
-	//							MatOfPoint obj_corners = new MatOfPoint();
-	//							obj_corners.fromList(cornerList);
-							}
+									Log.e("RESULT LOG", "["+ plant + ", " + image + "] FILENAME: " + filename + " MATCH = " + maskVal);
+									ItemModel item = new ItemModel(plant, maskVal);
+									
+									finalMatches.add(item);
+		//							LinkedList<Point> cornerList = new LinkedList<Point>();
+		//							cornerList.add(new Point(0,0));
+		//							cornerList.add(new Point(img_object.cols(),0));
+		//							cornerList.add(new Point(img_object.cols(),img_object.rows()));
+		//							cornerList.add(new Point(0,img_object.rows()));
+		
+		//							MatOfPoint obj_corners = new MatOfPoint();
+		//							obj_corners.fromList(cornerList);
+//									System.gc();
+								}
 						}//child for-loop
 						publishProgress();
 					}

@@ -59,8 +59,10 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_10dp"
+                android:layout_marginTop="@dimen/margin_10dp"
                 android:gravity="center"
-                android:text="@string/dummy"
+                android:text="@string/about"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
         </FrameLayout>
@@ -76,7 +78,7 @@
                 android:orientation="vertical" >
 
                 <com.adapter.CustomTextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/rating_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#CC000000"
