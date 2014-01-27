@@ -3,7 +3,7 @@
 <head>
 	<link rel="icon" 
       type="image/png" 
-      href="http://localhost:9980/herbal/public/assets/img/fav_icon.ico">
+      href= <?php echo Config::get('base_url')."assets/img/fav_icon.ico"; ?> >
 	<meta charset="utf-8">
 	<title><?php echo "knowITherbal - ".$title; ?></title>
 	<?php echo Asset::css('bootstrap.css'); ?>
@@ -85,7 +85,7 @@
 	<div class="container" style="margin-bottom: 100px;">
 		<div class="row">
 			<div class="col-md-12">
-				<h1><?php if($title == "Login") echo Html::img('assets/img/login_large.png').$title; ?>
+				<h1><?php if($title == "Login") echo $title; ?>
 				</h1>
 <?php if (Session::get_flash('success')): ?>
 				<div class="alert alert-success alert-dismissable">

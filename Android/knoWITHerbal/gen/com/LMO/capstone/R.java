@@ -1012,9 +1012,9 @@ containing a value of this type.
         public static final int FrameLayout1=0x7f040042;
         public static final int LinearLayout1=0x7f040036;
         public static final int LinearLayout2=0x7f04004e;
-        public static final int about=0x7f04006d;
-        public static final int about_content=0x7f040071;
-        public static final int about_listview=0x7f040067;
+        public static final int about=0x7f04006e;
+        public static final int about_content=0x7f040072;
+        public static final int about_listview=0x7f040068;
         public static final int abs__action_bar=0x7f040023;
         public static final int abs__action_bar_container=0x7f040022;
         public static final int abs__action_bar_subtitle=0x7f040014;
@@ -1055,19 +1055,19 @@ containing a value of this type.
         public static final int abs__title=0x7f04001e;
         public static final int abs__up=0x7f04000b;
         public static final int any=0x7f040010;
-        public static final int app_info=0x7f040072;
+        public static final int app_info=0x7f040073;
         public static final int app_name=0x7f04004f;
         public static final int back=0x7f040011;
         public static final int base=0x7f040061;
-        public static final int baseFrame=0x7f040068;
-        public static final int btn1=0x7f04007b;
+        public static final int baseFrame=0x7f040069;
+        public static final int btn1=0x7f04007c;
         public static final int cameraBtn=0x7f040038;
         public static final int camera_base=0x7f040035;
         public static final int clear=0x7f040054;
         public static final int content=0x7f040039;
         public static final int detailFrame=0x7f040065;
-        public static final int devPager=0x7f040073;
-        public static final int developer=0x7f04006b;
+        public static final int devPager=0x7f040074;
+        public static final int developer=0x7f04006c;
         public static final int disableHome=0x7f040009;
         public static final int drawerLayout=0x7f040043;
         public static final int drawer_view=0x7f040045;
@@ -1080,14 +1080,14 @@ containing a value of this type.
         public static final int grid_clear=0x7f040058;
         public static final int grid_frame=0x7f040055;
         public static final int grid_view=0x7f040056;
-        public static final int helpPager=0x7f040074;
+        public static final int helpPager=0x7f040075;
         public static final int homeAsUp=0x7f040006;
-        public static final int howto=0x7f040069;
-        public static final int imageButton1=0x7f040076;
-        public static final int imageButton2=0x7f040075;
+        public static final int howto=0x7f04006a;
+        public static final int imageButton1=0x7f040077;
+        public static final int imageButton2=0x7f040076;
         public static final int imageView1=0x7f04003c;
         public static final int imageView2=0x7f04003e;
-        public static final int imageView3=0x7f040070;
+        public static final int imageView3=0x7f040071;
         public static final int imageViewPager=0x7f040064;
         public static final int imageViewWrap=0x7f04005b;
         public static final int innerFrame=0x7f04005a;
@@ -1106,13 +1106,14 @@ containing a value of this type.
         public static final int primeDetail=0x7f04005e;
         public static final int progressBar1=0x7f040059;
         public static final int progressBar2=0x7f04005f;
-        public static final int publish_info=0x7f04006c;
-        public static final int radio0=0x7f040078;
-        public static final int radio1=0x7f040079;
-        public static final int radioGroup1=0x7f040077;
+        public static final int publish_info=0x7f04006d;
+        public static final int radio0=0x7f040079;
+        public static final int radio1=0x7f04007a;
+        public static final int radioGroup1=0x7f040078;
         public static final int rating_label=0x7f04003b;
+        public static final int result_base=0x7f040067;
         public static final int scrollView1=0x7f04003a;
-        public static final int scrollview_base=0x7f04006f;
+        public static final int scrollview_base=0x7f040070;
         public static final int searchString=0x7f040057;
         public static final int showCustom=0x7f040008;
         public static final int showHome=0x7f040005;
@@ -1123,14 +1124,14 @@ containing a value of this type.
         public static final int text1=0x7f04004b;
         public static final int textView2=0x7f04003d;
         public static final int textView3=0x7f04003f;
-        public static final int textView4=0x7f04006e;
+        public static final int textView4=0x7f04006f;
         public static final int title=0x7f040047;
-        public static final int update=0x7f04006a;
+        public static final int update=0x7f04006b;
         public static final int useLogo=0x7f040004;
         public static final int viewPager=0x7f040063;
         public static final int visit=0x7f040050;
         public static final int webBtn=0x7f040037;
-        public static final int webView1=0x7f04007a;
+        public static final int webView1=0x7f04007b;
         public static final int wrap=0x7f040062;
         public static final int wrap_content=0x7f040000;
     }
@@ -1259,6 +1260,7 @@ containing a value of this type.
         public static final int proponents=0x7f09001d;
         public static final int subtitle=0x7f090020;
         public static final int updateDetail=0x7f09001e;
+        public static final int web_service=0x7f090025;
     }
     public static final class style {
         /** 

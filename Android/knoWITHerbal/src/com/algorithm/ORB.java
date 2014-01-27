@@ -155,7 +155,6 @@ public class ORB extends SherlockFragment{
 						{
 							String filename = plants.get(plant).imgUrls.get(image);
 							Bitmap bitmapSD = getBitmap(Config.externalDirectory + plants.get(plant).imgUrls.get(image));
-							
 							Mat bmpCap = new Mat();
 							Mat bmpSD = new Mat();
 							Mat img_object = new Mat();
@@ -166,6 +165,7 @@ public class ORB extends SherlockFragment{
 							
 							Imgproc.cvtColor(bmpCap, img_object, Imgproc.COLOR_RGB2GRAY);
 							Imgproc.cvtColor(bmpSD, img_scene, Imgproc.COLOR_RGB2GRAY);
+							
 
 							FeatureDetector detector = FeatureDetector.create(FeatureDetector.ORB);
 

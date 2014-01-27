@@ -1,5 +1,10 @@
 package com.fragments;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Html;
@@ -49,7 +54,7 @@ public class About extends SherlockFragment{
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
 		comboClick = 0;
-		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>About</i>"));
+//		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>About</i>"));
 		logo = (ImageView)view.findViewById(R.id.webBtn);
 		title = (ImageView)view.findViewById(R.id.imageView3);
 		subtitle = (TextView)view.findViewById(R.id.content);

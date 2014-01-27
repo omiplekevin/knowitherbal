@@ -11,7 +11,7 @@
     </string>
     
     <string name="help_content3">
-        &lt;b&gt;Camera&lt;/b&gt;&lt;br/&gt; &#8226; Content Please!!
+        &lt;b&gt;Launch Camera&lt;/b&gt;&lt;br/&gt; &#8226; Tap on the camera icon to open camera view and start capturing a plant. 
     </string>
     
     <string name="help_content4">
@@ -62,7 +62,19 @@
     
     <string name="help_content10">
         &lt;b&gt;Sub Menus&lt;/b&gt;
-    	&lt;br/&gt;&lt;br/&gt;&#8226; Content please!! 
+    	&lt;br/&gt;&lt;br/&gt;&#8226; This contains the additional actions of the application which includes &lt;b&gt;Help&lt;/b&gt;, &lt;b&gt;Update&lt;/b&gt;, &lt;b&gt;Developers&lt;/b&gt;, &lt;b&gt;About&lt;/b&gt;.
+    	
+    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Help&lt;/b&gt;
+    	&lt;br/&gt;&#8226; Displays the manual on how to use the application.
+    	
+    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Update&lt;/b&gt;
+    	&lt;br/&gt;&#8226; Checks for updates and ask for confirmation if a recent update is available.
+    	
+    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Developers&lt;/b&gt;
+    	&lt;br/&gt;&#8226; The developers involved in making this app possible.
+    	
+    	&lt;br/&gt;&lt;br/&gt;&lt;b&gt;About&lt;/b&gt;
+    	&lt;br/&gt;&#8226; Discusses the purpose of the application.
     </string>
     <!-- <string-array name="help_content1">
     	<item>&lt;b&gt;Welcome Screen&lt;/b&gt; – Touch the upper left icon to start.</item>

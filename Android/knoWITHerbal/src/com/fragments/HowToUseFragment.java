@@ -49,7 +49,7 @@ public class HowToUseFragment extends SherlockFragment{
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
-		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>How to Use</i>"));
+//		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>How to Use</i>"));
 		pager = (ViewPager)view.findViewById(R.id.helpPager);
 		HowToUseViewPagerAdapter adpater = new HowToUseViewPagerAdapter(getSherlockActivity());
 		pager.setAdapter(adpater);

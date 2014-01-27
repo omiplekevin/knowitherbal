@@ -9,10 +9,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -85,6 +88,23 @@ public class ResultFragment extends SherlockFragment{
 		
 		adapter = new PlantListAdapter(getSherlockActivity(), newList, true);
 		resultList.setAdapter(adapter);
+		resultList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				DetailFragment details = new DetailFragment();
+				details.setItem((PlantModel)resultList.getItemAtPosition(position));
+				
+				FragmentTransaction ft = getFragmentManager().beginTransaction();
+				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+				ft.replace(R.id.result_base, details);
+				ft.addToBackStack("result detail");
+				ft.commit();
+			}
+			
+		});
 		
 	}
 	

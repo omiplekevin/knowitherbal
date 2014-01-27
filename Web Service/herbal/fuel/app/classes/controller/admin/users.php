@@ -34,8 +34,9 @@ class Controller_Admin_Users extends Controller_Admin{
 			{
 				$user = Model_User::forge(array(
 					'username' => Input::post('username'),
-					'password' => Input::post('password'),
-					'group' => Input::post('group'),
+					'password' => Auth::instance()->hash_password(Input::post('password')),
+					// 'group' => Input::post('group'),
+					'group' => '100',
 					'email' => Input::post('email'),
 					'last_login' => Input::post('last_login'),
 					'login_hash' => Input::post('login_hash'),

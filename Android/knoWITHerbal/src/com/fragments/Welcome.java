@@ -81,7 +81,7 @@ public class Welcome extends SherlockFragment{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent webService = new Intent(Intent.ACTION_VIEW, Uri.parse("http://appspot.knowitherbal.com"));
+				Intent webService = new Intent(Intent.ACTION_VIEW, Uri.parse(getResources().getString(R.string.web_service)));
 				startActivity(webService);
 			}
 		});

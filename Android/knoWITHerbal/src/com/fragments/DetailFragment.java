@@ -59,7 +59,7 @@ public class DetailFragment extends SherlockFragment{
 	public void onPrepareOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
 		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>Information</i>"));
-		menu.getItem(0).setVisible(false);
+//		menu.getItem(0).setVisible(false);
 	}
 
 	@Override

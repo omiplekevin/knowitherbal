@@ -40,7 +40,7 @@ public class TheDevelopersFragment extends SherlockFragment{
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
-		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>Developers</i>"));
+//		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>Developers</i>"));
 		pager = (ViewPager)view.findViewById(R.id.devPager);
 		DevPagerAdapter adapter = new DevPagerAdapter(getSherlockActivity());
 		pager.setAdapter(adapter);
