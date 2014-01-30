@@ -88,7 +88,7 @@
 
         </LinearLayout>
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
             android:paddingLeft="@dimen/margin_5dp"
             android:text="the Manual:"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="italic|bold" />
+            android:textStyle="italic|bold" /> -->
 
     </FrameLayout>
 <!--

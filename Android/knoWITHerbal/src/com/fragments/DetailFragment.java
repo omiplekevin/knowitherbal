@@ -78,7 +78,7 @@ public class DetailFragment extends SherlockFragment{
 		super.onViewCreated(view, savedInstanceState);
 		pager = (ViewPager)view.findViewById(R.id.imageViewPager);
 		plantName = (TextView)view.findViewById(R.id.title);
-		websearch = (ImageButton)view.findViewById(R.id.clear);
+		websearch = (ImageButton)view.findViewById(R.id.web_search);
 		websearch.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -103,7 +103,6 @@ public class DetailFragment extends SherlockFragment{
                 if (currentPage == plantItem.imgUrls.size()) {
                     currentPage = 0;
                 }
-//                Log.i("current viewpager item", ""+currentPage);
                 pager.setCurrentItem(currentPage++, true);
             }
         };
@@ -149,10 +148,10 @@ public class DetailFragment extends SherlockFragment{
 	            float horzMargin = pageWidth * (1 - scaleFactor) / 2;
 	            if (position < 0) {
 	                view.setTranslationX(horzMargin - vertMargin / 2);
-	                view.setRotationY(position * 135);
+	                view.setRotationY(position * 250);
 	            } else {
 	                view.setTranslationX(-horzMargin + vertMargin / 2);
-	                view.setRotationY(position * 135);
+	                view.setRotationY(position * 250);
 	            }
 
 	            // Scale the page down (between MIN_SCALE and 1)

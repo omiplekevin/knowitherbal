@@ -85,7 +85,7 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		getSupportActionBar().setHomeButtonEnabled(true);
-		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00CC00")));
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00CC00"))); //light green = 6ad600, dark = 00cc00
 		getSupportActionBar().setIcon(getResources().getDrawable(R.drawable.ic_launcher_2));
 
 		drawerToggle = new ActionBarDrawerToggle(

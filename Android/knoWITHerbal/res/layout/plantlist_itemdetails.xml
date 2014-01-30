@@ -42,14 +42,14 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/clear"
+                android:id="@+id/web_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
                 android:layout_marginRight="@dimen/margin_7dp"
                 android:background="@android:color/transparent"
                 android:scaleType="center"
-                android:src="@drawable/web_search" />
+                android:src="@drawable/web_search_2" />
 
         </FrameLayout>
 
