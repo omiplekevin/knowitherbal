@@ -22,7 +22,16 @@ import android.util.Log;
 
 import com.config.Config;
 import com.utilities.Utilities;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class AsyncTaskDatabaseLoader extends AsyncTask<Void, Void, Void>{
 

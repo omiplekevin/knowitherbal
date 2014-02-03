@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:scaleType="fitEnd"
-            android:src="@drawable/welcome_bg_3" />
+            android:src="@drawable/welcome_bg_4" />
 
         <TextView
             android:id="@+id/visit"

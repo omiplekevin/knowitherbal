@@ -13,7 +13,16 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
 import com.models.PublishModel;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class Update extends SherlockFragment{
 
 	View view;

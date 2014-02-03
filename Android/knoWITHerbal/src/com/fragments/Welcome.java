@@ -18,7 +18,16 @@ import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class Welcome extends SherlockFragment{
 

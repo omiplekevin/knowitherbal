@@ -12,7 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.LMO.capstone.R;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class DevPagerAdapter extends PagerAdapter{
 
 	private Context context;

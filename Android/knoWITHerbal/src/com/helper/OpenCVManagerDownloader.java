@@ -18,7 +18,16 @@ import android.os.AsyncTask;
 import android.sax.StartElementListener;
 
 import com.config.Config;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class OpenCVManagerDownloader extends AsyncTask<Void, Void, Void>{
 
 	ProgressDialog pDialog;

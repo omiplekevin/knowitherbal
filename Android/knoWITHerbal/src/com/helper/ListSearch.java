@@ -8,7 +8,16 @@ import android.content.Context;
 import com.adapter.CustomGridAdapter;
 import com.adapter.PlantListAdapter;
 import com.models.PlantModel;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class ListSearch {
 																												  /* T  |  F */
 	public static Object searchPlantList(Context context, ArrayList<PlantModel> plantList, CharSequence s, boolean listOrGrid)

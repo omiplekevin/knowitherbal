@@ -27,7 +27,16 @@ import com.helper.DatabaseHelper;
 import com.helper.ListSearch;
 import com.helper.Queries;
 import com.models.PlantModel;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class PlantList_FragmentList extends SherlockFragment{
 
 	private SQLiteDatabase sqliteDB;

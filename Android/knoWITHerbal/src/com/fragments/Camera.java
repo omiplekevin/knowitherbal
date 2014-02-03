@@ -34,7 +34,16 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.algorithm.ORB;
 import com.helper.OpenCVManagerDownloader;
 import com.models.PlantModel;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class Camera extends SherlockFragment{
 
 	View view;

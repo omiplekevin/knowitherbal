@@ -11,7 +11,16 @@ import android.widget.TextView;
 
 import com.LMO.capstone.R;
 import com.config.Config;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class MenuListAdapter extends ArrayAdapter<String>{
 
 	LayoutInflater inflater;

@@ -29,7 +29,16 @@ import android.os.Build;
 import android.text.Html;
 import android.util.Log;
 import android.widget.Toast;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class Utilities {
 	

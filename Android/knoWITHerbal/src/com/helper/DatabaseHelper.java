@@ -5,7 +5,16 @@ import com.config.Config;
 import android.app.Activity;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class DatabaseHelper extends SQLiteOpenHelper{
 
 	public final static String dBName = "Herbals";

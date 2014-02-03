@@ -5,7 +5,16 @@ import android.graphics.Typeface;
 import android.os.Environment;
 
 import com.helper.DatabaseHelper;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class Config {
 	
 	public static String plantTable = "plantTB";

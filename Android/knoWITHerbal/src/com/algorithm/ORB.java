@@ -14,6 +14,7 @@ import org.opencv.core.MatOfDMatch;
 import org.opencv.core.MatOfKeyPoint;
 import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.Point;
+import org.opencv.core.Size;
 import org.opencv.features2d.DMatch;
 import org.opencv.features2d.DescriptorExtractor;
 import org.opencv.features2d.DescriptorMatcher;
@@ -45,7 +46,16 @@ import com.fragments.ResultFragment;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
 import com.models.PlantModel;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class ORB extends SherlockFragment{
 	
 	String pathCaptured;
@@ -55,6 +65,16 @@ public class ORB extends SherlockFragment{
 	public Context context;
 	ProgressDialog progressDialog;
 	List<ItemModel> finalMatches;
+	Mat bmpCap,bmpSD,img_scene,img_object,descriptor_object,descriptor_scene;
+	MatOfKeyPoint keypoints_object,keypoints_scene;
+	DescriptorMatcher matcher;
+	MatOfDMatch matches;
+	private long lastProc;
+	private long perImageProc;
+	private long Totaltime;
+	private long averageTimeExec;
+	
+	ArrayList<Long> lapseTime = new ArrayList<Long>();
 	
 	public void setContext(Context context)
 	{
@@ -113,6 +133,15 @@ public class ORB extends SherlockFragment{
 					super.onPostExecute(result);
 					progressDialog.dismiss();
 					
+					Totaltime = 0;
+					for(long lapse : lapseTime)
+					{
+						Totaltime += lapse;
+					}
+					averageTimeExec = Totaltime / lapseTime.size();
+					Log.e("Average per image is", ""+averageTimeExec);
+					Log.e("Total Time", ""+Totaltime);
+					
 					SortMatches();
 					
 					ResultFragment resultFragment = new ResultFragment();
@@ -144,6 +173,7 @@ public class ORB extends SherlockFragment{
 					// TODO Auto-generated method stub
 					super.onProgressUpdate(values);
 					progressDialog.incrementProgressBy(1);
+
 				}
 
 				@Override
@@ -151,40 +181,45 @@ public class ORB extends SherlockFragment{
 					// TODO Auto-generated method stub
 					for(int plant=0;plant<plants.size();plant++)
 					{
+						lastProc = System.currentTimeMillis();
 						for(int image=0;image<plants.get(plant).imgUrls.size();image++)
 						{
+							perImageProc = System.currentTimeMillis();
 							String filename = plants.get(plant).imgUrls.get(image);
 							Bitmap bitmapSD = getBitmap(Config.externalDirectory + plants.get(plant).imgUrls.get(image));
-							Mat bmpCap = new Mat();
-							Mat bmpSD = new Mat();
-							Mat img_object = new Mat();
-							Mat img_scene = new Mat();
+							bmpCap = new Mat();
+							bmpSD = new Mat();
+							img_object = new Mat();
+							img_scene = new Mat();
 							
 							Utils.bitmapToMat(bitmapCaptured, bmpCap);
 							Utils.bitmapToMat(bitmapSD, bmpSD);
 							
+							/*Size newSize = new Size(300,300);
+							Imgproc.resize(bmpSD, bmpSD, newSize);
+							Imgproc.resize(bmpCap, bmpCap, newSize);*/
 							Imgproc.cvtColor(bmpCap, img_object, Imgproc.COLOR_RGB2GRAY);
 							Imgproc.cvtColor(bmpSD, img_scene, Imgproc.COLOR_RGB2GRAY);
 							
 
 							FeatureDetector detector = FeatureDetector.create(FeatureDetector.ORB);
 
-							MatOfKeyPoint keypoints_object = new MatOfKeyPoint();
-							MatOfKeyPoint keypoints_scene  = new MatOfKeyPoint();
+							keypoints_object = new MatOfKeyPoint();
+							keypoints_scene  = new MatOfKeyPoint();
 
 							detector.detect(img_object, keypoints_object);
 							detector.detect(img_scene, keypoints_scene);
 
 							DescriptorExtractor extractor = DescriptorExtractor.create(FeatureDetector.ORB);
 
-							Mat descriptor_object = new Mat();
-							Mat descriptor_scene = new Mat();
+							descriptor_object = new Mat();
+							descriptor_scene = new Mat();
 
 							extractor.compute(img_object, keypoints_object, descriptor_object);
 							extractor.compute(img_scene, keypoints_scene, descriptor_scene);
 
-							DescriptorMatcher matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING);
-							MatOfDMatch matches = new MatOfDMatch();
+							matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING);
+							matches = new MatOfDMatch();
 							
 							if(descriptor_object.cols() == descriptor_object.cols()
 									&& descriptor_object.type() == descriptor_scene.type()
@@ -245,8 +280,9 @@ public class ORB extends SherlockFragment{
 											}
 										}
 									}
-	
-									Log.e("RESULT LOG", "["+ plant + ", " + image + "] FILENAME: " + filename + " MATCH = " + maskVal);
+									long lap = (System.currentTimeMillis() - perImageProc);
+									lapseTime.add(lap);
+									Log.e("RESULT LOG", "["+ plant + ", " + image + "] FILENAME: " + filename + " MATCH = " + maskVal + ", "+ lap + "ms");
 									ItemModel item = new ItemModel(plant, maskVal);
 									
 									finalMatches.add(item);
@@ -260,8 +296,12 @@ public class ORB extends SherlockFragment{
 		//							obj_corners.fromList(cornerList);
 //									System.gc();
 								}
-						}//child for-loop
+						}
+						//child for-loop
+						Log.e("Processing time",""+(System.currentTimeMillis() - lastProc)+"ms");
 						publishProgress();
+						Runtime.getRuntime().gc();
+						System.gc();
 					}
 					return null;
 				}//parent for-loop

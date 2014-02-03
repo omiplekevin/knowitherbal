@@ -54,3 +54,35 @@ TO DO:
 		*homepage content
 		*UI for better UX
 		*Update auto-increment in web service upon delete of an item...
+		
+		
+		
+=============================PERFORMANCE TESTING=============================
+February 3, 2014
+
+Plant Entries: 10
+Image Entries: 51
+
+-----------------------------------------------------------------------------
+
+Image resized to: original x original; (W x H);
+Processing time LOG:
+02-03 10:24:37.512: E/Processing time(2945): 6200ms
+02-03 10:24:37.582: E/Average per image is(2945): 1174
+02-03 10:24:37.582: E/Total Time(2945): 58746
+
+-----------------------------------------------------------------------------
+
+Image resized to: 500 x 500; (W x H);
+Processing time LOG:
+02-03 10:20:12.542: E/Processing time(1404): 6501ms
+02-03 10:20:12.612: E/Average per image is(1404): 1435
+02-03 10:20:12.612: E/Total Time(1404): 73227
+
+-----------------------------------------------------------------------------
+
+Image resized to: 300 x 300; (W x H);
+Processing time LOG:
+02-03 10:27:04.552: E/Processing time(4288): 7720ms
+02-03 10:27:04.632: E/Average per image is(4288): 1330
+02-03 10:27:04.632: E/Total Time(4288): 67859

@@ -49,7 +49,16 @@ import com.helper.AsyncTaskUpdateCheck;
 import com.helper.DatabaseHelper;
 import com.helper.Queries;
 import com.utilities.Utilities;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class KnoWITHerbalMain extends SherlockFragmentActivity{
 	
@@ -85,7 +94,7 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowTitleEnabled(false);
 		getSupportActionBar().setHomeButtonEnabled(true);
-		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#00CC00"))); //light green = 6ad600, dark = 00cc00
+		getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#6AD600"))); //light green = 6ad600, dark = 00cc00
 		getSupportActionBar().setIcon(getResources().getDrawable(R.drawable.ic_launcher_2));
 
 		drawerToggle = new ActionBarDrawerToggle(

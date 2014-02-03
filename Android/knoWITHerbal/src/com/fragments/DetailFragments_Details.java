@@ -15,7 +15,16 @@ import com.LMO.capstone.R;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.adapter.ExpandableListAdapter;
 import com.models.PlantModel;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class DetailFragments_Details extends SherlockFragment{
 
 	private View view;

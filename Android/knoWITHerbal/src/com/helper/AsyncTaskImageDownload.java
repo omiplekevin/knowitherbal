@@ -27,7 +27,16 @@ import android.util.Log;
 
 import com.config.Config;
 import com.utilities.Utilities;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 	
 	ProgressDialog progressDialog;

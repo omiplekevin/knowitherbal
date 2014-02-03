@@ -21,7 +21,16 @@ import com.emilsjolander.components.stickylistheaders.StickyListHeadersAdapter;
 import com.models.PlantModel;
 import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
-
+/**
+ * @author Kevin Jimenez Omiple
+ * 
+ * omiple.kevin@gmail.com
+ *
+ * Any replication codes without citation of the author aforementioned
+ * is a direct violation of ownership rights of the author.
+ *
+ *
+ */
 public class PlantListAdapter extends ArrayAdapter<PlantModel> implements StickyListHeadersAdapter{
 
 	Context context;
