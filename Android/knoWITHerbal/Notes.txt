@@ -60,19 +60,20 @@ TO DO:
 =============================PERFORMANCE TESTING=============================
 February 3, 2014
 
+-----------------------------------------------------------------------------
 Plant Entries: 10
 Image Entries: 51
-
------------------------------------------------------------------------------
-
-Image resized to: original x original; (W x H);
+Phone Spec: 2.2Ghz QuadCore, 2GB DRAM
+Image default size: 4160 x 2340; (W x H);
 Processing time LOG:
 02-03 10:24:37.512: E/Processing time(2945): 6200ms
 02-03 10:24:37.582: E/Average per image is(2945): 1174
 02-03 10:24:37.582: E/Total Time(2945): 58746
 
 -----------------------------------------------------------------------------
-
+Plant Entries: 10
+Image Entries: 51
+Phone Spec: 2.2Ghz QuadCore, 2GB DRAM
 Image resized to: 500 x 500; (W x H);
 Processing time LOG:
 02-03 10:20:12.542: E/Processing time(1404): 6501ms
@@ -80,9 +81,29 @@ Processing time LOG:
 02-03 10:20:12.612: E/Total Time(1404): 73227
 
 -----------------------------------------------------------------------------
-
+Plant Entries: 10
+Image Entries: 51
+Phone Spec: 2.2Ghz QuadCore, 2GB DRAM
 Image resized to: 300 x 300; (W x H);
 Processing time LOG:
 02-03 10:27:04.552: E/Processing time(4288): 7720ms
 02-03 10:27:04.632: E/Average per image is(4288): 1330
 02-03 10:27:04.632: E/Total Time(4288): 67859
+
+-----------------------------------------------------------------------------
+Plant Entries: 10
+Image Entries: 51
+Phone Spec: 1.2Ghz DualCore, 768MB DRAM
+Image default size: 1920 x 2560; (W x H);
+02-03 22:17:06.400: E/Processing time(5116): 20158ms
+02-03 22:17:07.062: E/Average per image is(5116): 4312
+02-03 22:17:07.062: E/Total Time(5116): 215621
+
+-----------------------------------------------------------------------------
+Plant Entries: 10
+Image Entries: 51
+Phone Spec: 1.2Ghz DualCore, 768MB DRAM
+Image resied to: 500 x 500; (W x H);
+02-03 22:31:25.288: E/Processing time(8849): 17786ms
+02-03 22:31:25.462: E/Average per image is(8849): 3561
+02-03 22:31:25.462: E/Total Time(8849): 181646

@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,8 +50,17 @@ public class TheDevelopersFragment extends SherlockFragment{
 		super.onViewCreated(view, savedInstanceState);
 //		getSherlockActivity().getSupportActionBar().setTitle(Html.fromHtml("<i>Developers</i>"));
 		pager = (ViewPager)view.findViewById(R.id.devPager);
-		DevPagerAdapter adapter = new DevPagerAdapter(getSherlockActivity());
-		pager.setAdapter(adapter);
+		this.getSherlockActivity().runOnUiThread(new Runnable()
+		{
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				DevPagerAdapter adapter = new DevPagerAdapter(getSherlockActivity());
+				pager.setAdapter(adapter);
+			}
+			
+		});
 		pager.setPageTransformer(true, new FlyRotateTransformer());
 	}
 	
@@ -83,10 +91,10 @@ public class TheDevelopersFragment extends SherlockFragment{
 	            float horzMargin = pageWidth * (1 - scaleFactor) / 2;
 	            if (position < 0) {
 	                view.setTranslationX(horzMargin - vertMargin / 2);
-	                view.setRotationY(position * 135);
+	                view.setRotationY(position * 40);
 	            } else {
 	                view.setTranslationX(-horzMargin + vertMargin / 2);
-	                view.setRotationY(position * 135);
+	                view.setRotationY(position * 40);
 	            }
 
 	            // Scale the page down (between MIN_SCALE and 1)

@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/base_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFBBEE"
-    android:orientation="horizontal" >
+    android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/webBtn"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear_layout_dev"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerInside"
-        android:src="@drawable/icecream_sandwhich" />
+        android:background="#FFBBEE"
+        android:orientation="horizontal" >
 
-    <com.adapter.CustomTextView
-        android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|left"
-        android:text="Name Here..."
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <ImageView
+            android:id="@+id/webBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/icecream_sandwhich" />
 
-</LinearLayout>
+        <com.adapter.CustomTextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:text="Name Here..."
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
+</FrameLayout>

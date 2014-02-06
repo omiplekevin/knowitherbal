@@ -195,7 +195,7 @@ public class ORB extends SherlockFragment{
 							Utils.bitmapToMat(bitmapCaptured, bmpCap);
 							Utils.bitmapToMat(bitmapSD, bmpSD);
 							
-							/*Size newSize = new Size(300,300);
+							/*Size newSize = new Size(500,500);
 							Imgproc.resize(bmpSD, bmpSD, newSize);
 							Imgproc.resize(bmpCap, bmpCap, newSize);*/
 							Imgproc.cvtColor(bmpCap, img_object, Imgproc.COLOR_RGB2GRAY);
@@ -294,7 +294,7 @@ public class ORB extends SherlockFragment{
 		
 		//							MatOfPoint obj_corners = new MatOfPoint();
 		//							obj_corners.fromList(cornerList);
-//									System.gc();
+        //							System.gc();
 								}
 						}
 						//child for-loop
