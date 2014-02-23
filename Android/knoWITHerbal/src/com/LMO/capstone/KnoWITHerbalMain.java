@@ -224,7 +224,8 @@ public class KnoWITHerbalMain extends SherlockFragmentActivity{
 			{
 				Toast.makeText(this, "Press back again to exit", Toast.LENGTH_LONG).show();
 				lastPress = currentTime;
-			}else
+			}
+			else
 			{
 				super.onBackPressed();
 			}

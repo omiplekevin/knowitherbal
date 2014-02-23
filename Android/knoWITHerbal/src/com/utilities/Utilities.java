@@ -4,12 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.helper.AsyncTaskDatabaseLoader;
-import com.helper.AsyncTaskImageDownload;
-import com.helper.DatabaseHelper;
-import com.helper.OpenCVManagerDownloader;
-import com.helper.Queries;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -28,7 +22,15 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.text.Html;
 import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import com.helper.AsyncTaskDatabaseLoader;
+import com.helper.AsyncTaskImageDownload;
+import com.helper.DatabaseHelper;
+import com.helper.OpenCVManagerDownloader;
+import com.helper.Queries;
 /**
  * @author Kevin Jimenez Omiple
  * 
@@ -234,5 +236,11 @@ public class Utilities {
 		{
 			checkOCV.execute();
 		}
+	}
+	
+	public void hideKeyboard(EditText searchText)
+	{
+		InputMethodManager im = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
+		im.hideSoftInputFromWindow(searchText.getWindowToken(), 0);
 	}
 }

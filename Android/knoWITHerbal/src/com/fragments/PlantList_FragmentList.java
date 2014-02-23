@@ -1,23 +1,19 @@
 package com.fragments;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -29,6 +25,7 @@ import com.helper.DatabaseHelper;
 import com.helper.ListSearch;
 import com.helper.Queries;
 import com.models.PlantModel;
+import com.utilities.Utilities;
 /**
  * @author Kevin Jimenez Omiple
  * 
@@ -48,6 +45,7 @@ public class PlantList_FragmentList extends SherlockFragment{
 	private EditText searchText;
 	private PlantListAdapter adapter;
 	private ImageButton clearBtn;
+	Utilities util;
 	
 	View view;
 	
@@ -73,6 +71,7 @@ public class PlantList_FragmentList extends SherlockFragment{
 		super.onViewCreated(view, savedInstanceState);
 		getSherlockActivity().getSupportActionBar().setTitle("Plant List");
 		instantiateView();
+		util = new Utilities(getActivity());
 		
 		clearBtn.setOnClickListener(new OnClickListener() {
 			
@@ -80,8 +79,9 @@ public class PlantList_FragmentList extends SherlockFragment{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				searchText.setText("");
-				InputMethodManager im = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-				im.hideSoftInputFromWindow(searchText.getWindowToken(), 0);
+				util.hideKeyboard(searchText);
+//				InputMethodManager im = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+//				im.hideSoftInputFromWindow(searchText.getWindowToken(), 0);
 			}
 		});
 	}
@@ -112,6 +112,7 @@ public class PlantList_FragmentList extends SherlockFragment{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
+				util.hideKeyboard(searchText);
 				DetailFragment details = new DetailFragment();
 				details.setItem((PlantModel)listView.getItemAtPosition(position));
 				
@@ -136,7 +137,7 @@ public class PlantList_FragmentList extends SherlockFragment{
 			
 			if(!searchText.getText().toString().equals(""))
 			{
-				newAdapter = (PlantListAdapter)ListSearch.searchPlantList(getActivity(), plantList, s, true);
+				newAdapter = (PlantListAdapter)ListSearch.searchPlantList(getActivity(), plantList, s.toString().toUpperCase(Locale.getDefault()), true);
 				clearBtn.setVisibility(View.VISIBLE);
 			}
 			else

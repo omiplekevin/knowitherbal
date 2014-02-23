@@ -7,20 +7,23 @@
     <ImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="top|center"
+        android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        android:src="#000000" />
+        android:src="@drawable/stickyheader_bg" />
 
-    <TextView
+    <com.adapter.CustomTextView
         android:id="@+id/stickheaderText"
-        android:layout_width="30dp"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="2dp"
         android:gravity="center|center"
         android:text="A"
         android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFF"
         android:textStyle="bold" />
 
 </FrameLayout>

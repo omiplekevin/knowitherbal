@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.adapter.CustomGridAdapter;
 import com.adapter.PlantListAdapter;
@@ -27,7 +28,7 @@ public class ListSearch {
 		for(int i=0;i<plantList.size();i++)
 		{
 			justAdded = false;
-			if((plantList.get(i).getName().toLowerCase(Locale.getDefault())).contains(s))
+			if((plantList.get(i).getName().toUpperCase(Locale.getDefault())).contains(s.toString().toUpperCase(Locale.getDefault())))
 			{
 				newList.add(plantList.get(i));
 				justAdded = true;
@@ -55,7 +56,7 @@ public class ListSearch {
 		String[] commonNames = item.getCommon().split("\\|\\|");
 		for(int c=0;c<commonNames.length;c++)
 		{
-			if((commonNames[c].toLowerCase(Locale.getDefault())).contains(s)){
+			if((commonNames[c].toUpperCase(Locale.getDefault())).contains(s.toString().toUpperCase(Locale.getDefault()))){
 				return true;
 			}
 		}
@@ -67,7 +68,7 @@ public class ListSearch {
 		String[] usage = item.getUsage().split("\\|\\|");
 		for(int c=0;c<usage.length;c++)
 		{
-			if((usage[c].toLowerCase(Locale.getDefault())).contains(s)){
+			if((usage[c].toLowerCase(Locale.getDefault())).contains(s.toString().toUpperCase(Locale.getDefault()))){
 				return true;
 			}
 		}

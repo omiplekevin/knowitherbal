@@ -1,6 +1,7 @@
 package com.fragments;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,6 +27,7 @@ import com.helper.DatabaseHelper;
 import com.helper.ListSearch;
 import com.helper.Queries;
 import com.models.PlantModel;
+import com.utilities.Utilities;
 /**
  * @author Kevin Jimenez Omiple
  * 
@@ -46,6 +48,7 @@ public class PlantList_FragmentGridList extends SherlockFragment{
 	private ImageButton clearBtn;
 	EditText searchText;
 	GridView gridView;
+	Utilities util;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,14 +79,16 @@ public class PlantList_FragmentGridList extends SherlockFragment{
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+		util = new Utilities(getActivity());
 		clearBtn.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				searchText.setText("");
-				InputMethodManager im = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-				im.hideSoftInputFromWindow(searchText.getWindowToken(), 0);
+				searchText.setText("");				
+				util.hideKeyboard(searchText);
+//				InputMethodManager im = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+//				im.hideSoftInputFromWindow(searchText.getWindowToken(), 0);
 			}
 		});
 	}
@@ -104,6 +109,7 @@ public class PlantList_FragmentGridList extends SherlockFragment{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
+				util.hideKeyboard(searchText);
 				DetailFragment details = new DetailFragment();
 				details.setItem((PlantModel)gridView.getItemAtPosition(position));
 				FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -123,7 +129,7 @@ public class PlantList_FragmentGridList extends SherlockFragment{
 			CustomGridAdapter newAdapter;
 			if(!searchText.getText().toString().equals(""))
 			{
-				newAdapter = (CustomGridAdapter)ListSearch.searchPlantList(getActivity(), plantList, s, false);
+				newAdapter = (CustomGridAdapter)ListSearch.searchPlantList(getActivity(), plantList, s.toString().toUpperCase(Locale.getDefault()), false);
 				clearBtn.setVisibility(View.VISIBLE);
 			}
 			else

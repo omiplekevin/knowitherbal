@@ -36,7 +36,7 @@
     </string>
     
     <string name="about">
-        \"knowITherbal\" is an application used by the botanists and future botanist, hikers, and common people for identifying herbal plant\'s leaf captured by the application using the mobile phone camera and analyze the image by using some of the algorithms to identify the feature of the leaf.
+        \" <i>knowITherbal</i> \" is an application used by the botanists and future botanist, hikers, and common people for identifying herbal plant\'s leaf captured by the application using the mobile phone camera and analyze the image by using some of the algorithms to identify the feature of the leaf.
 	</string>
     
     <string name="camera_help1">
@@ -48,6 +48,6 @@
         <b>Well-Lit Environment</b>\n\n&#8226; Well-Lit environment can produce good image and can lead to better results.
         </string>
         <string name="web_service">
-            http://appspot.knowitherbal.com
+            http://knowitherbal.tk/admin/login
             </string>
 </resources>

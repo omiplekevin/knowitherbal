@@ -96,7 +96,7 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 				conexion.connect();
 
 				int lenghtOfFile = conexion.getContentLength();
-				Log.e("ANDROID_ASYNC", "Length of file: " + lenghtOfFile);
+//				Log.e("ANDROID_ASYNC", "Length of file: " + lenghtOfFile);
 
 				InputStream input = new BufferedInputStream(url.openStream());
 				OutputStream output = new FileOutputStream(Config.externalDirectory + splitURL[1]);
@@ -120,7 +120,7 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 				conexion.connect();
 
 				int lenghtOfFile = conexion.getContentLength();
-				Log.e("ANDROID_ASYNC", "Length of file: " + lenghtOfFile);
+//				Log.e("ANDROID_ASYNC", "Length of file: " + lenghtOfFile);
 
 				InputStream input = new BufferedInputStream(url.openStream());
 				OutputStream output = new FileOutputStream(Config.externalDirectory + ".thumbnail/" + splitURL[1]);

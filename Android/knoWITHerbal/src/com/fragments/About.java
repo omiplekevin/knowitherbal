@@ -74,17 +74,17 @@ public class About extends SherlockFragment{
 		
 		AnimatorSet imageViewAnim = new AnimatorSet();
 		imageViewAnim.playTogether(
-				ObjectAnimator.ofFloat(logo, "translationY", -30, 0),
+				ObjectAnimator.ofFloat(logo, "translationX", -30, 0),
 				ObjectAnimator.ofFloat(logo, "alpha", 0,0.5f,1));
 		
 		AnimatorSet appNameAnim = new AnimatorSet();
 		appNameAnim.playTogether(
-				ObjectAnimator.ofFloat(title, "translationY", -100, 0),
+				ObjectAnimator.ofFloat(title, "translationX", 50, 0),
 				ObjectAnimator.ofFloat(title, "alpha", 0, 0.5f, 1));
 		
 		AnimatorSet subtitle = new AnimatorSet();
 		subtitle.playTogether(
-				ObjectAnimator.ofFloat(this.subtitle, "translationY", -150, 0),
+				ObjectAnimator.ofFloat(this.subtitle, "translationX", -30, 0),
 				ObjectAnimator.ofFloat(this.subtitle, "alpha", 0, 0, 1));
 		
 		AnimatorSet allAnim = new AnimatorSet();
@@ -93,7 +93,7 @@ public class About extends SherlockFragment{
 		allAnim.start();
 		
 		publishInfo.setText(Html.fromHtml("Content publish date:<br/><b>"+pubInfo.getCreatedAt()+"</b>.<br/><br/>" +
-				"Remarks:<br/>\"<i>"+pubInfo.getComment()+"</i>\"<br/><br/>"));
+				"Remarks:<br/>\" <i>"+pubInfo.getComment()+"</i> \"<br/><br/>"));
 		
 		logo.setOnClickListener(new OnClickListener() {			
 			@Override

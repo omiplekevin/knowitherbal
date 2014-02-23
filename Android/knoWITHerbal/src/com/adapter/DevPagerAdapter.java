@@ -6,6 +6,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -44,7 +45,7 @@ public class DevPagerAdapter extends PagerAdapter{
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 5;
 	}
 
 	@Override
@@ -63,17 +64,12 @@ public class DevPagerAdapter extends PagerAdapter{
 	public Object instantiateItem(ViewGroup container, final int position) {
 		// TODO Auto-generated method stub
 		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		/*View view = inflater.inflate(R.layout.developers_page, null);
-		ImageView banner = (ImageView)view.findViewById(R.id.webBtn);
-		TextView name = (TextView)view.findViewById(R.id.content);*/
 		View view = inflater.inflate(R.layout.developers_page_2, null);
 		final ListView lstView = (ListView)view.findViewById(R.id.listView_dev);
 		ArrayList<Object> draws = new ArrayList<Object>();
 		switch(position)
 		{
 		case 0:
-			/*name.setText("Fatima D. Ledesma\nData");
-			banner.setImageBitmap(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.icecream_sandwhich)));*/
 			draws.add(context.getResources().getDrawable(R.drawable.pat));
 			draws.add("Fatima Ledesma");
 			draws.add("Data Entries");
@@ -81,8 +77,6 @@ public class DevPagerAdapter extends PagerAdapter{
 			draws.add("#B100CB");
 			break;
 		case 1:
-			/*name.setText("Princess Lei R. Madriaga\nWeb Service");
-			banner.setImageBitmap(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.jelly_bean)));*/
 			draws.add(context.getResources().getDrawable(R.drawable.lei));
 			draws.add("Princess Lei Madriaga");
 			draws.add("Web Service");
@@ -91,13 +85,25 @@ public class DevPagerAdapter extends PagerAdapter{
 			break;
 			
 		case 2:
-			/*name.setText("Kevin J. Omiple\nAndroid Application");
-			banner.setImageBitmap(Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.kitkat)));*/
 			draws.add(context.getResources().getDrawable(R.drawable.kev));
 			draws.add("Kevin Omiple");
 			draws.add("Android Application");
 			draws.add(context.getResources().getDrawable(R.drawable.badge_android));
 			draws.add("#6AD600");
+			break;
+		case 3:
+			draws.add(context.getResources().getDrawable(R.drawable.consultant_adviser));
+			draws.add("Jonnel Ryan Buisan");
+			draws.add("Consultant");
+			draws.add(context.getResources().getDrawable(R.drawable.badge_consultant_adviser));
+			draws.add("#CC0000");
+			break;
+		case 4:
+			draws.add(context.getResources().getDrawable(R.drawable.consultant_adviser));
+			draws.add("Exander Barrios, MIM, MIT");
+			draws.add("Adviser");
+			draws.add(context.getResources().getDrawable(R.drawable.badge_consultant_adviser));
+			draws.add("#CC0000");
 			break;
 		}
 		Adapter2 adapter = new Adapter2(context, 0, draws);

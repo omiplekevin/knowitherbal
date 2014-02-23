@@ -19,9 +19,8 @@
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="@dimen/margin_40dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/about_this_app_title" />
+                android:src="@drawable/about_this_app_title_orig" />
 
             <ImageView
                 android:id="@+id/webBtn"
@@ -53,14 +52,14 @@
         <FrameLayout
             android:id="@+id/about_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_10dp" >
 
             <com.adapter.CustomTextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_10dp"
-                android:layout_marginTop="@dimen/margin_10dp"
+                android:layout_margin="@dimen/margin_10dp"
                 android:text="@string/about"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -69,22 +68,36 @@
         <FrameLayout
             android:id="@+id/app_info"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10dp" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
 
-                <com.adapter.CustomTextView
-                    android:id="@+id/rating_label"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#CC000000"
-                    android:gravity="center|center"
-                    android:text="Application Info"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFF" />
+                    android:layout_height="wrap_content" >
+
+                    <com.adapter.CustomTextView
+                        android:id="@+id/rating_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center"
+                        android:gravity="center|center"
+                        android:text="Application Info"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#1C1C1C" />
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/stickyheader_bg" />
+
+                </FrameLayout>
 
                 <com.adapter.CustomTextView
                     android:id="@+id/publish_info"

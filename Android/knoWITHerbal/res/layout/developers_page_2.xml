@@ -3,7 +3,7 @@
     android:id="@+id/base_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#555" >
+    android:background="#FFF" >
 
     <ListView
         android:id="@+id/listView_dev"

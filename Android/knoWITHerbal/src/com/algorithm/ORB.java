@@ -14,7 +14,6 @@ import org.opencv.core.MatOfDMatch;
 import org.opencv.core.MatOfKeyPoint;
 import org.opencv.core.MatOfPoint2f;
 import org.opencv.core.Point;
-import org.opencv.core.Size;
 import org.opencv.features2d.DMatch;
 import org.opencv.features2d.DescriptorExtractor;
 import org.opencv.features2d.DescriptorMatcher;
@@ -165,6 +164,7 @@ public class ORB extends SherlockFragment{
 					progressDialog.setMax(plantEntry);
 					progressDialog.setTitle(Html.fromHtml("<b>This may take a while...</b>"));
 					progressDialog.setMessage(Html.fromHtml("<i>Analyzing</i>"));
+					progressDialog.setProgress(1);
 					progressDialog.show();
 				}
 
