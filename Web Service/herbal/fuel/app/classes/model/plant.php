@@ -11,6 +11,7 @@ class Model_Plant extends \Orm\Model
 		'vernacular_names',
 		'properties',
 		'usage',
+		'availability',
 		'filename',
 		'created_at',
 		'updated_at',
@@ -36,6 +37,7 @@ class Model_Plant extends \Orm\Model
 		$val->add_field('vernacular_names', 'Vernacular Names', '');
 		$val->add_field('properties', 'Properties', '');
 		$val->add_field('usage', 'Usage', '');
+		$val->add_field('availability', 'Availability', '');
 		$val->add_field('filename', 'Filename', '');
 
 		return $val;

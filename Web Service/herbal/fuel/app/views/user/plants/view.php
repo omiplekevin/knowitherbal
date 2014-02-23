@@ -18,6 +18,9 @@
 <p>
 	<strong>Usage:</br></strong>
 	<?php echo str_replace('||', ' • ', $plants->usage); ?></p>
+<p>
+	<strong>Availability:</br></strong>
+	<?php echo str_replace('||', ' • ', $plants->availability); ?></p>
 <!-- <p>
 	<strong>Filename:</strong>
 	<?php /*echo str_replace('||', ' • ', $plants->filename);*/ ?></p> -->

@@ -10,6 +10,7 @@
 	<?php echo Asset::css('paginate.css'); ?>
 	<?php /*echo Asset::css('generic.css');*/ ?>
 	<?php echo Asset::css('js-image-slider.css'); ?>
+	<?php echo Asset::css('accordion_style.css'); ?>
 	<style>
 		body { margin: 50px; }
 	</style>
@@ -27,6 +28,16 @@
 		$(function(){ $('.topbar').dropdown(); });
 	</script>
 
+	<script>
+		$(window).on('scroll', function() {
+	    var header = $(".navbar");
+	    if ($(this).scrollTop() > 100) {
+	        if (!header.data('faded')) header.data('faded', 1).stop(true).fadeTo(200, 0.3);
+	    } else if (header.data('faded')) {
+	        header.data('faded', 0).stop(true).fadeTo(200, 1);
+	    }
+});
+	</script>
 	
 </head>
 <body>
@@ -82,7 +93,7 @@
 	</div>
 	<?php endif; ?>
 
-	<div class="container" style="margin-bottom: 100px;">
+	<div class="container" style="margin-bottom: -100px;">
 		<div class="row">
 			<div class="col-md-12">
 				<h1><?php if($title == "Login") echo $title; ?>
@@ -108,14 +119,17 @@
 <?php echo $content; ?>
 			</div>
 		</div>		
-		<hr/>
-		<footer class="navbar-fixed-bottom" style="background-color:#222222; height: 30px; opacity: .9;">
-			<p style="text-align:center; position: relative; top: -3px; color: #FFF;">Developed under FuelPHP</p>
+		<!-- <footer class="navbar-fixed-bottom" style="background-color:#222222; height: 30px; opacity: .9;">
+			<!-- <p style="text-align:center; position: relative; top: -3px; color: #FFF;">Developed under FuelPHP</p>
 			<p style="text-align:center; position: relative; top: -20px; color: #FFF;">
 				<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
 				<small>Version: <?php echo e(Fuel::VERSION); ?></small>
-			</p>
-		</footer>
+			</p> -->
+			<!-- <div style="text-align: center;">
+				<a href="http://fuelphp.com" title="<?php echo 'FuelPHP Version: '.e(Fuel::VERSION); ?>" target="_blank"><?= Html::img('assets/img/fuelPHP.png', array('style' => 'height: 30px; width: 30px;')) ?></a>
+				<a href="http://java.com" title="<?php echo 'JavaScript' ?>" target="_blank"><?= Html::img('assets/img/jscript.png', array('style' => 'height: 30px; width: 30px;')) ?></a>
+			</div>
+		</footer> -->
 	</div>
 </body>
 </html>

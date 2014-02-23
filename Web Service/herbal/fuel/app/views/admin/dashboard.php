@@ -1,15 +1,26 @@
-<div class="jumbotron">
-	<div id="sliderFrame">
+<div class="header_custom">
+	<!-- <div id="sliderFrame">
 		<div id="slider">
 	        <a> <img src="<?php echo Config::get('base_url').'assets/img/banners/banner1.png';?>"/> </a>
             <a> <img src="<?php echo Config::get('base_url').'assets/img/banners/banner2.jpg';?>"/> </a>
             <a> <img src="<?php echo Config::get('base_url').'assets/img/banners/banner3.png';?>"/> </a>
             <!-- <a> <img src="http://localhost:9980/herbal/public/assets/img/1/4.jpg"/> </a>
-            <a> <img src="http://localhost:9980/herbal/public/assets/img/1/5.jpg"/> </a> -->
+            <a> <img src="http://localhost:9980/herbal/public/assets/img/1/5.jpg"/> </a>
 	    </div>
 		<div style="z-index: 90; position: absolute; margin-top: -80px; background-color: rgba(0,10,0,.8); width: 1140px; color: #E8E8E8; padding: 0px 0px 0px 20px;">
 			<h1 style="text-shadow: 0px 1px 7px #000;">Dashboard<?php echo Html::img('assets/img/brand.png') ?></h1>
 		</div>
+	</div> -->
+	<div style="text-align: center;">
+		<p>
+			<?= Html::img('assets/img/web_banner_2.png', array("style" => "width: 768px; pointer-events: none;")) ?>
+		</p>
+		<p>
+			<!-- <font face="Lucida Grande" color="#555555" size="8">Leaf  +  Android  =  Free</font> -->
+		</p>
+		<br/>
+		<hr/>
+		<br/>
 	</div>
 </div>
 
@@ -77,4 +88,17 @@ function mcImgSlider(k){for(var T=function(a){return document.getElementById(a)}
 			<li><?php echo Html::img('assets/img/android_icon.png') ?><a href="http://play.google.com" target="_blank">Android</a></li>
 		</ul>
 	</div>
+</div>
+
+<hr/>
+<div class="row">
+	<p style="text-align: center;">
+		<a href="http://fuelphp.com"><?= Html::img('assets/img/fuelPHP.png', array('style' => 'height: 30px;')) ?></a>
+		<a href="http://java.com"><?= Html::img('assets/img/jscript.png', array('style' => 'height: 30px;')) ?></a>
+	</p>
+	<p style="text-align:center; position: relative; top: -3px; color: #555;">Developed under FuelPHP</p>
+	<p style="text-align:center; position: relative; top: -20px; color: #555;">
+		<a href="http://fuelphp.com">FuelPHP</a> is released under the MIT license.
+		<small>Version: <?php echo e(Fuel::VERSION); ?></small>
+	</p>
 </div>

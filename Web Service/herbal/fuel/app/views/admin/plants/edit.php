@@ -41,6 +41,12 @@
 
 		</div>
 		<div class="form-group">
+			<?php echo Form::label('Availability', 'availability', array('class'=>'control-label')); ?>
+
+				<?= Form::textarea('availability', Input::post('availability', isset($plant) ? $plant->usage : ''), array('class' => 'col-md-8 form-control', 'rows' => 8, 'placeholder' => 'Availability')) ?>
+
+		</div>
+		<div class="form-group">
 			<label class='control-label'>&nbsp;</label>
 			<?php echo Form::submit('submit', 'Save', array('class' => 'btn btn-primary')); ?>		</div>
 	</fieldset>

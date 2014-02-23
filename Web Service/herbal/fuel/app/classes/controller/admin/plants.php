@@ -42,6 +42,7 @@ class Controller_Admin_Plants extends Controller_Admin{
 					'vernacular_names' => Input::post('vernacular_names'),
 					'properties' => Input::post('properties'),
 					'usage' => Input::post('usage'),
+					'availability' => Input::post('availability'),
 				));
 
 				$config = array(
@@ -72,8 +73,9 @@ class Controller_Admin_Plants extends Controller_Admin{
 									$vername =  $input->vernacular;
 									$properties = $input->properties;
 									$usage = $input->usage;
+									$availability = $input->availability;
 								}
-						$query = DB::query("INSERT INTO `plants` (`name`,`scientific_names`, `common_names`, `vernacular_names`, `properties`, `usage`,`filename`) VALUES('$name','$sciname','$commonname','$vername','$properties','$usage','$plant->filename')")->execute();
+						$query = DB::query("INSERT INTO `plants` (`name`,`scientific_names`, `common_names`, `vernacular_names`, `properties`, `usage`,`availability`,`filename`) VALUES('$name','$sciname','$commonname','$vername','$properties','$usage','$availability','$plant->filename')")->execute();
 									 
 						}
 
@@ -120,6 +122,7 @@ class Controller_Admin_Plants extends Controller_Admin{
 			$plant->vernacular_names = Input::post('vernacular_names');
 			$plant->properties = Input::post('properties');
 			$plant->usage = Input::post('usage');
+			$plant->availability = Input::post('availability');
 			$plant->filename = Input::post('filename');
 
 			if ($plant->save())
@@ -145,6 +148,7 @@ class Controller_Admin_Plants extends Controller_Admin{
 				$plant->vernacular_names = $val->validated('vernacular_names');
 				$plant->properties = $val->validated('properties');
 				$plant->usage = $val->validated('usage');
+				$plant->availability = $val->validated('availability');
 				$plant->filename = $val->validated('filename');
 
 				Session::set_flash('error', $val->error());

@@ -15,6 +15,7 @@
 			<th><p>Vernacular names</p></th>
 			<th style="margin-right:150px;"><p style="margin-right:150px">Properties</p></th>
 			<th><p>Usage</p></th>
+			<th><p>Availability</p></th>
 			<!-- <th><p>Filename</p></th> -->
 			<th><p style="margin-right: 30px;"> </p></th>
 		</tr>
@@ -28,6 +29,7 @@
 			<td><p class = "seemore"><?php echo str_replace('||',' • ', $plant->vernacular_names); ?></p></td>
 			<td><p class = "seemore" ><?php echo str_replace('||',' • ', $plant->properties); ?></p></td>
 			<td><p class = "seemore"><?php echo str_replace('||',' • ', $plant->usage); ?></p></td>
+			<td><p class = "seemore"><?php echo str_replace('||', ' • ', $plant->usage); ?></p></td>
 			<!-- <td><?php echo $plant->filename; ?></td> -->
 			<td>
 				<?php echo Html::anchor('user/plants/view/'.$plant->id, Html::img('assets/img/open.png'), array('title' => 'View')); ?></a>
