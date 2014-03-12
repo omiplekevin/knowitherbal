@@ -75,7 +75,7 @@ public class DetailViewPagerAdapter extends PagerAdapter{
 				try
 				{
 					Bitmap img = BitmapFactory.decodeFile(Config.externalDirectory + imgURL.get(position));
-					return Bitmap.createScaledBitmap(img, img.getWidth()/3, img.getHeight()/3, true);
+					return Bitmap.createScaledBitmap(img, img.getWidth()/2, img.getHeight()/2, true);
 				}
 				catch(Exception e)
 				{

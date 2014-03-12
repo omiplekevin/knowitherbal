@@ -27,6 +27,8 @@ public class Config {
 	
 	public static String hostURL = "http://www.knowitherbal.tk/";
 	
+//	public static String hostURL = "http://192.168.180.1:9980/herbal/public/";
+	
 	public static String imagehostURL = hostURL + "herbals_photos/";
 	
 	public static String xmlhostURL = hostURL + "json/";
@@ -67,6 +69,10 @@ public class Config {
 	public static float viewPagerscaleFactor = 0.4f;
 	
 	public static float viewPagerscaleFactor_large = 0.85f;
+	
+	public static double ORB_MAX_DIST = 0.0d;
+	
+	public static double ORB_MIN_DIST = 250.0d;
 	
 	/*************************************************************
 	 * XML TAGS START

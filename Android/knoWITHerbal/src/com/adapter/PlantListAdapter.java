@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -106,11 +107,23 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 		        v.imageView.setImageBitmap(result);
 		        if(hasRating)
 		        {
-		        	float invert = 100-plantList.get(pos).getRating();
-		        	float div = invert / 100;
+		        	float invert = (float) (Config.ORB_MIN_DIST-plantList.get(pos).getRating());
+		        	float div = invert / (float)Config.ORB_MIN_DIST;
 		        	float r = div * 100;
-//		        	Log.e("INVERT,DIV,R", ""+invert+","+Float.toString(div)+","+Float.toString(r));
-		        	v.rating.setText(Float.toString(r)+ "% match");
+		        	Log.e("DIV,R", Float.toString(div)+","+Float.toString(r));
+		        	v.rating.setText(""+ r + "% match");
+		        	if(r >= 70.0f)
+		        	{
+		        		v.rating.setTextColor(Color.parseColor("#00FF00"));
+		        	}
+		        	else if(r < 70.0f && r >= 50.0f)
+		        	{
+		        		v.rating.setTextColor(Color.parseColor("#E88B00"));
+		        	}
+		        	else if(r < 50.0f )
+		        	{
+		        		v.rating.setTextColor(Color.parseColor("#FF4F4F"));
+		        	}
 		        }
 		        AnimatorSet anim = new AnimatorSet();
 				anim.playTogether(

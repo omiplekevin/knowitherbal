@@ -68,7 +68,7 @@ public class ListSearch {
 		String[] usage = item.getUsage().split("\\|\\|");
 		for(int c=0;c<usage.length;c++)
 		{
-			if((usage[c].toLowerCase(Locale.getDefault())).contains(s.toString().toUpperCase(Locale.getDefault()))){
+			if((usage[c].toUpperCase(Locale.getDefault())).contains(s.toString().toUpperCase(Locale.getDefault()))){
 				return true;
 			}
 		}

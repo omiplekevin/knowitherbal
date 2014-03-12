@@ -229,8 +229,8 @@ public class ORB extends SherlockFragment{
 									matcher.match(descriptor_object, descriptor_scene, matches);
 									List<DMatch> matchesList = matches.toList();
 		
-									Double max_dist = 0.0;
-									Double min_dist = 200.0;
+									Double max_dist = Config.ORB_MAX_DIST;
+									Double min_dist = Config.ORB_MIN_DIST;
 		
 									for(int i = 0; i < descriptor_object.rows(); i++){
 									    Double dist = (double) matchesList.get(i).distance;
@@ -282,7 +282,7 @@ public class ORB extends SherlockFragment{
 									}
 									long lap = (System.currentTimeMillis() - perImageProc);
 									lapseTime.add(lap);
-									Log.e("RESULT LOG", "["+ plant + ", " + image + "] FILENAME: " + filename + " MATCH = " + maskVal + ", "+ lap + "ms");
+									Log.e("RESULT LOG", "["+ plant + ", " + image + "] FILENAME: " + filename + " MATCH = " + (Config.ORB_MIN_DIST - maskVal) + ", "+ lap + "ms");
 									ItemModel item = new ItemModel(plant, maskVal);
 									
 									finalMatches.add(item);

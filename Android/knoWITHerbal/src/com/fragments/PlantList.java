@@ -127,14 +127,14 @@ public class PlantList extends SherlockFragment{
 			settings.setIcon(R.drawable.to_list);
 		}
 		
-		settings.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		settings.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 		settings.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				// TODO Auto-generated method stub
 				FragmentTransaction ft = getSherlockActivity().getSupportFragmentManager().beginTransaction();
-				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 				if(plantview)
 				{
 					item.setIcon(R.drawable.to_list);
