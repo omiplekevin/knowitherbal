@@ -23,11 +23,11 @@ public class Config {
 	
 	public static String publishTable = "publishesTB";
 	
-	public static String externalDirectory = Environment.getExternalStorageDirectory() + "/.knoWITHerbal/";
+	public static String externalDirectory = Environment.getExternalStorageDirectory() + "/knoWITHerbal/";
 	
-	public static String hostURL = "http://www.knowitherbal.tk/";
+//	public static String hostURL = "http://www.knowitherbal.tk/";
 	
-//	public static String hostURL = "http://192.168.180.1:9980/herbal/public/";
+	public static String hostURL = "http://192.168.43.74:9980/herbal/public/";
 	
 	public static String imagehostURL = hostURL + "herbals_photos/";
 	

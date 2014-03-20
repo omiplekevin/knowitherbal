@@ -273,6 +273,7 @@ public class XMLParser {
 				else if(eventType == XmlPullParser.TEXT){
 					if(tagName.equals(Config.KEY_PLANTID)){
 						model.pID = Integer.parseInt(parser.getText());
+
 					}
 					else if(tagName.equals(Config.KEY_IMAGEURL)){
 						model.url = parser.getText();

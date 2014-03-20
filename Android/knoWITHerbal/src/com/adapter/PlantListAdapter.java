@@ -88,8 +88,9 @@ public class PlantListAdapter extends ArrayAdapter<PlantModel> implements Sticky
 		    @Override
 		    protected Bitmap doInBackground(Holder... params) {
 		        v = params[0];
-		        if(imgURLs.size() > 0)
+		        if(imgURLs.size() > 0){
 		        	return BitmapFactory.decodeFile(Config.externalDirectory + ".thumbnail/" + imgURLs.get(0));
+		        }
 		        else
 		        	return BitmapFactory.decodeResource(context.getResources(), R.drawable.no_photos_yet);
 		    }

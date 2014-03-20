@@ -1,5 +1,7 @@
 package com.helper;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,6 +19,7 @@ import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.text.Html;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.config.Config;

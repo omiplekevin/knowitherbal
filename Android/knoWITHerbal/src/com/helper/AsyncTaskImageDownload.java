@@ -3,6 +3,7 @@ package com.helper;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,6 +13,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
@@ -83,114 +85,122 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 	@Override
 	protected Void doInBackground(Void... params) {
 		// TODO Auto-generated method stub
+		File dirFiles = new File(Config.externalDirectory);
+		
+		FileFilter filter = new FileFilter() {
+			@Override
+			public boolean accept(File pathname) {
+				// TODO Auto-generated method stub
+				return pathname.toString().toLowerCase(Locale.getDefault()).contains(".jpg") ||
+				pathname.toString().toLowerCase(Locale.getDefault()).contains(".png") ||
+				pathname.toString().toLowerCase(Locale.getDefault()).contains(".bmp") ||
+				pathname.toString().toLowerCase(Locale.getDefault()).contains(".gif") ||
+				pathname.toString().toLowerCase(Locale.getDefault()).contains(".jpeg");
+			}
+		};
+		
+		File[] fileList = dirFiles.listFiles(filter);
 		for(int i=0;i<urls.size();i++)
 		{
 //			Log.i("URL", urls.get(i));
 			int count;
+			boolean found = false;
 			String[] splitURL = urls.get(i).split("/");
-			/*FOR REAL DIMENSION IMAGE*/
-			
-			try {
-				URL url = new URL(Config.imagehostURL + splitURL[0]+"/"+splitURL[1]);
-				URLConnection conexion = url.openConnection();
-				conexion.connect();
 
-				int lenghtOfFile = conexion.getContentLength();
-//				Log.e("ANDROID_ASYNC", "Length of file: " + lenghtOfFile);
+			for(File file : fileList)
+			{
+				if(file.getName().equals(splitURL[1]))
+				{ found = true; break; }
+			}
 
-				InputStream input = new BufferedInputStream(url.openStream());
-				OutputStream output = new FileOutputStream(Config.externalDirectory + splitURL[1]);
-
-				byte data[] = new byte[1024];
-
-
-					while ((count = input.read(data)) != -1) {
-						output.write(data, 0, count);
-					}
-
-					output.flush();
-					output.close();
-					input.close();
-				} catch (Exception e) {}
-			
-			/*FOR THUMBNAIL DIMENSION IMAGE*/
-			try {
-				URL url = new URL(Config.imagehostURL + splitURL[0]+ "/" + Config.thumbsURL + splitURL[1]);
-				URLConnection conexion = url.openConnection();
-				conexion.connect();
-
-				int lenghtOfFile = conexion.getContentLength();
-//				Log.e("ANDROID_ASYNC", "Length of file: " + lenghtOfFile);
-
-				InputStream input = new BufferedInputStream(url.openStream());
-				OutputStream output = new FileOutputStream(Config.externalDirectory + ".thumbnail/" + splitURL[1]);
-
-				byte data[] = new byte[1024];
-
-				while ((count = input.read(data)) != -1) {
-						output.write(data, 0, count);
-					}
-
-					output.flush();
-					output.close();
-					input.close();
-				} catch (Exception e) {}
-			/*try {
-				real size--------------------------------------------*/
-				/*String urlString = urls.get(i);
-				URL url = new URL(Config.imagehostURL + urlString);
-				String[] splitForThumbs = urlString.split("/");
-				URL thumbs_url = new URL(Config.imagehostURL + splitForThumbs[0] + "/" +Config.thumbsURL + splitForThumbs[1]);
+			if(!found){
+				try {
+					URL url = new URL(Config.imagehostURL + splitURL[0]+"/"+splitURL[1]);
+					URLConnection conexion = url.openConnection();
+					conexion.connect();
+	
+//					int lenghtOfFile = conexion.getContentLength();
+	//				Log.e("ANDROID_ASYNC", "Length of file: " + lenghtOfFile);
+	
+					InputStream input = new BufferedInputStream(url.openStream());
+					OutputStream output = new FileOutputStream(Config.externalDirectory + splitURL[1]);
+	
+					byte data[] = new byte[1024];
+	
+	
+						while ((count = input.read(data)) != -1) {
+							output.write(data, 0, count);
+						}
+	
+						output.flush();
+						output.close();
+						input.close();
+					} catch (Exception e) {}
 				
-				Log.e("URL image", urls.get(i));
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setDoInput(true);
-                connection.connect();
-                connection.setConnectTimeout(15000);
-                InputStream input = connection.getInputStream();
-                
-                BitmapFactory.Options option = new BitmapFactory.Options();
-                Bitmap myBitmap = BitmapFactory.decodeStream(input,null,option);
-                String data1 = url.getFile();
-                String[] filename = data1.split("/");
-                String file = filename[filename.length-1];
-                FileOutputStream stream = new FileOutputStream(Config.externalDirectory + file);
-                ByteArrayOutputStream outstream = new ByteArrayOutputStream();
-                
-                myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
-                final int BUFFER_SIZE = 45 * 1024;
-                byte[] byteArray = new byte[BUFFER_SIZE];
-                stream.write(byteArray);
-                stream.close();
-                
-                thumbnails------------------------------------------------
-                HttpURLConnection thumb_connection = (HttpURLConnection) thumbs_url.openConnection();
-                thumb_connection.setDoInput(true);
-                thumb_connection.connect();
-                InputStream thumbs = thumb_connection.getInputStream();
-                
-                option = new BitmapFactory.Options();
-                myBitmap = BitmapFactory.decodeStream(thumbs,null,option);
-                data1 = url.getFile();
-                filename = data1.split("/");
-                file = filename[filename.length-1];
-                stream = new FileOutputStream(Config.externalDirectory + ".thumbnail/" + file);
-                outstream = new ByteArrayOutputStream();
-                
-                myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outstream);
-                byteArray = outstream.toByteArray();
-                stream.write(byteArray);
-                stream.close();
-                Runtime.getRuntime().gc();
-                
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}*/
+				/*FOR THUMBNAIL DIMENSION IMAGE*/
+				try {
+					URL url = new URL(Config.imagehostURL + splitURL[0]+ "/" + Config.thumbsURL + splitURL[1]);
+					URLConnection conexion = url.openConnection();
+					conexion.connect();
+	
+//					int lenghtOfFile = conexion.getContentLength();
+	//				Log.e("ANDROID_ASYNC", "Length of file: " + lenghtOfFile);
+	
+					InputStream input = new BufferedInputStream(url.openStream());
+					OutputStream output = new FileOutputStream(Config.externalDirectory + ".thumbnail/" + splitURL[1]);
+	
+					byte data[] = new byte[1024];
+	
+					while ((count = input.read(data)) != -1) {
+							output.write(data, 0, count);
+						}
+	
+						output.flush();
+						output.close();
+						input.close();
+					} catch (Exception e) {}
+			}
 			publishProgress();
 		}
+		
+		cleanDirectory(urls);
 		return null;
+	}
+
+	/**
+	 * 
+	 */
+	private void cleanDirectory(ArrayList<String> filenames) {
+		// TODO Auto-generated method stub
+		File dirFiles = new File(Config.externalDirectory);
+		FileFilter filter = new FileFilter() {
+			@Override
+			public boolean accept(File pathname) {
+				// TODO Auto-generated method stub
+				return pathname.toString().toLowerCase(Locale.getDefault()).contains(".jpg") ||
+				pathname.toString().toLowerCase(Locale.getDefault()).contains(".png") ||
+				pathname.toString().toLowerCase(Locale.getDefault()).contains(".bmp") ||
+				pathname.toString().toLowerCase(Locale.getDefault()).contains(".gif") ||
+				pathname.toString().toLowerCase(Locale.getDefault()).contains(".jpeg");
+			}
+		};
+		File[] files = dirFiles.listFiles(filter);
+		for(File singleFile: files)
+		{
+			boolean found = false;
+			for(int i=0;i<filenames.size();i++)
+			{
+				String[] fname = filenames.get(i).split("/");
+				if(fname[1].equals(singleFile.getName()))
+				{
+					found = true;
+					break;
+				}
+			}
+			if(!found)
+				singleFile.delete();
+		}
+		
 	}
 
 	@Override
@@ -200,5 +210,4 @@ public class AsyncTaskImageDownload extends AsyncTask<Void, Void, Void>{
 		progressDialog.dismiss();
 		util.OpenCVInstallCheck();
 	}
-
 }
